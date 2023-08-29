@@ -6,7 +6,7 @@ Shape.Coordinates.Generator <- \() {
       y = c(0,0,specifications[['height']],specifications[['height']],0)
     )
   }
-  generators[['Circle']] <- \(specifications) {
+  generators[['Circle']]    <- \(specifications) {
     convert <- Angle.Converter()
 
     angle <- seq(0,360, 10) |> convert[['DegreesToRadians']]()
