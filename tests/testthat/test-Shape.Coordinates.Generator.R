@@ -12,4 +12,11 @@ describe("When generators <- Shape.Coordinates.Generator()",{
     # Then
     generators |> expect.list()
   })
+  it("Then generators contains a Rectangle generator",{
+    # Given
+    generators <- Shape.Coordinates.Generator()
+
+    # Then
+    generators[['Rectangle']] |> expect.exist()
+  })
 })
