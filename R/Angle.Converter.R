@@ -1,1 +1,4 @@
-Angle.Converter <- \() {}
+Angle.Converter <- \() {
+  converters <- list()
+  return(converters)
+}
