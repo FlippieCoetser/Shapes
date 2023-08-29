@@ -6,6 +6,11 @@ Coordinate.System.Converter <- \() {
       y = (coordinates[['angle']] |> sin()) * coordinates[['radius']]
     )
   }
-  converters[['CartesianToPolar']] <- \() {}
+  converters[['CartesianToPolar']] <- \(coordinates) {
+    data.frame(
+      radius = (coordinates[['x']]^2 + coordinates[['y']]^2) |> sqrt(),
+      angle = (coordinates[['y']] / coordinates[['x']]) |> atan()
+    )
+  }
   return(converters)
 }
