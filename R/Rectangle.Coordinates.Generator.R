@@ -1,0 +1,1 @@
+Rectangle.Coordinates.Generator <- \() {}
