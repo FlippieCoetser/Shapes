@@ -19,4 +19,11 @@ describe('When converters <- Coordinate.System.Converter()',{
     # Then
     converters[['PolarToCartesian']] |> expect.function()
   })
+  it("Then converters contains CartesianToPolar converter",{
+    # Given
+    converters <- Coordinate.System.Converter()
+
+    # Then
+    converters[['CartesianToPolar']] |> expect.function()
+  })
 })
