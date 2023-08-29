@@ -1,4 +1,4 @@
 Rectangle.Coordinates.Generator <- \(specifications) data.frame(
-  x = '',
-  y = ''
+  x = c(0,0,0,0,0),
+  y = c(0,0,0,0,0)
 )
