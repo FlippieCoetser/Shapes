@@ -86,4 +86,22 @@ describe('When coordinates <- specifications |> Rectangle.Coordinates.Generator(
     coordinates[['x']][pair.number] |> expect.equal(expected.x)
     coordinates[['y']][pair.number] |> expect.equal(expected.y)
   })
+  it("Then pair 4 has x = 0 and y = height",{
+    # Given
+    specifications <- list()
+    specifications[['width']]  <- 20
+    specifications[['height']] <- 10
+
+    pair.number <- 4
+
+    expected.x <- 0
+    expected.y <- specifications[['height']]
+
+    # When
+    coordinates <- specifications |> Rectangle.Coordinates.Generator()
+
+    # Then
+    coordinates[['x']][pair.number] |> expect.equal(expected.x)
+    coordinates[['y']][pair.number] |> expect.equal(expected.y)
+  })
 })
