@@ -30,4 +30,19 @@ describe('When coordinates <- specifications |> Circle.Coordinates.Generator()',
     # When
     coordinates |> expect.rows(expected.pairs)
   })
+  it("Then the x values is equal to the cosine of the angle in radians times the radius",{
+    # Given
+    angle.converter <- Angle.Converter()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    expected.x <- (seq(0,360, 10) |> angle.converter[['DegreesToRadians']]() |> cos()) * specifications[['radius']]
+
+    # When
+    coordinates <- specifications |> Circle.Coordinates.Generator()
+
+    # When
+    coordinates[['x']] |> expect.equal(expected.x)
+  })
 })
