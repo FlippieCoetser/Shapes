@@ -6,6 +6,18 @@ Shape.Coordinates.Generator <- \() {
       y = c(0,0,specifications[['height']],specifications[['height']],0)
     )
   }
-  generators[['Circle']] <- \() {}
+  generators[['Circle']] <- \(specifications) {
+    convert <- Angle.Converter()
+
+    angle <- seq(0,360, 10) |> convert[['DegreesToRadians']]()
+    radius <- specifications[['radius']] |> rep(length(angle))
+
+    convert <- Coordinate.System.Converter()
+
+    coordinates <- data.frame(angle, radius) |> 
+      convert[['PolarToCartesian']]()
+
+    return(coordinates)
+  }
   return(generators)
 }
