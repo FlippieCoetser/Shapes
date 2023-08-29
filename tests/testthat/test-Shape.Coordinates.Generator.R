@@ -19,4 +19,11 @@ describe("When generators <- Shape.Coordinates.Generator()",{
     # Then
     generators[['Rectangle']] |> expect.exist()
   })
+  it("Then generators contains a Circle generator",{
+    # Given
+    generators <- Shape.Coordinates.Generator()
+
+    # Then
+    generators[['Circle']] |> expect.exist()
+  })
 })
