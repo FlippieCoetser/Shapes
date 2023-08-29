@@ -1,1 +1,4 @@
-Circle.Coordinates.Generator <- \() {}
+Circle.Coordinates.Generator <- \(specifications) data.frame(
+  x = '',
+  y = ''
+)
