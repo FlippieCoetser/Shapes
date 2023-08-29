@@ -1,5 +1,5 @@
-Package: R.Template
-Title: Package Tile
+Package: Shapes
+Title: Generate Shape Coordinates With Ease
 Version: 0.0.1.0000
 Authors@R: 
     person(given = "Flippie",
@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "Flippie.Coetser@gmail.com",
            comment = c(ORCID = "0000-0003-0549-9245"))
-Description: Packge Description.
+Description: This package provides utlity functions which generates coordinates of primary shapes based on shape specifications.
 License: file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -15,5 +15,4 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Suggests: 
     testthat (>= 3.0.0),
-    uuid
 Config/testthat/edition: 3
