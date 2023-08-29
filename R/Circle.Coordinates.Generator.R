@@ -1,9 +1,13 @@
 Circle.Coordinates.Generator <- \(specifications) {
-  angle <- seq(0,360, 10)
-  radius <- 1 |> rep(length(angle))
+  convert <- Angle.Converter()
 
-  data.frame(
-    x = 1:length(angle),
-    y = 1:length(radius)
-  )
+  angle <- seq(0,360, 10) |> convert[['DegreesToRadians']]()
+  radius <- specifications[['radius']] |> rep(length(angle))
+
+  convert <- Coordinate.System.Converter()
+
+  coordinates <- data.frame(angle, radius) |> 
+    convert[['PolarToCartesian']]()
+
+  return(coordinates)
 }
