@@ -3,3 +3,13 @@ describe("Shape.Coordinates.Generator",{
     Shape.Coordinates.Generator |> expect.exist()
   })
 })
+
+describe("When generators <- Shape.Coordinates.Generator()",{
+  it("Then generators is a list of generators",{
+    # Given
+    generators <- Shape.Coordinates.Generator()
+
+    # Then
+    generators |> expect.list()
+  })
+})
