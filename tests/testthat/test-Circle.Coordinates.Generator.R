@@ -17,4 +17,17 @@ describe('When coordinates <- specifications |> Circle.Coordinates.Generator()',
     coordinates[['x']] |> expect.exist()
     coordinates[['y']] |> expect.exist()
   })
+  it("Then coordinates has 37 pairs of x and y values",{
+    # Given
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    expected.pairs <- 37
+
+    # When
+    coordinates <- specifications |> Circle.Coordinates.Generator()
+
+    # When
+    coordinates |> expect.rows(expected.pairs)
+  })
 })
