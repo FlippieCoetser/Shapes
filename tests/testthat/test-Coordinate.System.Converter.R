@@ -79,3 +79,55 @@ describe('When coordinates |> convert[["PolarToCartesian"]]()',{
     actual.coordinates[['y']] |> expect_equal(expected.y)
   })
 })
+
+describe('When coordinates |> convert[["CartesianToPolar"]]()',{
+  it('then a data.frame with radius and angle is returned',{
+    # Given
+    convert <- Coordinate.System.Converter()  
+
+    coordinates <- list()
+    coordinates[['x']] <- 1
+    coordinates[['y']] <- 1   
+   
+    # When
+    actual.coordinates <- coordinates |> convert[['CartesianToPolar']]() 
+     
+    # Then
+    actual.coordinates |> expect.data.frame() 
+
+    actual.coordinates[['radius']] |> expect.exist() 
+    actual.coordinates[['angle']]  |> expect.exist() 
+  })
+  it('then radius is equal to sqrt(x^2 + y^2)',{
+    # Given
+    convert <- Coordinate.System.Converter()     
+
+    coordinates <- list()
+    coordinates[['x']] <- 1
+    coordinates[['y']] <- 1
+
+    expected.radius <- (coordinates[['x']]^2 + coordinates[['y']]^2) |> sqrt()
+          
+    # When
+    actual.coordinates <- coordinates |> convert[['CartesianToPolar']]() 
+     
+    # Then
+    actual.coordinates[['radius']] |> expect_equal(expected.radius)
+  })
+  it('then angle is equal to atan(y/x)',{
+    # Given
+    convert <- Coordinate.System.Converter()     
+
+    coordinates <- list()
+    coordinates[['x']] <- 1
+    coordinates[['y']] <- 1
+
+    expected.angle <- (coordinates[['y']] / coordinates[['x']]) |> atan()
+          
+    # When
+    actual.coordinates <- coordinates |> convert[['CartesianToPolar']]() 
+     
+    # Then
+    actual.coordinates[['angle']] |> expect_equal(expected.angle)
+  })
+})
