@@ -1,3 +1,10 @@
+#' Shape.Coordinates.Generator
+#' 
+#' @description
+#'  Generates coordinates for a set of primary shapes.
+#' 
+#' @usage NULL
+#' @export
 Shape.Coordinates.Generator <- \() {
   generators <- list()
   generators[['Rectangle']] <- \(specifications) {
