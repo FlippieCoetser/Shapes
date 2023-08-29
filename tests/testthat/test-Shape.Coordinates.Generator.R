@@ -1,4 +1,4 @@
-describe("Shape.Coordinates.Generator.R",{
+describe("Shape.Coordinates.Generator",{
   it("exist",{
     Shape.Coordinates.Generator |> expect.exist()
   })
