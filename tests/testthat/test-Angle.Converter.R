@@ -43,3 +43,19 @@ describe("When degrees |> convert[['DegreesToRadians']]()",{
     radians |> expect.equal(expected.radians)
   })
 })
+
+describe("When radians |> convert[['RadiansToDegrees']]()",{
+  it("Then degrees is returned",{
+    # Given
+    convert <- Angle.Converter()
+
+    expected.degrees <- 180
+    
+    # When
+    radians <- pi
+    degrees <- radians |> convert[['RadiansToDegrees']]()
+
+    # Then
+    degrees |> expect.equal(expected.degrees)
+  })
+})
