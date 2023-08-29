@@ -1,1 +1,4 @@
-Coordinate.System.Converter <- \() {}
+Coordinate.System.Converter <- \() {
+  converters <- list()
+  return(converters)
+}
