@@ -1,1 +1,4 @@
-Rectangle.Coordinates.Generator <- \() {}
+Rectangle.Coordinates.Generator <- \(specifications) data.frame(
+  x = '',
+  y = ''
+)
