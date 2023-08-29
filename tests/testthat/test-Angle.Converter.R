@@ -12,4 +12,11 @@ describe('When converters <- Angle.Converter()',{
     # Then
     converters |> expect.list()
   })
+  it("Then converters contains DegreesToRadians converter",{
+    # Given
+    converters <- Angle.Converter()
+
+    # Then
+    converters[['DegreesToRadians']] |> expect.exist()
+  })
 })
