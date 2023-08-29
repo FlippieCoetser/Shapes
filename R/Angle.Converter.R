@@ -3,6 +3,8 @@ Angle.Converter <- \() {
   converters[['DegreesToRadians']] <- \(degrees) {
     degrees * pi / 180
   }
-  converters[['RadiansToDegrees']] <- \() {}
+  converters[['RadiansToDegrees']] <- \(radians) {
+    radians * 180 / pi
+  }
   return(converters)
 }
