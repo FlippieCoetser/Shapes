@@ -1,4 +1,4 @@
-# Shape R-Package
+# Shapes R-Package
 
 Generate Shape Coordinates with ease.
 
