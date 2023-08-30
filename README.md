@@ -25,3 +25,5 @@ This process was followed irritatively in this repository. See the list of User 
 All branches associated with user stories have been left active
 
 Also notice the last iteration focused on abstraction. Where Abstraction is the process of combining related functions or operations into a unified component, simplifying their access and use by grouping them under a broader theme or purpose
+
+Lastly, in one of the above user requirements one important acceptance criteria is missing. See if you can generate and plot a rectangle and circle to identify the missing feature or criteria. If you find it, Create a new GitHub ticket and follow the process outlined above.
