@@ -5,17 +5,18 @@ Generate Shape Coordinates with ease.
 ## Generic Development Process
 
 1. Define User Requirements
-2. Create Conceptual Design (wireframes or proof of concept code)
+2. Create Conceptual Design (wire-frames or proof of concept code)
 3. Define Acceptance Criteria
 4. Create new Branch
 5. Follow a TDD (Test Driven Development) to implement Design
 6. Merge Branch to Main
 
-> Note: After each Merge identify Abstraction and Generalization opportunities and Implement in seperate branch and merge after test pass.
+> Note: After each Merge identify Abstraction and Generalization opportunities and Implement in separate branch and merge after test pass.
 
-This process was followed irritatively in this repository. See the list of User Requirements, Conceptual Design and Acceptance Criteria using the links below. 
+This process was followed iteratively in this repository. See the list of User Requirements, Conceptual Design and Acceptance Criteria using the links below.
 
 ## Sequence of User Stories Implemented:
+
 1. [Generate Rectangle Coordinates](https://github.com/FlippieCoetser/Shapes/issues/1)
 2. [Convert Radians to Degrees and Back](https://github.com/FlippieCoetser/Shapes/issues/4)
 3. [Convert Polar Coordinates to Cartesian Coordinates and Back](https://github.com/FlippieCoetser/Shapes/issues/5)
