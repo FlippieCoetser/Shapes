@@ -33,6 +33,13 @@ describe("When generators <- Shape.Coordinates.Generator()",{
     # Then
     generators[['Circle']] |> expect.exist()
   })
+  it("then generators contains a 'Trapezoid' generator",{
+    # Given
+    generators <- Shape.Coordinates.Generator()
+
+    # Then
+    generators[['Trapezoid']] |> expect.exist()
+  })
 })
 
 describe("When coordinates <- specifications |> generate[['Rectangle']]()",{
