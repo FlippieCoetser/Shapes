@@ -25,10 +25,14 @@ Shape.Coordinates.Generator <- \() {
     coordinates |> align[[specifications[['align']]]]()
   }
   generators[['Triangle']]  <- \(specifications) {
-    data.frame(
+    specifications <- specifications |> set.defaults()
+
+    coordinates <- data.frame(
       x = c(0,specifications[['base']],specifications[['base']]/2,0),
       y = c(0,0,specifications[['height']],0)
     )
+
+    coordinates |> align[[specifications[['align']]]]()
   }
   generators[['Circle']]    <- \(specifications) {
     specifications <- specifications |> set.defaults()
