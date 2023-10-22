@@ -1,1 +1,4 @@
-Alignment.Configurator <- \() {}
+Alignment.Configurator <- \() {
+  configurator <- list()
+  return(configurator)
+}
