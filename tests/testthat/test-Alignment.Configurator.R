@@ -4,12 +4,12 @@ describe('Alignment.Configurator',{
   })
 })
 
-describe("When configurator <- Alignment.Configurator()",{
-  it("then configurator is a list",{
+describe("When alignment <- Alignment.Configurator()",{
+  it("then alignment is a list",{
     # When
-    configurator <- Alignment.Configurator()
+    alignment <- Alignment.Configurator()
 
     # Then
-    configurator |> expect.list()
+    alignment |> expect.list()
   })
 })
