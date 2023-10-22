@@ -26,8 +26,8 @@ Shape.Coordinates.Generator <- \() {
   }
   generators[['Triangle']]  <- \(specifications) {
     data.frame(
-      x = c(0,specifications[['base']],0,0),
-      y = c(0,0,0,0)
+      x = c(0,specifications[['base']],specifications[['base']]/2,0),
+      y = c(0,0,specifications[['height']],0)
     )
   }
   generators[['Circle']]    <- \(specifications) {
