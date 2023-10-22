@@ -582,4 +582,21 @@ describe("When coordinates <- specifications |> generate[['Trapezoid']]()",{
     coordinates[['x']] |> expect.exist()
     coordinates[['y']] |> expect.exist()
   })
+  it("then coordinates has 5 pairs of x and y values",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+
+    specifications <- list()
+    specifications[['bottom']] <- 1
+    specifications[['top']]    <- 0.5
+    specifications[['height']] <- 1
+
+    expected.pairs <- 5
+
+    # When
+    coordinates <- specifications |> generate[['Trapezoid']]()
+
+    # Then
+    coordinates |> expect.rows(expected.pairs)
+  })
 })
