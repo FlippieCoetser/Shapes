@@ -427,4 +427,23 @@ describe("When coordinates <- specifications |> generate[['Triangle']]()",{
     coordinates[['x']][pair.number] |> expect.equal(expected.x)
     coordinates[['y']][pair.number] |> expect.equal(expected.y)
   })
+  it("then pair 2 has x = base and y = 0",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+
+    specifications <- list()
+    specifications[['base']] <- 1
+
+    pair.number <- 2
+
+    expected.x <- specifications[['base']]
+    expected.y <- 0
+
+    # When
+    coordinates <- specifications |> generate[['Triangle']]()
+
+    # Then
+    coordinates[['x']][pair.number] |> expect.equal(expected.x)
+    coordinates[['y']][pair.number] |> expect.equal(expected.y)
+  })
 })
