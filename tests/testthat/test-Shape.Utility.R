@@ -26,6 +26,13 @@ describe("When utilities <- Shape.Utility()",{
     # Then
     utilities[['get.height']] |> expect.exist()
   })
+  it("then utilities contains 'translate' utility",{
+    # When
+    utilities <- Shape.Utility()
+
+    # Then
+    utilities[['translate']] |> expect.exist()
+  })
 })
 
 describe("When coordinates |> shape[['get.with']]()",{
