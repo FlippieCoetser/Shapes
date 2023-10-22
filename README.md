@@ -7,13 +7,13 @@ Generate Shape Coordinates with ease.
 1. Define User Requirements
 2. Create Conceptual Design (wire-frames or proof of concept code)
 3. Define Acceptance Criteria
-4. Create new Branch
+4. Create a new Branch
 5. Follow a TDD (Test Driven Development) to implement Design
 6. Merge Branch to Main
 
-> Note: After each Merge identify Abstraction and Generalization opportunities and Implement in separate branch and merge after test pass.
+> Note: After each Merge, identify Abstraction and Generalization opportunities. Implement them in a separate branch and merge them after the test passes.
 
-This process was followed iteratively in this repository. See the list of User Requirements, Conceptual Design and Acceptance Criteria using the links below.
+This process was followed iteratively in this repository. See the User Requirements, Conceptual Design and Acceptance Criteria list using the links below.
 
 ## Sequence of User Stories Implemented:
 
@@ -23,11 +23,9 @@ This process was followed iteratively in this repository. See the list of User R
 4. [Generate Circle Coordinates](https://github.com/FlippieCoetser/Shapes/issues/2)
 5. [Consolidate Shape Coordinates Generators](https://github.com/FlippieCoetser/Shapes/issues/9)
 
-All branches associated with user stories have been left active
+All branches associated with user stories have been left active.
 
-Also notice the last iteration focused on abstraction. Where Abstraction is the process of combining related functions or operations into a unified component, simplifying their access and use by grouping them under a broader theme or purpose
-
-Lastly, in one of the above user requirements one important acceptance criteria is missing. See if you can generate and plot a rectangle and circle to identify the missing feature or criteria. If you find it, Create a new GitHub ticket and follow the process outlined above.
+Also, notice the last iteration focused on abstraction. Abstraction combines related functions or operations into a unified component, simplifying their access and use by grouping them under a broader theme or purpose.
 
 ### Features
 
@@ -60,9 +58,9 @@ circle <- specifications |> generate[['Circle']]()
 
 The align parameter can be one of the following:
 
-1. corner: Left Bottom Corner of shapes will be at origin (0,0)
-2. center: Center of shapes will be at origin (0,0)
-3. horizontal: The shapes will be centered horizontally with the bottom at y = 0
-4. vertical: The shapes will be centered vertically with the left side at x = 0
+1. corner: The Left Bottom Corner of shapes will be at the origin (0,0)
+2. center: The center of shapes will be at the origin (0,0)
+3. horizontal: The shapes will be centred horizontally with the bottom at y = 0
+4. vertical: The shapes will be centred vertically with the left side at x = 0
 
 > Note: The default align is corner when not specified
