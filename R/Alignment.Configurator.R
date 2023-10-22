@@ -13,7 +13,13 @@ Alignment.Configurator <- \() {
 
     coordinates |> shape[['translate']](offset)
   }
-  alignment[['horizontal']] <- \() {}
+  alignment[['horizontal']] <- \(coordinates) {
+    width <- coordinates |> shape[['get.width']]()
+
+    offset <- data.frame(x = -width / 2, y = 0)
+
+    coordinates |> shape[['translate']](offset)
+  }
   alignment[['vertical']]   <- \(coordinates) {
     height <- coordinates |> shape[['get.height']]()
 
