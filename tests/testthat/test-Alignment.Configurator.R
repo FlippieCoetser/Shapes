@@ -26,4 +26,11 @@ describe("When alignment <- Alignment.Configurator()",{
     # Then
     alignment[['origin']] |> expect.exist()
   })
+  it("then alignment contains 'horizontal' alignment",{
+    # When
+    alignment <- Alignment.Configurator()
+
+    # Then
+    alignment[['horizontal']] |> expect.exist()
+  })
 })
