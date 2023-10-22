@@ -19,12 +19,12 @@ describe("When alignment <- Alignment.Configurator()",{
     # Then
     alignment[['corner']] |> expect.exist()
   })
-  it("then alignment contains 'origin' alignment",{
+  it("then alignment contains 'center' alignment",{
     # When
     alignment <- Alignment.Configurator()
 
     # Then
-    alignment[['origin']] |> expect.exist()
+    alignment[['center']] |> expect.exist()
   })
   it("then alignment contains 'horizontal' alignment",{
     # When
@@ -52,6 +52,29 @@ describe("When coordinates |> align[['corner']]()",{
 
     # When
     actual.coordinates <- coordinates |> align[['corner']]()
+
+    # Then
+    actual.coordinates |> expect.equal(expected.coordinates)
+  })
+})
+
+describe("When coordinates |> align[['center']]()",{
+  it("then coordinates are centered",{
+    # Given
+    shape <- Shape.Utility()
+    align <- Alignment.Configurator()
+
+    coordinates <- data.frame(x = 1:10, y = 1:10)
+
+    width  <- coordinates |> shape[['get.width']]()
+    height <- coordinates |> shape[['get.height']]()
+
+    offset <- data.frame(x = -width / 2, y = -height / 2)  
+
+    expected.coordinates <- coordinates |> shape[['translate']](offset)
+
+    # When
+    actual.coordinates <- coordinates |> align[['center']]()
 
     # Then
     actual.coordinates |> expect.equal(expected.coordinates)
