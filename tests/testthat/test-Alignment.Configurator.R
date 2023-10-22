@@ -19,4 +19,11 @@ describe("When alignment <- Alignment.Configurator()",{
     # Then
     alignment[['corner']] |> expect.exist()
   })
+  it("then alignment contains 'origin' alignment",{
+    # When
+    alignment <- Alignment.Configurator()
+
+    # Then
+    alignment[['origin']] |> expect.exist()
+  })
 })
