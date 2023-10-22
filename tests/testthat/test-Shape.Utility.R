@@ -27,3 +27,22 @@ describe("When utilities <- Shape.Utility()",{
     utilities[['get.height']] |> expect.exist()
   })
 })
+
+describe("When coordinates |> shape[['get.with']]()",{
+  it("then width is the difference between the maximum and minimum x coordinates",{
+    # Given
+    shape <- Shape.Utility()
+    coordinates <- data.frame(x = 1:10, y = 1:10)
+
+    max.x <- coordinates[['x']] |> max()
+    min.x <- coordinates[['x']] |> min()
+
+    expected.width <- max.x - min.x
+
+    # When
+    actual.width <- coordinates |> shape[['get.width']]()
+
+    # Then
+    actual.width |> expect.equal(expected.width)
+  })
+})
