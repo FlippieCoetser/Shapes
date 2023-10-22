@@ -1,1 +1,4 @@
-Shape.Utility <- \() {}
+Shape.Utility <- \() {
+  utilities <- list()
+  return(utilities)
+}
