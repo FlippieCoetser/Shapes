@@ -202,6 +202,27 @@ describe('When coordinates <- specifications |> generate[["Rectangle"]]()',{
     # Then
     actual.coordinates |> expect.equal.data(expected.coordinates)
   })
+  it("Then coordinates is horizontally aligned if specifications[['align']] <- 'horizontal'",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['width']]  <- 20
+    specifications[['height']] <- 10
+
+    corner.coordinates <- specifications |> generate[['Rectangle']]()
+
+    expected.coordinates <- corner.coordinates |> align[['horizontal']]()
+
+    specifications[['align']]  <- 'horizontal'
+
+    # When
+    actual.coordinates <- specifications |> generate[['Rectangle']]()
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
 })
 
 describe('When coordinates <- specifications |> Circle.Coordinates.Generator()',{
