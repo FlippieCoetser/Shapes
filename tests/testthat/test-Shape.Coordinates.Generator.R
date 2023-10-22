@@ -5,21 +5,28 @@ describe("Shape.Coordinates.Generator",{
 })
 
 describe("When generators <- Shape.Coordinates.Generator()",{
-  it("Then generators is a list of generators",{
+  it("then generators is a list of generators",{
     # Given
     generators <- Shape.Coordinates.Generator()
 
     # Then
     generators |> expect.list()
   })
-  it("Then generators contains a Rectangle generator",{
+  it("then generators contains a 'Rectangle' generator",{
     # Given
     generators <- Shape.Coordinates.Generator()
 
     # Then
     generators[['Rectangle']] |> expect.exist()
   })
-  it("Then generators contains a Circle generator",{
+  it("then generators contains a 'Triangle' generator",{
+    # Given
+    generators <- Shape.Coordinates.Generator()
+
+    # Then
+    generators[['Triangle']] |> expect.exist()
+  })
+  it("then generators contains a 'Circle' generator",{
     # Given
     generators <- Shape.Coordinates.Generator()
 
@@ -28,8 +35,8 @@ describe("When generators <- Shape.Coordinates.Generator()",{
   })
 })
 
-describe('When coordinates <- specifications |> generate[["Rectangle"]]()',{
-  it("Then coordinates has x and y values",{
+describe("When coordinates <- specifications |> generate[['Rectangle']]()",{
+  it("then coordinates has x and y values",{
     # Given
     generate <- Shape.Coordinates.Generator()
 
@@ -44,7 +51,7 @@ describe('When coordinates <- specifications |> generate[["Rectangle"]]()',{
     coordinates[['x']] |> expect.exist()
     coordinates[['y']] |> expect.exist()
   })
-  it("Then coordinates has 5 pairs of x and y values",{
+  it("then coordinates has 5 pairs of x and y values",{
     # Given
     generate <- Shape.Coordinates.Generator()
 
@@ -60,7 +67,7 @@ describe('When coordinates <- specifications |> generate[["Rectangle"]]()',{
     # Then
     coordinates |> expect.rows(expected.pairs)
   })
-  it("Then pair 1 has x = 0 and y = 0",{
+  it("then pair 1 has x = 0 and y = 0",{
     # Given
     generate <- Shape.Coordinates.Generator()
 
@@ -80,7 +87,7 @@ describe('When coordinates <- specifications |> generate[["Rectangle"]]()',{
     coordinates[['x']][pair.number] |> expect.equal(expected.x)
     coordinates[['y']][pair.number] |> expect.equal(expected.y)
   })
-  it("Then pair 2 has x = width and y = 0",{
+  it("then pair 2 has x = width and y = 0",{
     # Given
     generate <- Shape.Coordinates.Generator()
 
@@ -100,7 +107,7 @@ describe('When coordinates <- specifications |> generate[["Rectangle"]]()',{
     coordinates[['x']][pair.number] |> expect.equal(expected.x)
     coordinates[['y']][pair.number] |> expect.equal(expected.y)
   })
-  it("Then pair 3 has x = width and y = height",{
+  it("then pair 3 has x = width and y = height",{
     # Given
     generate <- Shape.Coordinates.Generator()
 
@@ -120,7 +127,7 @@ describe('When coordinates <- specifications |> generate[["Rectangle"]]()',{
     coordinates[['x']][pair.number] |> expect.equal(expected.x)
     coordinates[['y']][pair.number] |> expect.equal(expected.y)
   })
-  it("Then pair 4 has x = 0 and y = height",{
+  it("then pair 4 has x = 0 and y = height",{
     # Given
     generate <- Shape.Coordinates.Generator()
 
@@ -140,7 +147,7 @@ describe('When coordinates <- specifications |> generate[["Rectangle"]]()',{
     coordinates[['x']][pair.number] |> expect.equal(expected.x)
     coordinates[['y']][pair.number] |> expect.equal(expected.y)
   })
-  it("Then pair 5 has x = 0 and y = 0",{
+  it("then pair 5 has x = 0 and y = 0",{
     # Given
     generate <- Shape.Coordinates.Generator()
 
@@ -160,7 +167,7 @@ describe('When coordinates <- specifications |> generate[["Rectangle"]]()',{
     coordinates[['x']][pair.number] |> expect.equal(expected.x)
     coordinates[['y']][pair.number] |> expect.equal(expected.y)
   })
-  it("Then coordinates is centered if specifications[['align']] <- 'center'",{
+  it("then coordinates is centered if specifications[['align']] <- 'center'",{
     # Given
     generate <- Shape.Coordinates.Generator()
     align    <- Alignment.Configurator()
@@ -181,7 +188,7 @@ describe('When coordinates <- specifications |> generate[["Rectangle"]]()',{
     # Then
     actual.coordinates |> expect.equal.data(expected.coordinates)
   })
-  it("Then coordinates is vertically aligned if specifications[['align']] <- 'vertical'",{
+  it("then coordinates is vertically aligned if specifications[['align']] <- 'vertical'",{
     # Given
     generate <- Shape.Coordinates.Generator()
     align    <- Alignment.Configurator()
@@ -202,7 +209,7 @@ describe('When coordinates <- specifications |> generate[["Rectangle"]]()',{
     # Then
     actual.coordinates |> expect.equal.data(expected.coordinates)
   })
-  it("Then coordinates is horizontally aligned if specifications[['align']] <- 'horizontal'",{
+  it("then coordinates is horizontally aligned if specifications[['align']] <- 'horizontal'",{
     # Given
     generate <- Shape.Coordinates.Generator()
     align    <- Alignment.Configurator()
@@ -225,8 +232,8 @@ describe('When coordinates <- specifications |> generate[["Rectangle"]]()',{
   })
 })
 
-describe('When coordinates <- specifications |> Circle.Coordinates.Generator()',{
-  it("Then coordinates has x and y values",{
+describe("When coordinates <- specifications |> generate[['Circle']]()",{
+  it("then coordinates has x and y values",{
     # Given
     generate <- Shape.Coordinates.Generator()
 
@@ -240,7 +247,7 @@ describe('When coordinates <- specifications |> Circle.Coordinates.Generator()',
     coordinates[['x']] |> expect.exist()
     coordinates[['y']] |> expect.exist()
   })
-  it("Then coordinates has 37 pairs of x and y values",{
+  it("then coordinates has 37 pairs of x and y values",{
     # Given
     generate <- Shape.Coordinates.Generator()
 
@@ -256,7 +263,7 @@ describe('When coordinates <- specifications |> Circle.Coordinates.Generator()',
     # When
     coordinates |> expect.rows(expected.pairs)
   })
-  it("Then the x values is equal to the cosine of the angle in radians times the radius plus half width",{
+  it("then the x values is equal to the cosine of the angle in radians times the radius plus half width",{
     # Given
     angle.converter <- Angle.Converter()
     shape <- Shape.Utility()
@@ -284,7 +291,7 @@ describe('When coordinates <- specifications |> Circle.Coordinates.Generator()',
     # Then
     actual.coordinates[['x']] |> expect.equal(expected.coordinates[['x']])
   })
-  it("Then the y values is equal to the sine of the angle in radians times the radius plus half height",{
+  it("then the y values is equal to the sine of the angle in radians times the radius plus half height",{
         # Given
     angle.converter <- Angle.Converter()
     shape <- Shape.Utility()
@@ -312,7 +319,7 @@ describe('When coordinates <- specifications |> Circle.Coordinates.Generator()',
     # Then
     actual.coordinates[['y']] |> expect.equal(expected.coordinates[['y']])
   })
-  it("Then coordinates is centered if specifications[['align']] <- 'center'",{
+  it("then coordinates is centered if specifications[['align']] <- 'center'",{
     # Given
     generate <- Shape.Coordinates.Generator()
     align    <- Alignment.Configurator()
@@ -332,7 +339,7 @@ describe('When coordinates <- specifications |> Circle.Coordinates.Generator()',
     # Then
     actual.coordinates |> expect.equal.data(expected.coordinates)
   })
-  it("Then coordinates is vertically aligned if specifications[['align']] <- 'vertical'",{
+  it("then coordinates is vertically aligned if specifications[['align']] <- 'vertical'",{
     # Given
     generate <- Shape.Coordinates.Generator()
     align    <- Alignment.Configurator()
@@ -352,7 +359,7 @@ describe('When coordinates <- specifications |> Circle.Coordinates.Generator()',
     # Then
     actual.coordinates |> expect.equal.data(expected.coordinates)
   })
-  it("Then coordinates is horizontally aligned if specifications[['align']] <- 'horizontal'",{
+  it("then coordinates is horizontally aligned if specifications[['align']] <- 'horizontal'",{
     # Given
     generate <- Shape.Coordinates.Generator()
     align    <- Alignment.Configurator()
@@ -368,6 +375,183 @@ describe('When coordinates <- specifications |> Circle.Coordinates.Generator()',
 
     # When
     actual.coordinates <- specifications |> generate[['Circle']]()
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+})
+
+describe("When coordinates <- specifications |> generate[['Triangle']]()",{
+  it("then coordinates has x and y values",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+
+    specifications <- list()
+    specifications[['base']]   <- 1
+    specifications[['height']] <- 1.5
+
+    # When
+    coordinates <- specifications |> generate[['Triangle']]()
+
+    # When
+    coordinates[['x']] |> expect.exist()
+    coordinates[['y']] |> expect.exist()
+  })
+  it("then coordinates has 4 pairs of x and y values",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+
+    specifications <- list()
+    specifications[['base']]   <- 1
+    specifications[['height']] <- 1.5
+
+    expected.pairs <- 4
+
+    # When
+    coordinates <- specifications |> generate[['Triangle']]()
+
+    # Then
+    coordinates |> expect.rows(expected.pairs)
+  })
+  it("then pair 1 has x = 0 and y = 0",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+
+    specifications <- list()
+    specifications[['base']]   <- 1
+    specifications[['height']] <- 1.5
+
+    pair.number <- 1
+
+    expected.x <- 0
+    expected.y <- 0
+
+    # When
+    coordinates <- specifications |> generate[['Triangle']]()
+
+    # Then
+    coordinates[['x']][pair.number] |> expect.equal(expected.x)
+    coordinates[['y']][pair.number] |> expect.equal(expected.y)
+  })
+  it("then pair 2 has x = base and y = 0",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+
+    specifications <- list()
+    specifications[['base']]   <- 1
+    specifications[['height']] <- 1.5
+
+    pair.number <- 2
+
+    expected.x <- specifications[['base']]
+    expected.y <- 0
+
+    # When
+    coordinates <- specifications |> generate[['Triangle']]()
+
+    # Then
+    coordinates[['x']][pair.number] |> expect.equal(expected.x)
+    coordinates[['y']][pair.number] |> expect.equal(expected.y)
+  })
+  it("then pair 3 has x = base / 2 and y = height",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+
+    specifications <- list()
+    specifications[['base']]   <- 1
+    specifications[['height']] <- 1.5
+
+    pair.number <- 3
+
+    expected.x <- specifications[['base']] / 2
+    expected.y <- specifications[['height']]
+
+    # When
+    coordinates <- specifications |> generate[['Triangle']]()
+
+    # Then
+    coordinates[['x']][pair.number] |> expect.equal(expected.x)
+    coordinates[['y']][pair.number] |> expect.equal(expected.y)
+  })
+  it("then pair 4 has x = 0 and y = 0",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+
+    specifications <- list()
+    specifications[['base']]   <- 1
+    specifications[['height']] <- 1.5
+
+    pair.number <- 4
+
+    expected.x <- 0
+    expected.y <- 0
+
+    # When
+    coordinates <- specifications |> generate[['Triangle']]()
+
+    # Then
+    coordinates[['x']][pair.number] |> expect.equal(expected.x)
+    coordinates[['y']][pair.number] |> expect.equal(expected.y)
+  })
+  it("then coordinates is centered if specifications[['align']] <- 'center'",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['base']]   <- 1
+    specifications[['height']] <- 1.5
+
+    corner.coordinates <- specifications |> generate[['Triangle']]()
+
+    expected.coordinates <- corner.coordinates |> align[['center']]()
+
+    specifications[['align']]  <- 'center'
+
+    # When
+    actual.coordinates <- specifications |> generate[['Triangle']]()
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+  it("then coordinates is vertically aligned if specifications[['align']] <- 'vertical'",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['base']]   <- 1
+    specifications[['height']] <- 1.5
+
+    corner.coordinates <- specifications |> generate[['Triangle']]()
+
+    expected.coordinates <- corner.coordinates |> align[['vertical']]()
+
+    specifications[['align']]  <- 'vertical'
+
+    # When
+    actual.coordinates <- specifications |> generate[['Triangle']]()
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+  it("then coordinates is horizontally aligned if specifications[['align']] <- 'horizontal'",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['base']]   <- 1
+    specifications[['height']] <- 1.5
+
+    corner.coordinates <- specifications |> generate[['Triangle']]()
+
+    expected.coordinates <- corner.coordinates |> align[['horizontal']]()
+
+    specifications[['align']]  <- 'horizontal'
+
+    # When
+    actual.coordinates <- specifications |> generate[['Triangle']]()
 
     # Then
     actual.coordinates |> expect.equal.data(expected.coordinates)
