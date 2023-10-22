@@ -14,15 +14,22 @@ Shape.Coordinates.Generator <- \() {
     )
   }
   generators[['Circle']]    <- \(specifications) {
+    shape   <- Shape.Utility()
     convert <- Angle.Converter()
 
-    angle <- seq(0,360, 10) |> convert[['DegreesToRadians']]()
+    angle  <- seq(0,360, 10) |> convert[['DegreesToRadians']]()
     radius <- specifications[['radius']] |> rep(length(angle))
 
     convert <- Coordinate.System.Converter()
 
-    coordinates <- data.frame(angle, radius) |> 
-      convert[['PolarToCartesian']]()
+    coordinates <- data.frame(angle, radius) |> convert[['PolarToCartesian']]()
+
+    width  <- coordinates |> shape[['get.width']]()
+    height <- coordinates |> shape[['get.height']]()
+
+    offset <- data.frame(x = width / 2, y = height / 2)
+
+    coordinates <- coordinates |> shape[['translate']](offset)
 
     return(coordinates)
   }
