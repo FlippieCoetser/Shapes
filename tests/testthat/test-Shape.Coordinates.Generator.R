@@ -514,7 +514,7 @@ describe("When coordinates <- specifications |> generate[['Triangle']]()",{
     # Then
     actual.coordinates |> expect.equal.data(expected.coordinates)
   })
-  it("then coordinates is centered if specifications[['align']] <- 'vertical'",{
+  it("then coordinates is vertically aligned if specifications[['align']] <- 'vertical'",{
     # Given
     generate <- Shape.Coordinates.Generator()
     align    <- Alignment.Configurator()
@@ -535,7 +535,7 @@ describe("When coordinates <- specifications |> generate[['Triangle']]()",{
     # Then
     actual.coordinates |> expect.equal.data(expected.coordinates)
   })
-  it("then coordinates is centered if specifications[['align']] <- 'horizontal'",{
+  it("then coordinates is horizontally aligned if specifications[['align']] <- 'horizontal'",{
     # Given
     generate <- Shape.Coordinates.Generator()
     align    <- Alignment.Configurator()
