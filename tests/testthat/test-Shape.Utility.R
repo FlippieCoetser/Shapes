@@ -12,12 +12,12 @@ describe("When utilities <- Shape.Utility()",{
     # Then
     utilities |> expect.list()
   })
-  it("then utilities contains 'get.with' utility",{
+  it("then utilities contains 'get.width' utility",{
     # When
     utilities <- Shape.Utility()
 
     # Then
-    utilities[['get.with']] |> expect.exist()
+    utilities[['get.width']] |> expect.exist()
   })
   it("then utilities contains 'get.height' utility",{
     # When
