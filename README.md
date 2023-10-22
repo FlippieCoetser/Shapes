@@ -28,3 +28,41 @@ All branches associated with user stories have been left active
 Also notice the last iteration focused on abstraction. Where Abstraction is the process of combining related functions or operations into a unified component, simplifying their access and use by grouping them under a broader theme or purpose
 
 Lastly, in one of the above user requirements one important acceptance criteria is missing. See if you can generate and plot a rectangle and circle to identify the missing feature or criteria. If you find it, Create a new GitHub ticket and follow the process outlined above.
+
+### Features
+
+Generate Shape Coordinates for the following shapes:
+
+1. Rectangle
+
+```r
+generate <- Shapes::Shape.Coordinates.Generator()
+
+specifications <- list()
+specifications[['width']]  <- 1
+specifications[['height']] <- 0.5
+specifications[['align']]  <- 'center'
+
+rectangle <- specifications |> generate[['Rectangle']]()
+```
+
+2. Circle
+
+```r
+generate <- Shapes::Shape.Coordinates.Generator()
+
+specifications <- list()
+specifications[['radius']] <- 1
+specifications[['align']]  <- 'center'
+
+circle <- specifications |> generate[['Circle']]()
+```
+
+The align parameter can be one of the following:
+
+1. corner: Left Bottom Corner of shapes will be at origin (0,0)
+2. center: Center of shapes will be at origin (0,0)
+3. horizontal: The shapes will be centered horizontally with the bottom at y = 0
+4. vertical: The shapes will be centered vertically with the left side at x = 0
+
+> Note: The default align is corner when not specified
