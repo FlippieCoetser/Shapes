@@ -160,6 +160,27 @@ describe('When coordinates <- specifications |> generate[["Rectangle"]]()',{
     coordinates[['x']][pair.number] |> expect.equal(expected.x)
     coordinates[['y']][pair.number] |> expect.equal(expected.y)
   })
+  it("Then coordinates is centered if specifications[['align']] <- 'center'",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['width']]  <- 20
+    specifications[['height']] <- 10
+
+    corner.coordinates <- specifications |> generate[['Rectangle']]()
+
+    expected.coordinates <- corner.coordinates |> align[['center']]()
+
+    specifications[['align']]  <- 'center'
+
+    # When
+    actual.coordinates <- specifications |> generate[['Rectangle']]()
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
 })
 
 describe('When coordinates <- specifications |> Circle.Coordinates.Generator()',{
