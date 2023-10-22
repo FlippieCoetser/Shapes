@@ -81,6 +81,28 @@ describe("When coordinates |> align[['center']]()",{
   })
 })
 
+describe("When coordinates |> align[['horizontal']]()",{
+  it("then coordinates are horizontally aligned",{
+    # Given
+    shape <- Shape.Utility()
+    align <- Alignment.Configurator()
+
+    coordinates <- data.frame(x = 1:10, y = 1:10)
+
+    width <- coordinates |> shape[['get.width']]()
+
+    offset <- data.frame(x = -width / 2, y = 0)  
+
+    expected.coordinates <- coordinates |> shape[['translate']](offset)
+
+    # When
+    actual.coordinates <- coordinates |> align[['horizontal']]()
+
+    # Then
+    actual.coordinates |> expect.equal(expected.coordinates)
+  })
+})
+
 describe("When coordinates |> align[['vertical']]()",{
   it("then coordinates are vertically aligned",{
     # Given
