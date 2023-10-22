@@ -25,6 +25,8 @@ Shape.Coordinates.Generator <- \() {
     coordinates |> align[[specifications[['align']]]]()
   }
   generators[['Circle']]    <- \(specifications) {
+    specifications <- specifications |> set.defaults()
+
     shape   <- Shape.Utility()
     angle   <- Angle.Converter()
     convert <- Coordinate.System.Converter()
@@ -39,7 +41,7 @@ Shape.Coordinates.Generator <- \() {
 
     offset <- data.frame(x = width / 2, y = height / 2)
 
-    coordinates |> shape[['translate']](offset)
+    coordinates |> shape[['translate']](offset) |> align[[specifications[['align']]]]()
   }
   return(generators)
 }
