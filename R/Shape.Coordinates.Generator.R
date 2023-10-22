@@ -63,14 +63,14 @@ Shape.Coordinates.Generator <- \() {
 
     if(descending) {
       coordinates <- data.frame(
-        x = c(0,0,0,0,0),
+        x = c(0,specifications[['bottom']],0,0,0),
         y = c(0,0,0,0,0)
       )
     }
 
     if(ascending) {
       coordinates <- data.frame(
-        x = c(difference / 2,0,0,0,0),
+        x = c(difference / 2,specifications[['bottom']] + difference / 2,0,0,0),
         y = c(0,0,0,0,0)
       )
     }
