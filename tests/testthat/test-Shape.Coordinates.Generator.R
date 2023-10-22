@@ -40,6 +40,13 @@ describe("When generators <- Shape.Coordinates.Generator()",{
     # Then
     generators[['Trapezoid']] |> expect.exist()
   })
+  it("then generators contains a 'Segment' generator",{
+    # Given
+    generators <- Shape.Coordinates.Generator()
+
+    # Then
+    generators[['Segment']] |> expect.exist()
+  })
 })
 
 describe("When coordinates <- specifications |> generate[['Rectangle']]()",{
