@@ -12,4 +12,11 @@ describe("When alignment <- Alignment.Configurator()",{
     # Then
     alignment |> expect.list()
   })
+  it("then alignment contains 'corner' alignment",{
+    # When
+    alignment <- Alignment.Configurator()
+
+    # Then
+    alignment[['corner']] |> expect.exist()
+  })
 })
