@@ -387,6 +387,8 @@ describe("When coordinates <- specifications |> generate[['Triangle']]()",{
     generate <- Shape.Coordinates.Generator()
 
     specifications <- list()
+    specifications[['base']]   <- 1
+    specifications[['height']] <- 1.5
 
     # When
     coordinates <- specifications |> generate[['Triangle']]()
@@ -400,6 +402,8 @@ describe("When coordinates <- specifications |> generate[['Triangle']]()",{
     generate <- Shape.Coordinates.Generator()
 
     specifications <- list()
+    specifications[['base']]   <- 1
+    specifications[['height']] <- 1.5
 
     expected.pairs <- 4
 
@@ -414,6 +418,8 @@ describe("When coordinates <- specifications |> generate[['Triangle']]()",{
     generate <- Shape.Coordinates.Generator()
 
     specifications <- list()
+    specifications[['base']]   <- 1
+    specifications[['height']] <- 1.5
 
     pair.number <- 1
 
@@ -432,7 +438,8 @@ describe("When coordinates <- specifications |> generate[['Triangle']]()",{
     generate <- Shape.Coordinates.Generator()
 
     specifications <- list()
-    specifications[['base']] <- 1
+    specifications[['base']]   <- 1
+    specifications[['height']] <- 1.5
 
     pair.number <- 2
 
@@ -451,8 +458,8 @@ describe("When coordinates <- specifications |> generate[['Triangle']]()",{
     generate <- Shape.Coordinates.Generator()
 
     specifications <- list()
-    specifications[['base']]  <- 2
-    specifications[['height']] <- 1
+    specifications[['base']]   <- 1
+    specifications[['height']] <- 1.5
 
     pair.number <- 3
 
@@ -471,8 +478,8 @@ describe("When coordinates <- specifications |> generate[['Triangle']]()",{
     generate <- Shape.Coordinates.Generator()
 
     specifications <- list()
-    specifications[['base']]   <- 2
-    specifications[['height']] <- 1
+    specifications[['base']]   <- 1
+    specifications[['height']] <- 1.5
 
     pair.number <- 4
 
