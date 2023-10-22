@@ -70,7 +70,7 @@ Shape.Coordinates.Generator <- \() {
 
     if(ascending) {
       coordinates <- data.frame(
-        x = c(difference / 2,specifications[['bottom']] + difference / 2,specifications[['top']],0,0),
+        x = c(difference / 2,specifications[['bottom']] + difference / 2,specifications[['top']],0,difference / 2),
         y = c(0,0,specifications[['height']],specifications[['height']],0)
       )
     }
