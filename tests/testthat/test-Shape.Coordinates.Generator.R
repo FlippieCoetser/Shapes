@@ -35,7 +35,7 @@ describe("When generators <- Shape.Coordinates.Generator()",{
   })
 })
 
-describe('When coordinates <- specifications |> generate[["Rectangle"]]()',{
+describe("When coordinates <- specifications |> generate[['Rectangle']]()",{
   it("then coordinates has x and y values",{
     # Given
     generate <- Shape.Coordinates.Generator()
@@ -232,7 +232,7 @@ describe('When coordinates <- specifications |> generate[["Rectangle"]]()',{
   })
 })
 
-describe('When coordinates <- specifications |> Circle.Coordinates.Generator()',{
+describe("When coordinates <- specifications |> generate[['Circle']]()",{
   it("then coordinates has x and y values",{
     # Given
     generate <- Shape.Coordinates.Generator()
