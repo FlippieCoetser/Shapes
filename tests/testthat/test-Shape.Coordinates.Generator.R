@@ -40,6 +40,13 @@ describe("When generators <- Shape.Coordinates.Generator()",{
     # Then
     generators[['Trapezoid']] |> expect.exist()
   })
+  it("then generators contains a 'Segment' generator",{
+    # Given
+    generators <- Shape.Coordinates.Generator()
+
+    # Then
+    generators[['Segment']] |> expect.exist()
+  })
 })
 
 describe("When coordinates <- specifications |> generate[['Rectangle']]()",{
@@ -881,6 +888,155 @@ describe("When coordinates <- specifications |> generate[['Trapezoid']]()",{
 
     # When
     actual.coordinates <- specifications |> generate[['Trapezoid']]()
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+})
+
+describe("When coordinates <- specifications |> generate[['Segment']]()",{
+  it("then coordinates has x and y values",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    # When
+    coordinates <- specifications |> generate[['Segment']]()
+
+    # When
+    coordinates[['x']] |> expect.exist()
+    coordinates[['y']] |> expect.exist()
+  })
+  it("then coordinates has 37 pairs of x and y values",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    expected.pairs <- 19
+
+    # When
+    coordinates <- specifications |> generate[['Segment']]()
+
+
+    # When
+    coordinates |> expect.rows(expected.pairs)
+  })
+  it("then the x values is equal to the cosine of the angle in radians times the radius plus half width",{
+    # Given
+    angle.converter <- Angle.Converter()
+    shape <- Shape.Utility()
+
+    generate <- Shape.Coordinates.Generator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    coordinates.x <- (seq(0,180, 10) |> angle.converter[['DegreesToRadians']]() |> cos()) * specifications[['radius']]
+    coordinates.y <- (seq(0,180, 10) |> angle.converter[['DegreesToRadians']]() |> sin()) * specifications[['radius']]
+    
+    coordinates <- data.frame(x = coordinates.x, y = coordinates.y)
+    
+    width  <- coordinates |> shape[['get.width']]()
+    height <- coordinates |> shape[['get.height']]()
+
+    offset <- data.frame(x = width / 2, y = 0)
+
+    expected.coordinates <- coordinates |> shape[['translate']](offset)
+
+    # When
+    actual.coordinates <- specifications |> generate[['Segment']]()
+
+    # Then
+    actual.coordinates[['x']] |> expect.equal(expected.coordinates[['x']])
+  })
+  it("then the y values is equal to the sine of the angle in radians times the radius plus half height",{
+        # Given
+    angle.converter <- Angle.Converter()
+    shape <- Shape.Utility()
+
+    generate <- Shape.Coordinates.Generator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    coordinates.x <- (seq(0,180, 10) |> angle.converter[['DegreesToRadians']]() |> cos()) * specifications[['radius']]
+    coordinates.y <- (seq(0,180, 10) |> angle.converter[['DegreesToRadians']]() |> sin()) * specifications[['radius']]
+    
+    coordinates <- data.frame(x = coordinates.x, y = coordinates.y)
+    
+    width  <- coordinates |> shape[['get.width']]()
+    height <- coordinates |> shape[['get.height']]()
+
+    offset <- data.frame(x = width / 2, y = 0)
+
+    expected.coordinates <- coordinates |> shape[['translate']](offset)
+
+    # When
+    actual.coordinates <- specifications |> generate[['Segment']]()
+
+    # Then
+    actual.coordinates[['y']] |> expect.equal(expected.coordinates[['y']])
+  })
+  it("then coordinates is centered if specifications[['align']] <- 'center'",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    corner.coordinates <- specifications |> generate[['Segment']]()
+
+    expected.coordinates <- corner.coordinates |> align[['center']]()
+
+    specifications[['align']]  <- 'center'
+
+    # When
+    actual.coordinates <- specifications |> generate[['Segment']]()
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+  it("then coordinates is vertically aligned if specifications[['align']] <- 'vertical'",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    corner.coordinates <- specifications |> generate[['Segment']]()
+
+    expected.coordinates <- corner.coordinates |> align[['vertical']]()
+
+    specifications[['align']]  <- 'vertical'
+
+    # When
+    actual.coordinates <- specifications |> generate[['Segment']]()
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+  it("then coordinates is horizontally aligned if specifications[['align']] <- 'horizontal'",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    corner.coordinates <- specifications |> generate[['Segment']]()
+
+    expected.coordinates <- corner.coordinates |> align[['horizontal']]()
+
+    specifications[['align']]  <- 'horizontal'
+
+    # When
+    actual.coordinates <- specifications |> generate[['Segment']]()
 
     # Then
     actual.coordinates |> expect.equal.data(expected.coordinates)
