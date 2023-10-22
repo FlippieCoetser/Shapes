@@ -10,5 +10,6 @@ Shape.Utility <- \() {
     min.y <- coordinates[['y']] |> min()
     (max.y - min.y)
   }
+  utilities[['translate']]  <- \() {}
   return(utilities)
 }
