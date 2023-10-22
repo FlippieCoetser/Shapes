@@ -53,6 +53,11 @@ Shape.Coordinates.Generator <- \() {
 
     coordinates |> shape[['translate']](offset) |> align[[specifications[['align']]]]()
   }
-  generators[['Trapezoid']] <- \() {}
+  generators[['Trapezoid']] <- \(specifications) {
+    data.frame(
+      x = 0,
+      y = 0
+    )
+  }
   return(generators)
 }
