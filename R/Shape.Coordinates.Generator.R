@@ -79,6 +79,24 @@ Shape.Coordinates.Generator <- \() {
 
     coordinates |> align[[specifications[['align']]]]()
   }
-  generators[['Segment']]   <- \() {}
+  generators[['Segment']]   <- \(specifications) {
+    specifications <- specifications |> set.defaults()
+
+    shape   <- Shape.Utility()
+    angle   <- Angle.Converter()
+    convert <- Coordinate.System.Converter()
+
+    angle  <- seq(0,180, 10) |> angle[['DegreesToRadians']]()
+    radius <- specifications[['radius']] |> rep(length(angle))
+
+    coordinates <- data.frame(angle, radius) |> convert[['PolarToCartesian']]()
+
+    width  <- coordinates |> shape[['get.width']]()
+    height <- coordinates |> shape[['get.height']]()
+
+    offset <- data.frame(x = width / 2, y = 0)
+
+    coordinates |> shape[['translate']](offset) |> align[[specifications[['align']]]]()
+  }
   return(generators)
 }
