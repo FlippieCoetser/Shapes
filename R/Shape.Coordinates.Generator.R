@@ -54,10 +54,28 @@ Shape.Coordinates.Generator <- \() {
     coordinates |> shape[['translate']](offset) |> align[[specifications[['align']]]]()
   }
   generators[['Trapezoid']] <- \(specifications) {
-    data.frame(
-      x = c(0,0,0,0,0),
-      y = c(0,0,0,0,0)
-    )
+    descending <- specifications[['bottom']] >= specifications[['top']] 
+    ascending  <- specifications[['bottom']]  < specifications[['top']]
+
+    difference <- (specifications[['bottom']] - specifications[['top']]) |> abs()
+
+    coordinates <- NULL
+
+    if(descending) {
+      coordinates <- data.frame(
+        x = c(0,0,0,0,0),
+        y = c(0,0,0,0,0)
+      )
+    }
+
+    if(ascending) {
+      coordinates <- data.frame(
+        x = c(difference / 2,0,0,0,0),
+        y = c(0,0,0,0,0)
+      )
+    }
+
+    return(coordinates)
   }
   return(generators)
 }
