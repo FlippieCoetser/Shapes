@@ -39,21 +39,55 @@ generate <- Shapes::Shape.Coordinates.Generator()
 specifications <- list()
 specifications[['width']]  <- 1
 specifications[['height']] <- 0.5
-specifications[['align']]  <- 'center'
 
 rectangle <- specifications |> generate[['Rectangle']]()
 ```
 
-2. Circle
+2. Triangle
+
+```r
+generate <- Shapes::Shape.Coordinates.Generator()
+
+specifications <- list()
+specifications[['base']]   <- 1
+specifications[['height']] <- 1.5
+
+triangle <- specifications |> generate[['Triangle']]()
+```
+
+3. Circle
 
 ```r
 generate <- Shapes::Shape.Coordinates.Generator()
 
 specifications <- list()
 specifications[['radius']] <- 1
-specifications[['align']]  <- 'center'
 
 circle <- specifications |> generate[['Circle']]()
+```
+
+4. Trapezoid
+
+```r
+generate <- Shapes::Shape.Coordinates.Generator()
+
+specifications <- list()
+specifications[['bottom']] <- 1
+specifications[['top']]    <- 0.5
+specifications[['height']] <- 1
+
+trapezoid <- specifications |> generate[['Trapezoid']]()
+```
+
+5. Segment
+
+```r
+generate <- Shapes::Shape.Coordinates.Generator()
+
+specifications <- list()
+specifications[['radius']] <- 1
+
+segment <- specifications |> generate[['Segment']]()
 ```
 
 The align parameter can be one of the following:
