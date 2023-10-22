@@ -819,4 +819,70 @@ describe("When coordinates <- specifications |> generate[['Trapezoid']]()",{
     coordinates[['x']][pair.number] |> expect.equal(expected.x)
     coordinates[['y']][pair.number] |> expect.equal(expected.y)    
   })
+  it("then coordinates is centered if specifications[['align']] <- 'center'",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['bottom']] <- 1
+    specifications[['top']]    <- 0.5
+    specifications[['height']] <- 1
+
+    corner.coordinates <- specifications |> generate[['Trapezoid']]()
+
+    expected.coordinates <- corner.coordinates |> align[['center']]()
+
+    specifications[['align']]  <- 'center'
+
+    # When
+    actual.coordinates <- specifications |> generate[['Trapezoid']]()
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+  it("then coordinates is vertically aligned if specifications[['align']] <- 'vertical'",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['bottom']] <- 1
+    specifications[['top']]    <- 0.5
+    specifications[['height']] <- 1
+
+    corner.coordinates <- specifications |> generate[['Trapezoid']]()
+
+    expected.coordinates <- corner.coordinates |> align[['vertical']]()
+
+    specifications[['align']]  <- 'vertical'
+
+    # When
+    actual.coordinates <- specifications |> generate[['Trapezoid']]()
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+  it("then coordinates is horizontally aligned if specifications[['align']] <- 'horizontal'",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['bottom']] <- 1
+    specifications[['top']]    <- 0.5
+    specifications[['height']] <- 1
+
+    corner.coordinates <- specifications |> generate[['Trapezoid']]()
+
+    expected.coordinates <- corner.coordinates |> align[['horizontal']]()
+
+    specifications[['align']]  <- 'horizontal'
+
+    # When
+    actual.coordinates <- specifications |> generate[['Trapezoid']]()
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
 })
