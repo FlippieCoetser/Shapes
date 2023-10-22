@@ -72,3 +72,25 @@ describe("When coordinates |> shape[['get.height']]()",{
     actual.height |> expect.equal(expected.height)
   })
 })
+
+describe("When coordinates |> shape[['translate']](offset)",{
+  it("then coordinates is translated by offset",{
+    # Given
+    shape <- Shape.Utility()
+
+    coordinates <- data.frame(x = 1:10, y = 1:10)
+
+    offset <- c(x = 1, y = 1)
+
+    expected.coordinates <- data.frame(
+      x = coordinates[['x']] + offset[['x']],
+      y = coordinates[['y']] + offset[['y']]
+    )
+
+    # When
+    actual.coordinates <- coordinates |> shape[['translate']](offset)
+
+    # Then
+    actual.coordinates |> expect.equal(expected.coordinates)
+  })
+})
