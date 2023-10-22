@@ -24,6 +24,7 @@ Shape.Coordinates.Generator <- \() {
 
     coordinates |> align[[specifications[['align']]]]()
   }
+  generators[['Triangle']]  <- \() {}
   generators[['Circle']]    <- \(specifications) {
     specifications <- specifications |> set.defaults()
 
