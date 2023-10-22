@@ -79,5 +79,6 @@ Shape.Coordinates.Generator <- \() {
 
     coordinates |> align[[specifications[['align']]]]()
   }
+  generators[['Segment']]   <- \() {}
   return(generators)
 }
