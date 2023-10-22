@@ -41,3 +41,19 @@ describe("When alignment <- Alignment.Configurator()",{
     alignment[['vertical']] |> expect.exist()
   })
 })
+
+describe("When coordinates |> align[['corner']]()",{
+  it("then no offset is applied to coordinates",{
+    # Given
+    align <- Alignment.Configurator()
+    coordinates <- data.frame(x = 1:10, y = 1:10)
+
+    expected.coordinates <- coordinates
+
+    # When
+    actual.coordinates <- coordinates |> align[['corner']]()
+
+    # Then
+    actual.coordinates |> expect.equal(expected.coordinates)
+  })
+})
