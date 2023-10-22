@@ -3,5 +3,6 @@ Alignment.Configurator <- \() {
   alignment[['corner']]     <- \() {}
   alignment[['origin']]     <- \() {}
   alignment[['horizontal']] <- \() {}
+  alignment[['vertical']]   <- \() {}
   return(alignment)
 }
