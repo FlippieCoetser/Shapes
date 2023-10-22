@@ -80,3 +80,25 @@ describe("When coordinates |> align[['center']]()",{
     actual.coordinates |> expect.equal(expected.coordinates)
   })
 })
+
+describe("When coordinates |> align[['vertical']]()",{
+  it("then coordinates are vertically aligned",{
+    # Given
+    shape <- Shape.Utility()
+    align <- Alignment.Configurator()
+
+    coordinates <- data.frame(x = 1:10, y = 1:10)
+
+    height <- coordinates |> shape[['get.height']]()
+
+    offset <- data.frame(x = 0, y = -height / 2)  
+
+    expected.coordinates <- coordinates |> shape[['translate']](offset)
+
+    # When
+    actual.coordinates <- coordinates |> align[['vertical']]()
+
+    # Then
+    actual.coordinates |> expect.equal(expected.coordinates)
+  })
+})
