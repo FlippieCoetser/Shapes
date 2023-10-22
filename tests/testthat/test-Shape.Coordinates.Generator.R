@@ -380,3 +380,19 @@ describe("When coordinates <- specifications |> generate[['Circle']]()",{
     actual.coordinates |> expect.equal.data(expected.coordinates)
   })
 })
+
+describe("When coordinates <- specifications |> generate[['Triangle']]()",{
+  it("then coordinates has x and y values",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+
+    specifications <- list()
+
+    # When
+    coordinates <- specifications |> generate[['Triangle']]()
+
+    # When
+    coordinates[['x']] |> expect.exist()
+    coordinates[['y']] |> expect.exist()
+  })
+})
