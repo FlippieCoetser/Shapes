@@ -46,3 +46,22 @@ describe("When coordinates |> shape[['get.with']]()",{
     actual.width |> expect.equal(expected.width)
   })
 })
+
+describe("When coordinates |> shape[['get.height']]()",{
+  it("then height is the difference between the maximum and minimum y coordinates",{
+    # Given
+    shape <- Shape.Utility()
+    coordinates <- data.frame(x = 1:10, y = 1:10)
+
+    max.y <- coordinates[['y']] |> max()
+    min.y <- coordinates[['y']] |> min()
+
+    expected.height <- max.y - min.y
+
+    # When
+    actual.height <- coordinates |> shape[['get.height']]()
+
+    # Then
+    actual.height |> expect.equal(expected.height)
+  })
+})
