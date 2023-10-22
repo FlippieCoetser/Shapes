@@ -514,4 +514,25 @@ describe("When coordinates <- specifications |> generate[['Triangle']]()",{
     # Then
     actual.coordinates |> expect.equal.data(expected.coordinates)
   })
+  it("then coordinates is centered if specifications[['align']] <- 'vertical'",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['base']]   <- 1
+    specifications[['height']] <- 1.5
+
+    corner.coordinates <- specifications |> generate[['Triangle']]()
+
+    expected.coordinates <- corner.coordinates |> align[['vertical']]()
+
+    specifications[['align']]  <- 'vertical'
+
+    # When
+    actual.coordinates <- specifications |> generate[['Triangle']]()
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
 })
