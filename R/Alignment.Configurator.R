@@ -1,6 +1,8 @@
 Alignment.Configurator <- \() {
   alignment <- list()
-  alignment[['corner']]     <- \() {}
+  alignment[['corner']]     <- \(coordinates) {
+    coordinates
+  }
   alignment[['origin']]     <- \() {}
   alignment[['horizontal']] <- \() {}
   alignment[['vertical']]   <- \() {}
