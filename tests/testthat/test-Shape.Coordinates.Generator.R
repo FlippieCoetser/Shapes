@@ -193,38 +193,60 @@ describe('When coordinates <- specifications |> Circle.Coordinates.Generator()',
     # When
     coordinates |> expect.rows(expected.pairs)
   })
-  it("Then the x values is equal to the cosine of the angle in radians times the radius",{
+  it("Then the x values is equal to the cosine of the angle in radians times the radius plus half width",{
     # Given
-    generate <- Shape.Coordinates.Generator()
     angle.converter <- Angle.Converter()
+    shape <- Shape.Utility()
+
+    generate <- Shape.Coordinates.Generator()
 
     specifications <- list()
     specifications[['radius']] <- 1
 
-    expected.x <- (seq(0,360, 10) |> angle.converter[['DegreesToRadians']]() |> cos()) * specifications[['radius']]
+    coordinates.x <- (seq(0,360, 10) |> angle.converter[['DegreesToRadians']]() |> cos()) * specifications[['radius']]
+    coordinates.y <- (seq(0,360, 10) |> angle.converter[['DegreesToRadians']]() |> sin()) * specifications[['radius']]
+    
+    coordinates <- data.frame(x = coordinates.x, y = coordinates.y)
+    
+    width  <- coordinates |> shape[['get.width']]()
+    height <- coordinates |> shape[['get.height']]()
+
+    offset <- data.frame(x = width / 2, y = height / 2)
+
+    expected.coordinates <- coordinates |> shape[['translate']](offset)
 
     # When
-    coordinates <- specifications |> generate[['Circle']]()
+    actual.coordinates <- specifications |> generate[['Circle']]()
 
-
-    # When
-    coordinates[['x']] |> expect.equal(expected.x)
+    # Then
+    actual.coordinates[['x']] |> expect.equal(expected.coordinates[['x']])
   })
-  it("Then the y values is equal to the sine of the angle in radians times the radius",{
-    # Given
-    generate <- Shape.Coordinates.Generator()
+  it("Then the y values is equal to the sine of the angle in radians times the radius plus half height",{
+        # Given
     angle.converter <- Angle.Converter()
+    shape <- Shape.Utility()
+
+    generate <- Shape.Coordinates.Generator()
 
     specifications <- list()
     specifications[['radius']] <- 1
 
-    expected.y <- (seq(0,360, 10) |> angle.converter[['DegreesToRadians']]() |> sin()) * specifications[['radius']]
+    coordinates.x <- (seq(0,360, 10) |> angle.converter[['DegreesToRadians']]() |> cos()) * specifications[['radius']]
+    coordinates.y <- (seq(0,360, 10) |> angle.converter[['DegreesToRadians']]() |> sin()) * specifications[['radius']]
+    
+    coordinates <- data.frame(x = coordinates.x, y = coordinates.y)
+    
+    width  <- coordinates |> shape[['get.width']]()
+    height <- coordinates |> shape[['get.height']]()
+
+    offset <- data.frame(x = width / 2, y = height / 2)
+
+    expected.coordinates <- coordinates |> shape[['translate']](offset)
 
     # When
-    coordinates <- specifications |> generate[['Circle']]()
+    actual.coordinates <- specifications |> generate[['Circle']]()
 
-
-    # When
-    coordinates[['y']] |> expect.equal(expected.y)
+    # Then
+    actual.coordinates[['y']] |> expect.equal(expected.coordinates[['y']])
   })
 })
