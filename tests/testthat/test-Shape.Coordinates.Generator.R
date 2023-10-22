@@ -564,3 +564,22 @@ describe("When coordinates <- specifications |> generate[['Triangle']]()",{
     actual.coordinates |> expect.equal.data(expected.coordinates)
   })
 })
+
+describe("When coordinates <- specifications |> generate[['Trapezoid']]()",{
+  it("then coordinates has x and y values",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+
+    specifications <- list()
+    specifications[['bottom']] <- 1
+    specifications[['top']]    <- 0.5
+    specifications[['height']] <- 1
+
+    # When
+    coordinates <- specifications |> generate[['Trapezoid']]()
+
+    # When
+    coordinates[['x']] |> expect.exist()
+    coordinates[['y']] |> expect.exist()
+  })
+})
