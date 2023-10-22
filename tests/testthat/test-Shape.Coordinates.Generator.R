@@ -643,4 +643,48 @@ describe("When coordinates <- specifications |> generate[['Trapezoid']]()",{
     coordinates[['x']][pair.number] |> expect.equal(expected.x)
     coordinates[['y']][pair.number] |> expect.equal(expected.y)
   })
+  it("then pair 2 has x = bottom and y = 0 if trapezoid is descending",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+
+    specifications <- list()
+    specifications[['bottom']] <- 1
+    specifications[['top']]    <- 0.5
+    specifications[['height']] <- 1
+
+    pair.number <- 2
+
+    expected.x <- specifications[['bottom']]
+    expected.y <- 0
+
+    # When
+    coordinates <- specifications |> generate[['Trapezoid']]()
+
+    # Then
+    coordinates[['x']][pair.number] |> expect.equal(expected.x)
+    coordinates[['y']][pair.number] |> expect.equal(expected.y)
+  })
+  it("then pair 2 has x = bottom + difference / 2 and y = 0 if trapezoid is ascending",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+
+    specifications <- list()
+    specifications[['bottom']] <- 0.5
+    specifications[['top']]    <- 1
+    specifications[['height']] <- 1
+
+    pair.number <- 2
+
+    difference <- (specifications[['bottom']] - specifications[['top']]) |> abs()
+
+    expected.x <- specifications[['bottom']] + difference / 2
+    expected.y <- 0
+
+    # When
+    coordinates <- specifications |> generate[['Trapezoid']]()
+
+    # Then
+    coordinates[['x']][pair.number] |> expect.equal(expected.x)
+    coordinates[['y']][pair.number] |> expect.equal(expected.y)
+  })
 })
