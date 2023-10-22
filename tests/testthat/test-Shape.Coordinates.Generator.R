@@ -395,4 +395,18 @@ describe("When coordinates <- specifications |> generate[['Triangle']]()",{
     coordinates[['x']] |> expect.exist()
     coordinates[['y']] |> expect.exist()
   })
+  it("then coordinates has 4 pairs of x and y values",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+
+    specifications <- list()
+
+    expected.pairs <- 4
+
+    # When
+    coordinates <- specifications |> generate[['Triangle']]()
+
+    # Then
+    coordinates |> expect.rows(expected.pairs)
+  })
 })
