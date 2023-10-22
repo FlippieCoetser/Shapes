@@ -270,4 +270,24 @@ describe('When coordinates <- specifications |> Circle.Coordinates.Generator()',
     # Then
     actual.coordinates[['y']] |> expect.equal(expected.coordinates[['y']])
   })
+  it("Then coordinates is centered if specifications[['align']] <- 'center'",{
+    # Given
+    generate <- Shape.Coordinates.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    corner.coordinates <- specifications |> generate[['Circle']]()
+
+    expected.coordinates <- corner.coordinates |> align[['center']]()
+
+    specifications[['align']]  <- 'center'
+
+    # When
+    actual.coordinates <- specifications |> generate[['Circle']]()
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
 })
