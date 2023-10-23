@@ -6,26 +6,26 @@ Alignment.Configurator <- \() {
     coordinates
   }
   alignment[['center']]     <- \(coordinates) {
-    width  <- coordinates |> shape[['get.width']]()
-    height <- coordinates |> shape[['get.height']]()
+    width  <- coordinates |> shape[['Get.Width']]()
+    height <- coordinates |> shape[['Get.Height']]()
 
     offset <- data.frame(x = -width / 2, y = -height / 2)
 
-    coordinates |> shape[['translate']](offset)
+    coordinates |> shape[['Translate']](offset)
   }
   alignment[['horizontal']] <- \(coordinates) {
-    width <- coordinates |> shape[['get.width']]()
+    width <- coordinates |> shape[['Get.Width']]()
 
     offset <- data.frame(x = -width / 2, y = 0)
 
-    coordinates |> shape[['translate']](offset)
+    coordinates |> shape[['Translate']](offset)
   }
   alignment[['vertical']]   <- \(coordinates) {
-    height <- coordinates |> shape[['get.height']]()
+    height <- coordinates |> shape[['Get.Height']]()
 
     offset <- data.frame(x = 0, y = -height / 2)
 
-    coordinates |> shape[['translate']](offset)
+    coordinates |> shape[['Translate']](offset)
   }
   return(alignment)
 }

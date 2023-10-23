@@ -12,26 +12,26 @@ describe("When utilities <- Shape.Utility()",{
     # Then
     utilities |> expect.list()
   })
-  it("then utilities contains 'get.width' utility",{
+  it("then utilities contains 'Get.Width' utility",{
     # When
     utilities <- Shape.Utility()
 
     # Then
-    utilities[['get.width']] |> expect.exist()
+    utilities[['Get.Width']] |> expect.exist()
   })
-  it("then utilities contains 'get.height' utility",{
+  it("then utilities contains 'Get.Height' utility",{
     # When
     utilities <- Shape.Utility()
 
     # Then
-    utilities[['get.height']] |> expect.exist()
+    utilities[['Get.Height']] |> expect.exist()
   })
-  it("then utilities contains 'translate' utility",{
+  it("then utilities contains 'Translate' utility",{
     # When
     utilities <- Shape.Utility()
 
     # Then
-    utilities[['translate']] |> expect.exist()
+    utilities[['Translate']] |> expect.exist()
   })
 })
 
@@ -47,14 +47,14 @@ describe("When coordinates |> shape[['get.with']]()",{
     expected.width <- max.x - min.x
 
     # When
-    actual.width <- coordinates |> shape[['get.width']]()
+    actual.width <- coordinates |> shape[['Get.Width']]()
 
     # Then
     actual.width |> expect.equal(expected.width)
   })
 })
 
-describe("When coordinates |> shape[['get.height']]()",{
+describe("When coordinates |> shape[['Get.Height']]()",{
   it("then height is the difference between the maximum and minimum y coordinates",{
     # Given
     shape <- Shape.Utility()
@@ -66,15 +66,15 @@ describe("When coordinates |> shape[['get.height']]()",{
     expected.height <- max.y - min.y
 
     # When
-    actual.height <- coordinates |> shape[['get.height']]()
+    actual.height <- coordinates |> shape[['Get.Height']]()
 
     # Then
     actual.height |> expect.equal(expected.height)
   })
 })
 
-describe("When coordinates |> shape[['translate']](offset)",{
-  it("then coordinates is translated by offset",{
+describe("When coordinates |> shape[['Translate']](offset)",{
+  it("then coordinates is Translated by offset",{
     # Given
     shape <- Shape.Utility()
 
@@ -88,7 +88,7 @@ describe("When coordinates |> shape[['translate']](offset)",{
     )
 
     # When
-    actual.coordinates <- coordinates |> shape[['translate']](offset)
+    actual.coordinates <- coordinates |> shape[['Translate']](offset)
 
     # Then
     actual.coordinates |> expect.equal(expected.coordinates)

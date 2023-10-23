@@ -292,12 +292,12 @@ describe("When coordinates <- specifications |> generate[['Circle']]()",{
     
     coordinates <- data.frame(x = coordinates.x, y = coordinates.y)
     
-    width  <- coordinates |> shape[['get.width']]()
-    height <- coordinates |> shape[['get.height']]()
+    width  <- coordinates |> shape[['Get.Width']]()
+    height <- coordinates |> shape[['Get.Height']]()
 
     offset <- data.frame(x = width / 2, y = height / 2)
 
-    expected.coordinates <- coordinates |> shape[['translate']](offset)
+    expected.coordinates <- coordinates |> shape[['Translate']](offset)
 
     # When
     actual.coordinates <- specifications |> generate[['Circle']]()
@@ -320,12 +320,12 @@ describe("When coordinates <- specifications |> generate[['Circle']]()",{
     
     coordinates <- data.frame(x = coordinates.x, y = coordinates.y)
     
-    width  <- coordinates |> shape[['get.width']]()
-    height <- coordinates |> shape[['get.height']]()
+    width  <- coordinates |> shape[['Get.Width']]()
+    height <- coordinates |> shape[['Get.Height']]()
 
     offset <- data.frame(x = width / 2, y = height / 2)
 
-    expected.coordinates <- coordinates |> shape[['translate']](offset)
+    expected.coordinates <- coordinates |> shape[['Translate']](offset)
 
     # When
     actual.coordinates <- specifications |> generate[['Circle']]()
@@ -940,12 +940,12 @@ describe("When coordinates <- specifications |> generate[['Segment']]()",{
     
     coordinates <- data.frame(x = coordinates.x, y = coordinates.y)
     
-    width  <- coordinates |> shape[['get.width']]()
-    height <- coordinates |> shape[['get.height']]()
+    width  <- coordinates |> shape[['Get.Width']]()
+    height <- coordinates |> shape[['Get.Height']]()
 
     offset <- data.frame(x = width / 2, y = 0)
 
-    expected.coordinates <- coordinates |> shape[['translate']](offset)
+    expected.coordinates <- coordinates |> shape[['Translate']](offset)
 
     # When
     actual.coordinates <- specifications |> generate[['Segment']]()
@@ -968,12 +968,12 @@ describe("When coordinates <- specifications |> generate[['Segment']]()",{
     
     coordinates <- data.frame(x = coordinates.x, y = coordinates.y)
     
-    width  <- coordinates |> shape[['get.width']]()
-    height <- coordinates |> shape[['get.height']]()
+    width  <- coordinates |> shape[['Get.Width']]()
+    height <- coordinates |> shape[['Get.Height']]()
 
     offset <- data.frame(x = width / 2, y = 0)
 
-    expected.coordinates <- coordinates |> shape[['translate']](offset)
+    expected.coordinates <- coordinates |> shape[['Translate']](offset)
 
     # When
     actual.coordinates <- specifications |> generate[['Segment']]()
