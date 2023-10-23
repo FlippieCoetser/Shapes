@@ -9,7 +9,7 @@ Coordinate.Converter <- \() {
   converters[['CartesianToPolar']] <- \(coordinates) {
     data.frame(
       radius = (coordinates[['x']]^2 + coordinates[['y']]^2) |> sqrt(),
-      angle = (coordinates[['y']] / coordinates[['x']]) |> atan()
+      angle  = (coordinates[['y']]   / coordinates[['x']])   |> atan()
     )
   }
   return(converters)
