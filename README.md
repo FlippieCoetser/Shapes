@@ -34,7 +34,7 @@ Generate Shape Coordinates for the following shapes:
 1. Rectangle
 
 ```r
-generate <- Shapes::Shape.Coordinates.Generator()
+generate <- Shapes::Shape.Generator()
 
 specifications <- list()
 specifications[['width']]  <- 1
@@ -46,7 +46,7 @@ rectangle <- specifications |> generate[['Rectangle']]()
 2. Triangle
 
 ```r
-generate <- Shapes::Shape.Coordinates.Generator()
+generate <- Shapes::Shape.Generator()
 
 specifications <- list()
 specifications[['base']]   <- 1
@@ -58,7 +58,7 @@ triangle <- specifications |> generate[['Triangle']]()
 3. Circle
 
 ```r
-generate <- Shapes::Shape.Coordinates.Generator()
+generate <- Shapes::Shape.Generator()
 
 specifications <- list()
 specifications[['radius']] <- 1
@@ -69,7 +69,7 @@ circle <- specifications |> generate[['Circle']]()
 4. Trapezoid
 
 ```r
-generate <- Shapes::Shape.Coordinates.Generator()
+generate <- Shapes::Shape.Generator()
 
 specifications <- list()
 specifications[['bottom']] <- 1
@@ -82,7 +82,7 @@ trapezoid <- specifications |> generate[['Trapezoid']]()
 5. Segment
 
 ```r
-generate <- Shapes::Shape.Coordinates.Generator()
+generate <- Shapes::Shape.Generator()
 
 specifications <- list()
 specifications[['radius']] <- 1

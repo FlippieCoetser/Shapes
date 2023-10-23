@@ -1,48 +1,48 @@
-describe("Shape.Coordinates.Generator",{
+describe("Shape.Generator",{
   it("exist",{
-    Shape.Coordinates.Generator |> expect.exist()
+    Shape.Generator |> expect.exist()
   })
 })
 
-describe("When generators <- Shape.Coordinates.Generator()",{
+describe("When generators <- Shape.Generator()",{
   it("then generators is a list of generators",{
     # Given
-    generators <- Shape.Coordinates.Generator()
+    generators <- Shape.Generator()
 
     # Then
     generators |> expect.list()
   })
   it("then generators contains a 'Rectangle' generator",{
     # Given
-    generators <- Shape.Coordinates.Generator()
+    generators <- Shape.Generator()
 
     # Then
     generators[['Rectangle']] |> expect.exist()
   })
   it("then generators contains a 'Triangle' generator",{
     # Given
-    generators <- Shape.Coordinates.Generator()
+    generators <- Shape.Generator()
 
     # Then
     generators[['Triangle']] |> expect.exist()
   })
   it("then generators contains a 'Circle' generator",{
     # Given
-    generators <- Shape.Coordinates.Generator()
+    generators <- Shape.Generator()
 
     # Then
     generators[['Circle']] |> expect.exist()
   })
   it("then generators contains a 'Trapezoid' generator",{
     # Given
-    generators <- Shape.Coordinates.Generator()
+    generators <- Shape.Generator()
 
     # Then
     generators[['Trapezoid']] |> expect.exist()
   })
   it("then generators contains a 'Segment' generator",{
     # Given
-    generators <- Shape.Coordinates.Generator()
+    generators <- Shape.Generator()
 
     # Then
     generators[['Segment']] |> expect.exist()
@@ -52,7 +52,7 @@ describe("When generators <- Shape.Coordinates.Generator()",{
 describe("When coordinates <- specifications |> generate[['Rectangle']]()",{
   it("then coordinates has x and y values",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['width']] <- 20
@@ -67,7 +67,7 @@ describe("When coordinates <- specifications |> generate[['Rectangle']]()",{
   })
   it("then coordinates has 5 pairs of x and y values",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['width']] <- 20
@@ -83,7 +83,7 @@ describe("When coordinates <- specifications |> generate[['Rectangle']]()",{
   })
   it("then pair 1 has x = 0 and y = 0",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['width']]  <- 20
@@ -103,7 +103,7 @@ describe("When coordinates <- specifications |> generate[['Rectangle']]()",{
   })
   it("then pair 2 has x = width and y = 0",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['width']]  <- 20
@@ -123,7 +123,7 @@ describe("When coordinates <- specifications |> generate[['Rectangle']]()",{
   })
   it("then pair 3 has x = width and y = height",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['width']]  <- 20
@@ -143,7 +143,7 @@ describe("When coordinates <- specifications |> generate[['Rectangle']]()",{
   })
   it("then pair 4 has x = 0 and y = height",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['width']]  <- 20
@@ -163,7 +163,7 @@ describe("When coordinates <- specifications |> generate[['Rectangle']]()",{
   })
   it("then pair 5 has x = 0 and y = 0",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['width']]  <- 20
@@ -183,7 +183,7 @@ describe("When coordinates <- specifications |> generate[['Rectangle']]()",{
   })
   it("then coordinates is centered if specifications[['align']] <- 'center'",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
     align    <- Alignment.Configurator()
 
     specifications <- list()
@@ -204,7 +204,7 @@ describe("When coordinates <- specifications |> generate[['Rectangle']]()",{
   })
   it("then coordinates is vertically aligned if specifications[['align']] <- 'vertical'",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
     align    <- Alignment.Configurator()
 
     specifications <- list()
@@ -225,7 +225,7 @@ describe("When coordinates <- specifications |> generate[['Rectangle']]()",{
   })
   it("then coordinates is horizontally aligned if specifications[['align']] <- 'horizontal'",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
     align    <- Alignment.Configurator()
 
     specifications <- list()
@@ -249,7 +249,7 @@ describe("When coordinates <- specifications |> generate[['Rectangle']]()",{
 describe("When coordinates <- specifications |> generate[['Circle']]()",{
   it("then coordinates has x and y values",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['radius']] <- 1
@@ -263,7 +263,7 @@ describe("When coordinates <- specifications |> generate[['Circle']]()",{
   })
   it("then coordinates has 37 pairs of x and y values",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['radius']] <- 1
@@ -282,7 +282,7 @@ describe("When coordinates <- specifications |> generate[['Circle']]()",{
     angle.converter <- Angle.Converter()
     shape <- Shape.Utility()
 
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['radius']] <- 1
@@ -310,7 +310,7 @@ describe("When coordinates <- specifications |> generate[['Circle']]()",{
     angle.converter <- Angle.Converter()
     shape <- Shape.Utility()
 
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['radius']] <- 1
@@ -335,7 +335,7 @@ describe("When coordinates <- specifications |> generate[['Circle']]()",{
   })
   it("then coordinates is centered if specifications[['align']] <- 'center'",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
     align    <- Alignment.Configurator()
 
     specifications <- list()
@@ -355,7 +355,7 @@ describe("When coordinates <- specifications |> generate[['Circle']]()",{
   })
   it("then coordinates is vertically aligned if specifications[['align']] <- 'vertical'",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
     align    <- Alignment.Configurator()
 
     specifications <- list()
@@ -375,7 +375,7 @@ describe("When coordinates <- specifications |> generate[['Circle']]()",{
   })
   it("then coordinates is horizontally aligned if specifications[['align']] <- 'horizontal'",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
     align    <- Alignment.Configurator()
 
     specifications <- list()
@@ -398,7 +398,7 @@ describe("When coordinates <- specifications |> generate[['Circle']]()",{
 describe("When coordinates <- specifications |> generate[['Triangle']]()",{
   it("then coordinates has x and y values",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['base']]   <- 1
@@ -413,7 +413,7 @@ describe("When coordinates <- specifications |> generate[['Triangle']]()",{
   })
   it("then coordinates has 4 pairs of x and y values",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['base']]   <- 1
@@ -429,7 +429,7 @@ describe("When coordinates <- specifications |> generate[['Triangle']]()",{
   })
   it("then pair 1 has x = 0 and y = 0",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['base']]   <- 1
@@ -449,7 +449,7 @@ describe("When coordinates <- specifications |> generate[['Triangle']]()",{
   })
   it("then pair 2 has x = base and y = 0",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['base']]   <- 1
@@ -469,7 +469,7 @@ describe("When coordinates <- specifications |> generate[['Triangle']]()",{
   })
   it("then pair 3 has x = base / 2 and y = height",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['base']]   <- 1
@@ -489,7 +489,7 @@ describe("When coordinates <- specifications |> generate[['Triangle']]()",{
   })
   it("then pair 4 has x = 0 and y = 0",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['base']]   <- 1
@@ -509,7 +509,7 @@ describe("When coordinates <- specifications |> generate[['Triangle']]()",{
   })
   it("then coordinates is centered if specifications[['align']] <- 'center'",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
     align    <- Alignment.Configurator()
 
     specifications <- list()
@@ -530,7 +530,7 @@ describe("When coordinates <- specifications |> generate[['Triangle']]()",{
   })
   it("then coordinates is vertically aligned if specifications[['align']] <- 'vertical'",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
     align    <- Alignment.Configurator()
 
     specifications <- list()
@@ -551,7 +551,7 @@ describe("When coordinates <- specifications |> generate[['Triangle']]()",{
   })
   it("then coordinates is horizontally aligned if specifications[['align']] <- 'horizontal'",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
     align    <- Alignment.Configurator()
 
     specifications <- list()
@@ -575,7 +575,7 @@ describe("When coordinates <- specifications |> generate[['Triangle']]()",{
 describe("When coordinates <- specifications |> generate[['Trapezoid']]()",{
   it("then coordinates has x and y values",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['bottom']] <- 1
@@ -591,7 +591,7 @@ describe("When coordinates <- specifications |> generate[['Trapezoid']]()",{
   })
   it("then coordinates has 5 pairs of x and y values",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['bottom']] <- 1
@@ -608,7 +608,7 @@ describe("When coordinates <- specifications |> generate[['Trapezoid']]()",{
   })
   it("then pair 1 has x = 0 and y = 0 if trapezoid is descending",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['bottom']] <- 1
@@ -629,7 +629,7 @@ describe("When coordinates <- specifications |> generate[['Trapezoid']]()",{
   })
   it("then pair 1 has x = difference / 2 and y = 0 if trapezoid is ascending",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['bottom']] <- 0.5
@@ -652,7 +652,7 @@ describe("When coordinates <- specifications |> generate[['Trapezoid']]()",{
   })
   it("then pair 2 has x = bottom and y = 0 if trapezoid is descending",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['bottom']] <- 1
@@ -673,7 +673,7 @@ describe("When coordinates <- specifications |> generate[['Trapezoid']]()",{
   })
   it("then pair 2 has x = bottom + difference / 2 and y = 0 if trapezoid is ascending",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['bottom']] <- 0.5
@@ -696,7 +696,7 @@ describe("When coordinates <- specifications |> generate[['Trapezoid']]()",{
   })
   it("then pair 3 has x = bottom - difference / 2 and y = height if trapezoid is descending",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['bottom']] <- 1
@@ -719,7 +719,7 @@ describe("When coordinates <- specifications |> generate[['Trapezoid']]()",{
   })
   it("then pair 3 has x = top and y = height if trapezoid is ascending",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['bottom']] <- 0.5
@@ -740,7 +740,7 @@ describe("When coordinates <- specifications |> generate[['Trapezoid']]()",{
   })
   it("then pair 4 has x = difference / 2 and y = height if trapezoid is descending",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['bottom']] <- 1
@@ -763,7 +763,7 @@ describe("When coordinates <- specifications |> generate[['Trapezoid']]()",{
   })
   it("then pair 4 has x = 0 and y = height if trapezoid is ascending",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['bottom']] <- 0.5
@@ -784,7 +784,7 @@ describe("When coordinates <- specifications |> generate[['Trapezoid']]()",{
   })
   it("then pair 5 has x = 0 and y = 0 if trapezoid is descending",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['bottom']] <- 1
@@ -805,7 +805,7 @@ describe("When coordinates <- specifications |> generate[['Trapezoid']]()",{
   })
   it("then pair 5 has x = difference / 2 and y = 0 if trapezoid is ascending",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['bottom']] <- 0.5
@@ -828,7 +828,7 @@ describe("When coordinates <- specifications |> generate[['Trapezoid']]()",{
   })
   it("then coordinates is centered if specifications[['align']] <- 'center'",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
     align    <- Alignment.Configurator()
 
     specifications <- list()
@@ -850,7 +850,7 @@ describe("When coordinates <- specifications |> generate[['Trapezoid']]()",{
   })
   it("then coordinates is vertically aligned if specifications[['align']] <- 'vertical'",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
     align    <- Alignment.Configurator()
 
     specifications <- list()
@@ -872,7 +872,7 @@ describe("When coordinates <- specifications |> generate[['Trapezoid']]()",{
   })
   it("then coordinates is horizontally aligned if specifications[['align']] <- 'horizontal'",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
     align    <- Alignment.Configurator()
 
     specifications <- list()
@@ -897,7 +897,7 @@ describe("When coordinates <- specifications |> generate[['Trapezoid']]()",{
 describe("When coordinates <- specifications |> generate[['Segment']]()",{
   it("then coordinates has x and y values",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['radius']] <- 1
@@ -911,7 +911,7 @@ describe("When coordinates <- specifications |> generate[['Segment']]()",{
   })
   it("then coordinates has 37 pairs of x and y values",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['radius']] <- 1
@@ -930,7 +930,7 @@ describe("When coordinates <- specifications |> generate[['Segment']]()",{
     angle.converter <- Angle.Converter()
     shape <- Shape.Utility()
 
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['radius']] <- 1
@@ -958,7 +958,7 @@ describe("When coordinates <- specifications |> generate[['Segment']]()",{
     angle.converter <- Angle.Converter()
     shape <- Shape.Utility()
 
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
 
     specifications <- list()
     specifications[['radius']] <- 1
@@ -983,7 +983,7 @@ describe("When coordinates <- specifications |> generate[['Segment']]()",{
   })
   it("then coordinates is centered if specifications[['align']] <- 'center'",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
     align    <- Alignment.Configurator()
 
     specifications <- list()
@@ -1003,7 +1003,7 @@ describe("When coordinates <- specifications |> generate[['Segment']]()",{
   })
   it("then coordinates is vertically aligned if specifications[['align']] <- 'vertical'",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
     align    <- Alignment.Configurator()
 
     specifications <- list()
@@ -1023,7 +1023,7 @@ describe("When coordinates <- specifications |> generate[['Segment']]()",{
   })
   it("then coordinates is horizontally aligned if specifications[['align']] <- 'horizontal'",{
     # Given
-    generate <- Shape.Coordinates.Generator()
+    generate <- Shape.Generator()
     align    <- Alignment.Configurator()
 
     specifications <- list()

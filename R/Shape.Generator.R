@@ -1,11 +1,16 @@
-#' Shape.Coordinates.Generator
+#' Shape.Generator
 #' 
 #' @description
-#'  Generates coordinates for a set of primary shapes.
+#'  Generates coordinates for primary shapes:
+#' - Rectangle
+#' - Triangle
+#' - Circle
+#' - Trapezoid
+#' - Segment
 #' 
 #' @usage NULL
 #' @export
-Shape.Coordinates.Generator <- \() {
+Shape.Generator <- \() {
   align <- Alignment.Configurator()
 
   set.defaults <- \(specifications) {
