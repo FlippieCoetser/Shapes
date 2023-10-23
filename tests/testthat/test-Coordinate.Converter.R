@@ -1,27 +1,27 @@
-describe('Coordinate.System.Converter',{
+describe('Coordinate.Converter',{
   it('exist',{
-    Coordinate.System.Converter |> expect.exist()
+    Coordinate.Converter |> expect.exist()
   })
 })
 
-describe('When converters <- Coordinate.System.Converter()',{
+describe('When converters <- Coordinate.Converter()',{
   it("Then converters is a list",{
     # Given
-    converters <- Coordinate.System.Converter()
+    converters <- Coordinate.Converter()
 
     # Then
     converters |> expect.list()
   })
   it("Then converters contains PolarToCartesian converter",{
     # Given
-    converters <- Coordinate.System.Converter()
+    converters <- Coordinate.Converter()
 
     # Then
     converters[['PolarToCartesian']] |> expect.function()
   })
   it("Then converters contains CartesianToPolar converter",{
     # Given
-    converters <- Coordinate.System.Converter()
+    converters <- Coordinate.Converter()
 
     # Then
     converters[['CartesianToPolar']] |> expect.function()
@@ -31,7 +31,7 @@ describe('When converters <- Coordinate.System.Converter()',{
 describe('When coordinates |> convert[["PolarToCartesian"]]()',{
   it('then a data.frame with x and y is returned',{
     # Given
-    convert <- Coordinate.System.Converter()  
+    convert <- Coordinate.Converter()  
 
     coordinates <- list()
     coordinates[['radius']] <- 1
@@ -48,7 +48,7 @@ describe('When coordinates |> convert[["PolarToCartesian"]]()',{
   })
   it('then x is equal to radius * cos(angle)',{
     # Given
-    convert <- Coordinate.System.Converter()     
+    convert <- Coordinate.Converter()     
 
     coordinates <- list()
     coordinates[['radius']] <- 1
@@ -64,7 +64,7 @@ describe('When coordinates |> convert[["PolarToCartesian"]]()',{
   })
   it('then y is equal to radius * sin(angle)',{
     # Given
-    convert <- Coordinate.System.Converter()     
+    convert <- Coordinate.Converter()     
 
     coordinates <- list()
     coordinates[['radius']] <- 1
@@ -83,7 +83,7 @@ describe('When coordinates |> convert[["PolarToCartesian"]]()',{
 describe('When coordinates |> convert[["CartesianToPolar"]]()',{
   it('then a data.frame with radius and angle is returned',{
     # Given
-    convert <- Coordinate.System.Converter()  
+    convert <- Coordinate.Converter()  
 
     coordinates <- list()
     coordinates[['x']] <- 1
@@ -100,7 +100,7 @@ describe('When coordinates |> convert[["CartesianToPolar"]]()',{
   })
   it('then radius is equal to sqrt(x^2 + y^2)',{
     # Given
-    convert <- Coordinate.System.Converter()     
+    convert <- Coordinate.Converter()     
 
     coordinates <- list()
     coordinates[['x']] <- 1
@@ -116,7 +116,7 @@ describe('When coordinates |> convert[["CartesianToPolar"]]()',{
   })
   it('then angle is equal to atan(y/x)',{
     # Given
-    convert <- Coordinate.System.Converter()     
+    convert <- Coordinate.Converter()     
 
     coordinates <- list()
     coordinates[['x']] <- 1

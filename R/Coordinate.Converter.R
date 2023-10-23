@@ -1,4 +1,4 @@
-Coordinate.System.Converter <- \() {
+Coordinate.Converter <- \() {
   converters <- list()
   converters[['PolarToCartesian']] <- \(coordinates) {
     data.frame(

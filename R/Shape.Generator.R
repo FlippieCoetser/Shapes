@@ -44,7 +44,7 @@ Shape.Generator <- \() {
 
     shape   <- Shape.Utility()
     angle   <- Angle.Converter()
-    convert <- Coordinate.System.Converter()
+    convert <- Coordinate.Converter()
 
     angle  <- seq(0,360, 10) |> angle[['DegreesToRadians']]()
     radius <- specifications[['radius']] |> rep(length(angle))
@@ -89,7 +89,7 @@ Shape.Generator <- \() {
 
     shape   <- Shape.Utility()
     angle   <- Angle.Converter()
-    convert <- Coordinate.System.Converter()
+    convert <- Coordinate.Converter()
 
     angle  <- seq(0,180, 10) |> angle[['DegreesToRadians']]()
     radius <- specifications[['radius']] |> rep(length(angle))
