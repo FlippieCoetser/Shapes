@@ -1,3 +1,13 @@
+#' Shape.Utility
+#' 
+#' @description
+#'  Set of Shape Utilities:
+#' - Get.Width
+#' - Get.Height
+#' - Translate
+#' 
+#' @usage NULL
+#' @export
 Shape.Utility <- \() {
   utilities <- list()
   utilities[['Get.Width']]  <- \(coordinates) {
