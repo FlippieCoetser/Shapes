@@ -21,9 +21,10 @@ Shape.Utility <- \() {
     (max.y - min.y)
   }
   utilities[['Translate']]  <- \(coordinates, offset) {
-    coordinates[['x']] <- coordinates[['x']] + offset[['x']]
-    coordinates[['y']] <- coordinates[['y']] + offset[['y']]
-    coordinates
+    data.frame(
+      x = coordinates[['x']] + offset[['x']],
+      y = coordinates[['y']] + offset[['y']] 
+    )
   }
   return(utilities)
 }
