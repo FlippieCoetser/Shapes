@@ -101,3 +101,50 @@ describe("When coordinates |> shape[['Translate']](offset)",{
     actual.coordinates |> expect.equal(expected.coordinates)
   })
 })
+
+describe("When coordinates |> shape[['Shrink.Height']](amount)",{
+  it("then coordinates is shrunk by amount",{
+    # Given
+    shape <- Shape.Utility()
+
+    coordinates <- data.frame(
+      x = c(0,10,10,0,0), 
+      y = c(0,0,10,10,0)
+    )
+
+    amount <- 5
+
+    expected.coordinates <- data.frame(
+      x = c(0,10,10,0,0), 
+      y = c(0,0,5,5,0)
+    )
+
+    # When
+    actual.coordinates <- coordinates |> shape[['Shrink.Height']](amount)
+
+    # Then
+    actual.coordinates |> expect.equal(expected.coordinates)
+  })
+  it("then coordinates is not shrunk by more than the height of the shape",{
+    # Given
+    shape <- Shape.Utility()
+
+    coordinates <- data.frame(
+      x = c(0,10,10,0,0), 
+      y = c(0,0,10,10,0)
+    )
+
+    amount <- 15
+
+    expected.coordinates <- data.frame(
+      x = c(0,10,10,0,0), 
+      y = c(0,0,0,0,0)
+    )
+
+    # When
+    actual.coordinates <- coordinates |> shape[['Shrink.Height']](amount)
+
+    # Then
+    actual.coordinates |> expect.equal(expected.coordinates)
+  })
+})
