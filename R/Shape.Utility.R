@@ -26,6 +26,18 @@ Shape.Utility <- \() {
       y = coordinates[['y']] + offset[['y']] 
     )
   }
-  utilities[['Shrink.Height']] <- \() {}
+  utilities[['Shrink.Height']] <- \(coordinates, amount) {
+    values  <- coordinates[['y']]
+    floor   <- values |> min()
+    ceiling <- values |> max()
+
+    amount <- amount |> min(ceiling - floor)
+           
+    values[values > floor]  <- values[values > floor] - amount
+
+    coordinates[['y']] <- values
+
+    coordinates
+  }
   return(utilities)
 }
