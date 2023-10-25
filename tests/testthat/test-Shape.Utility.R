@@ -155,3 +155,31 @@ describe("When coordinates |> shape[['Shrink.Height']](amount)",{
     actual.coordinates |> expect.equal(expected.coordinates)
   })
 })
+
+describe("When coordinates.one |> shape[['Join']](coordinates.two)",{
+  it("then coordinates.one and coordinates.two are joined",{
+    # Given
+    shape <- Shape.Utility()
+
+    coordinates.one <- data.frame(
+      x = c(0,10,10,0 ,0), 
+      y = c(0,0 ,10,10,0)
+    )
+
+    coordinates.two <- data.frame(
+      x = c(0 ,10,10,0 ,0), 
+      y = c(10,10,20,20,10)
+    )
+
+    expected.coordinates <- data.frame(
+      x = c(0,10,10,10,0 ,0 ,0), 
+      y = c(0,0 ,10,20,20,10,0)
+    )
+
+    # When
+    actual.coordinates <- coordinates.one |> shape[['Join']](coordinates.two)
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+})
