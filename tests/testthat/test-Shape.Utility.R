@@ -182,4 +182,26 @@ describe("When coordinates.one |> shape[['Join']](coordinates.two)",{
     # Then
     actual.coordinates |> expect.equal.data(expected.coordinates)
   })
+  it("then coordinates.one is returned if coordinates.two has length of 0",{
+    # Given
+    shape <- Shape.Utility()
+
+    coordinates.one <- data.frame(
+      x = c(0,10,10,0 ,0), 
+      y = c(0,0 ,10,10,0)
+    )
+
+    coordinates.two <- data.frame()
+
+    expected.coordinates <- data.frame(
+      x = c(0,10,10,0 ,0), 
+      y = c(0,0 ,10,10,0)
+    )
+
+    # When
+    actual.coordinates <- coordinates.one |> shape[['Join']](coordinates.two)
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
 })
