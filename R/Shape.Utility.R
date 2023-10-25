@@ -39,5 +39,6 @@ Shape.Utility <- \() {
 
     coordinates
   }
+  utilities[['Join']]          <- \() {}
   return(utilities)
 }
