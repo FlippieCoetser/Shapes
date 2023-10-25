@@ -40,6 +40,13 @@ describe("When utilities <- Shape.Utility()",{
     # Then
     utilities[['Shrink.Height']] |> expect.exist()
   })
+  it("then utilities contains 'Join' utility",{
+    # When
+    utilities <- Shape.Utility()
+
+    # Then
+    utilities[['Join']] |> expect.exist()
+  })
 })
 
 describe("When coordinates |> shape[['get.with']]()",{
