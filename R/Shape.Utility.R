@@ -40,6 +40,8 @@ Shape.Utility <- \() {
     coordinates
   }
   utilities[['Join']]          <- \(coordinates.one, coordinates.two) {
+    if(coordinates.two |> length() == 0) return(coordinates.one)
+
     intersection <-
       coordinates.one |>
         dplyr::mutate(id = 1:dplyr::n()) |>
