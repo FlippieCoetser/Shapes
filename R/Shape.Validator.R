@@ -11,6 +11,7 @@ Shape.Validator <- \() {
   validators[['Circle']]     <- \() {}
   validators[['Trapezoid']]  <- \() {}
   validators[['Segment']]    <- \() {}
+  validators[['exists']]     <- \() {}
   validators[['has.width']]  <- \() {}
   validators[['has.height']] <- \() {}
   validators[['has.base']]   <- \() {}
