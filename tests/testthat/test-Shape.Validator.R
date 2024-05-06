@@ -618,4 +618,15 @@ describe("When specifications |> validate[['Segment']]()",{
     # THEN
     specifications |> validate[['Segment']]() |> expect.error(expected.error)
   })
+  it("then specifications is return if specifications is valid",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    # WHEN
+    specifications <- list()
+    specifications[['radius']]  <- 10
+
+    # THEN
+    specifications |> validate[['Segment']]() |> expect.equal(specifications)
+  })
 })
