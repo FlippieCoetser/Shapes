@@ -505,7 +505,18 @@ describe("When specifications |> validate[['Trapezoid']]()",{
     # THEN
     specifications |> validate[['Trapezoid']]() |> expect.error(expected.error)
   })
+  it("then specifications is return if specifications is valid",{
+    # GIVEN
+    validate <- Shape.Validator()
 
+    # WHEN
+    specifications <- list()
+    specifications[['bottom']]  <- 10
+    specifications[['top']]     <- 10
+
+    # THEN
+    specifications |> validate[['Trapezoid']]() |> expect.equal(specifications)
+  })
 })
 
 describe("When specifications |> validate[['has.bottom']]()",{
