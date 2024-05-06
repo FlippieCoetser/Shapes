@@ -123,6 +123,18 @@ describe("When specifications |> Shape.Validator[['Rectangle']]()",{
     # THEN
     specifications |> validate[['Rectangle']]() |> expect.error(expected.error)
   })
+  it("then an exception is thrown if specifications has no width",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    expected.error <- "Attribute.NULL: 'width' does not exist."
+
+    # WHEN
+    specifications <- list()
+
+    # THEN
+    specifications |> validate[['Rectangle']]() |> expect.error(expected.error)
+  })
   it("then specifications is return if specifications is not NULL",{
     # GIVEN
     validate <- Shape.Validator()
@@ -186,7 +198,7 @@ describe("When specifications |> validate[['has.width']]()",{
     # GIVEN
     validate <- Shape.Validator()
 
-    expected.error <- "Attribute.NULL: 'with' does not exist."
+    expected.error <- "Attribute.NULL: 'width' does not exist."
 
     # WHEN
     specifications <- list()
