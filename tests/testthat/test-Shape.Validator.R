@@ -82,6 +82,13 @@ describe("When validators <- Shape.Validator()",{
     # THEN
     validators[['has.bottom']] |> expect.exist()
   })
+  it("then validators contains 'has.top' validator",{
+    # WHEN
+    validators <- Shape.Validator()
+
+    # THEN
+    validators[['has.top']] |> expect.exist()
+  })
 })
 
 describe("When specifications |> Shape.Validator[['Rectangle']]()",{
