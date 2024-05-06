@@ -4,5 +4,6 @@ Shape.Validator <- \() {
   validators[['Triangle']]  <- \() {}
   validators[['Circle']]    <- \() {}
   validators[['Trapezoid']] <- \() {}
+  validators[['Segment']]   <- \() {}
   return(validators)
 }
