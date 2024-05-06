@@ -12,7 +12,9 @@ Shape.Validation.Exceptions <- \() {
   exceptions[['Trapezoid.NULL']] <- \(invoke) {
     if(invoke) stop('Trapezoid.NULL: Trapezoid Specifications does not exist.', call. = FALSE)
   }
-  exceptions[['Segment.NULL']]   <- \() {}
+  exceptions[['Segment.NULL']]   <- \(invoke) {
+    if(invoke) stop('Segment.NULL: Segment Specifications does not exist.', call. = FALSE)
+  }
   exceptions[['Attribute.NULL']] <- \() {}
   return(exceptions)
 }
