@@ -9,5 +9,6 @@ Shape.Validator <- \() {
   validators[['Segment']]    <- \() {}
   validators[['has.width']]  <- \() {}
   validators[['has.height']] <- \() {}
+  validators[['has.base']]   <- \() {}
   return(validators)
 }
