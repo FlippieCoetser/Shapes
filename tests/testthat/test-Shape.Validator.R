@@ -19,4 +19,11 @@ describe("When validators <- Shape.Validator()",{
     # THEN
     validators[['Rectangle']] |> expect.exist()
   })
+  it("then validators contains 'Triangle' validator",{
+    # WHEN
+    validators <- Shape.Validator()
+
+    # THEN
+    validators[['Triangle']] |> expect.exist()
+  })
 })
