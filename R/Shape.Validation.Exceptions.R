@@ -15,6 +15,8 @@ Shape.Validation.Exceptions <- \() {
   exceptions[['Segment.NULL']]   <- \(invoke) {
     if(invoke) stop('Segment.NULL: Segment Specifications does not exist.', call. = FALSE)
   }
-  exceptions[['Attribute.NULL']] <- \() {}
+  exceptions[['Attribute.NULL']] <- \(invoke, attribute) {
+    if(invoke) stop("Attribute.NULL: '", attribute,"' does not exist.", call. = FALSE)
+  }
   return(exceptions)
 }
