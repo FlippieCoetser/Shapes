@@ -154,6 +154,8 @@ describe("When specifications |> Shape.Validator[['Rectangle']]()",{
 
     # WHEN
     specifications <- list()
+    specifications[['width']]  <- 10
+    specifications[['height']] <- 10
 
     # THEN
     specifications |> validate[['Rectangle']]() |> expect.equal(specifications)
