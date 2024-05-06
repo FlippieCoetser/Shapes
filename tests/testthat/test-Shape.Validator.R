@@ -518,3 +518,40 @@ describe("When specifications |> validate[['has.bottom']]()",{
     specifications |> validate[['has.bottom']]() |> expect.equal(specifications)
   })
 })
+
+describe("When specifications |> validate[['has.top']]()",{
+  it("then no exception is thrown if specifications has top",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    # WHEN
+    specifications <- list()
+    specifications[['top']]  <- 10
+
+    # THEN
+    specifications |> validate[['has.top']]() |> expect.no.error()
+  })
+  it("then an exception is thrown if specifications has no top",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    expected.error <- "Attribute.NULL: 'top' does not exist."
+
+    # WHEN
+    specifications <- list()
+
+    # THEN
+    specifications |> validate[['has.top']]() |> expect.error(expected.error)
+  })
+  it("then specifications is return if specifications has top",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    # WHEN
+    specifications <- list()
+    specifications[['top']]  <- 10
+
+    # THEN
+    specifications |> validate[['has.top']]() |> expect.equal(specifications)
+  })
+})
