@@ -297,3 +297,40 @@ describe("When specifications |> Shape.Validator[['Triangle']]()",{
     specifications |> validate[['Triangle']]() |> expect.error(expected.error)
   })
 })
+
+describe("When specifications |> validate[['has.base']]()",{
+  it("then no exception is thrown if specifications has base",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    # WHEN
+    specifications <- list()
+    specifications[['base']]  <- 10
+
+    # THEN
+    specifications |> validate[['has.base']]() |> expect.no.error()
+  })
+  it("then an exception is thrown if specifications has no base",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    expected.error <- "Attribute.NULL: 'base' does not exist."
+
+    # WHEN
+    specifications <- list()
+
+    # THEN
+    specifications |> validate[['has.base']]() |> expect.error(expected.error)
+  })
+  it("then specifications is return if specifications has base",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    # WHEN
+    specifications <- list()
+    specifications[['base']]  <- 10
+
+    # THEN
+    specifications |> validate[['has.base']]() |> expect.equal(specifications)
+  })
+})
