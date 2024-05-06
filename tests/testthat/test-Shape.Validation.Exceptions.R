@@ -55,3 +55,28 @@ describe("When exceptions <- Shape.Validation.Exceptions()",{
     exceptions[['Attribute.NULL']] |> expect.exist()
   })
 })
+
+describe("When input |> exceptions[['Rectangle.NULL']]",{
+  it("then an exceptions is thrown if input is FALSE",{
+    # GIVEN
+    exceptions <- Shape.Validation.Exceptions()
+
+    # WHEN
+    input <- FALSE
+
+    # THEN
+    input |> exceptions[['Rectangle.NULL']]() |> expect.no.error()
+  })
+  it("then an exceptions is thrown if input is TRUE",{
+    # GIVEN
+    exceptions <- Shape.Validation.Exceptions()
+
+    expected.exception <- 'Rectangle.NULL: Rectangle Specifications does not exist.'
+
+    # WHEN
+    input <- TRUE
+
+    # THEN
+    input |> exceptions[['Rectangle.NULL']]() |> expect.error(expected.exception)
+  })
+})
