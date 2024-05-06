@@ -592,3 +592,18 @@ describe("When specifications |> validate[['has.top']]()",{
     specifications |> validate[['has.top']]() |> expect.equal(specifications)
   })
 })
+
+describe("When specifications |> validate[['Segment']]()",{
+  it("then an exception is thrown is specifications is NULL",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    expected.error <- "Segment.NULL: Segment Specifications does not exist."
+
+    # WHEN
+    specifications <- NULL
+
+    # THEN
+    specifications |> validate[['Segment']]() |> expect.error(expected.error)
+  })
+})
