@@ -28,6 +28,7 @@ Shape.Validator <- \() {
   validators[['Segment']]    <- \(specifications) {
     specifications |> validators[['exists']]('Segment.NULL')
     specifications |> validators[['has.radius']]()
+    return(specifications)
   }
   validators[['exists']]     <- \(specifications, exception) {
     specifications |> validators[['is.not.NULL']]('') |> 
