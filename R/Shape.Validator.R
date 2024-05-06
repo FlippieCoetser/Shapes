@@ -11,5 +11,6 @@ Shape.Validator <- \() {
   validators[['has.height']] <- \() {}
   validators[['has.base']]   <- \() {}
   validators[['has.radius']] <- \() {}
+  validators[['has.bottom']] <- \() {}
   return(validators)
 }
