@@ -1,7 +1,10 @@
 Shape.Validator <- \() {
+  exceptions <- Shape.Validation.Exceptions()
+
   validators <- Validate::Validator()
   validators[['Rectangle']]  <- \(specifications) {
-    specifications |> validators[['is.not.NULL']]('Rectangle Specifications')
+    specifications |> validators[['is.not.NULL']]('Rectangle') |> 
+      tryCatch(error = \(...){ TRUE |> exceptions[['Rectangle.NULL']]()})
   }
   validators[['Triangle']]   <- \() {}
   validators[['Circle']]     <- \() {}

@@ -108,7 +108,7 @@ describe("When specifications |> Shape.Validator[['Rectangle']]()",{
     # GIVEN
     validate <- Shape.Validator()
 
-    expected.error <- "Argument.NULL: 'Rectangle Specifications' cannot not be NULL."
+    expected.error <- "Rectangle.NULL: Rectangle Specifications does not exist."
 
     # WHEN
     specifications <- NULL
