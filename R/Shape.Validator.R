@@ -48,7 +48,11 @@ Shape.Validator <- \() {
       tryCatch(error = \(...){ TRUE |> exceptions[['Attribute.NULL']]('radius')})
     return(specifications)
   }
-  validators[['has.bottom']] <- \() {}
+  validators[['has.bottom']] <- \(specifications) {
+    specifications[['bottom']] |> validators[['is.not.NULL']]('') |>
+      tryCatch(error = \(...){ TRUE |> exceptions[['Attribute.NULL']]('bottom')})
+    return(specifications)
+  }
   validators[['has.top']]    <- \() {}
   return(validators)
 }
