@@ -373,16 +373,6 @@ describe("When specifications |> validate[['has.base']]()",{
 })
 
 describe("When specifications |> validate[['Circle']]()",{
-  it("then no exception is thrown if specifications is not NULL",{
-    # GIVEN
-    validate <- Shape.Validator()
-
-    # WHEN
-    specifications <- list()
-
-    # THEN
-    specifications |> validate[['Circle']]() |> expect.no.error()
-  })
   it("then an Circle.NULL exception is thrown if specifications is NULL",{
     # GIVEN
     validate <- Shape.Validator()
@@ -458,16 +448,6 @@ describe("When specifications |> validate[['has.radius']]()",{
 })
 
 describe("When specifications |> validate[['Trapezoid']]()",{
-  it("then no exception is thrown if specifications is not NULL",{
-    # GIVEN
-    validate <- Shape.Validator()
-
-    # WHEN
-    specifications <- list()
-
-    # THEN
-    specifications |> validate[['Trapezoid']]() |> expect.no.error()
-  })
   it("then an Trapezoid.NULL exception is thrown if specifications is NULL",{
     # GIVEN
     validate <- Shape.Validator()
@@ -505,6 +485,20 @@ describe("When specifications |> validate[['Trapezoid']]()",{
     # THEN
     specifications |> validate[['Trapezoid']]() |> expect.error(expected.error)
   })
+  it("then an exception is thrown if specifications has no height",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    expected.error <- "Attribute.NULL: 'height' does not exist."
+
+    # WHEN
+    specifications <- list()
+    specifications[['bottom']]  <- 10
+    specifications[['top']]     <- 10
+
+    # THEN
+    specifications |> validate[['Trapezoid']]() |> expect.error(expected.error)
+  })
   it("then specifications is return if specifications is valid",{
     # GIVEN
     validate <- Shape.Validator()
@@ -513,6 +507,7 @@ describe("When specifications |> validate[['Trapezoid']]()",{
     specifications <- list()
     specifications[['bottom']]  <- 10
     specifications[['top']]     <- 10
+    specifications[['height']]  <- 10
 
     # THEN
     specifications |> validate[['Trapezoid']]() |> expect.equal(specifications)
