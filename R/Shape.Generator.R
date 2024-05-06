@@ -11,6 +11,7 @@
 #' @usage NULL
 #' @export
 Shape.Generator <- \() {
+  validate <- Shape.Validator()
   align <- Alignment.Configurator()
 
   set.defaults <- \(specifications) {
@@ -20,6 +21,7 @@ Shape.Generator <- \() {
 
   generators <- list()
   generators[['Rectangle']] <- \(specifications) {
+    specifications |> validate[['Rectangle']]()
     specifications <- specifications |> set.defaults()
 
     coordinates <- data.frame(
@@ -30,6 +32,7 @@ Shape.Generator <- \() {
     coordinates |> align[[specifications[['align']]]]()
   }
   generators[['Triangle']]  <- \(specifications) {
+    specifications |> validate[['Triangle']]()
     specifications <- specifications |> set.defaults()
 
     coordinates <- data.frame(
@@ -40,6 +43,7 @@ Shape.Generator <- \() {
     coordinates |> align[[specifications[['align']]]]()
   }
   generators[['Circle']]    <- \(specifications) {
+    specifications |> validate[['Circle']]()
     specifications <- specifications |> set.defaults()
 
     shape   <- Shape.Utility()
@@ -59,6 +63,7 @@ Shape.Generator <- \() {
     coordinates |> shape[['Translate']](offset) |> align[[specifications[['align']]]]()
   }
   generators[['Trapezoid']] <- \(specifications) {
+    specifications |> validate[['Trapezoid']]()
     specifications <- specifications |> set.defaults()
 
     descending <- specifications[['bottom']] >= specifications[['top']] 
@@ -85,6 +90,7 @@ Shape.Generator <- \() {
     coordinates |> align[[specifications[['align']]]]()
   }
   generators[['Segment']]   <- \(specifications) {
+    specifications |> validate[['Segment']]()
     specifications <- specifications |> set.defaults()
 
     shape   <- Shape.Utility()
