@@ -268,3 +268,30 @@ describe("When specifications |> validate[['has.height']]()",{
     specifications |> validate[['has.height']]() |> expect.equal(specifications)
   })
 })
+
+describe("When specifications |> Shape.Validator[['Triangle']]()",{
+  it("then no exception is thrown if specifications are valid",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    # WHEN
+    specifications <- list()
+    specifications[['base']]  <- 10
+    specifications[['height']] <- 10
+
+    # THEN
+    specifications |> validate[['Triangle']]() |> expect.no.error()
+  })
+  it("then an exception is thrown if specifications is NULL",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    expected.error <- "Triangle.NULL: Triangle Specifications does not exist."
+
+    # WHEN
+    specifications <- NULL
+
+    # THEN
+    specifications |> validate[['Triangle']]() |> expect.error(expected.error)
+  })
+})
