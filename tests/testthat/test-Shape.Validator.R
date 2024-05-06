@@ -606,4 +606,16 @@ describe("When specifications |> validate[['Segment']]()",{
     # THEN
     specifications |> validate[['Segment']]() |> expect.error(expected.error)
   })
+  it("then an exception is thrown if specifications has no radius",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    expected.error <- "Attribute.NULL: 'radius' does not exist."
+
+    # WHEN
+    specifications <- list()
+
+    # THEN
+    specifications |> validate[['Segment']]() |> expect.error(expected.error)
+  })
 })
