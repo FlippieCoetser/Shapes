@@ -80,3 +80,28 @@ describe("When input |> exceptions[['Rectangle.NULL']]",{
     input |> exceptions[['Rectangle.NULL']]() |> expect.error(expected.exception)
   })
 })
+
+describe("When input |> exceptions[['Triangle.NULL']]",{
+  it("then an exceptions is thrown if input is FALSE",{
+    # GIVEN
+    exceptions <- Shape.Validation.Exceptions()
+
+    # WHEN
+    input <- FALSE
+
+    # THEN
+    input |> exceptions[['Triangle.NULL']]() |> expect.no.error()
+  })
+  it("then an exceptions is thrown if input is TRUE",{
+    # GIVEN
+    exceptions <- Shape.Validation.Exceptions()
+
+    expected.exception <- 'Triangle.NULL: Triangle Specifications does not exist.'
+
+    # WHEN
+    input <- TRUE
+
+    # THEN
+    input |> exceptions[['Triangle.NULL']]() |> expect.error(expected.exception)
+  })
+})
