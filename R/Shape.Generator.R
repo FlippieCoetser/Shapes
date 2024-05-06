@@ -1,15 +1,3 @@
-#' Shape.Generator
-#' 
-#' @description
-#'  Generates coordinates for primary shapes:
-#' - Rectangle
-#' - Triangle
-#' - Circle
-#' - Trapezoid
-#' - Segment
-#' 
-#' @usage NULL
-#' @export
 Shape.Generator <- \() {
   validate <- Shape.Validator()
   align <- Alignment.Configurator()
@@ -111,3 +99,21 @@ Shape.Generator <- \() {
   }
   return(generators)
 }
+
+#' Shape Generator
+#'
+#' This Generator Component returns a collection of geometric shape generator functions.
+#' Each generator function is designed to create x, y coordinate pairs for specific geometric shapes
+#' based on given specifications. It uses validators to ensure that the specifications meet
+#' the requirements.
+#'
+#' @return A list of validator functions, which includes:
+#' \describe{
+#'   \item{\code{Rectangle}}{Use width and height to generate x y coordinates to plot a rectangle.}
+#'   \item{\code{Triangle}}{Use base and height to generate x y coordinates to plot a triangle.}
+#'   \item{\code{Circle}}{Use radius to generate x y coordinates to plot a circle.}
+#'   \item{\code{Trapezoid}}{Use bottom, top and height to generate x y coordinates to plot a trapezoid.}
+#'   \item{\code{Segment}}{Use radius to generate x y coordinates to plot a segment.}
+#' }
+#' @export
+Generator <- Shape.Generator

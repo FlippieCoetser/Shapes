@@ -1,41 +1,75 @@
 # Shapes R-Package
 
-Generate Shape Coordinates with ease.
+This package is used to generates x, y coordinate pairs for basic shapes:
 
-## Generic Development Process
+1. Rectangle
+2. Triangle
+3. Circle
+4. Trapezoid
+5. Segment
 
-1. Define User Requirements
-2. Create Conceptual Design (wire-frames or proof of concept code)
-3. Define Acceptance Criteria
-4. Create a new Branch
-5. Follow a TDD (Test Driven Development) to implement Design
-6. Merge Branch to Main
+Structural validation of input specifications is done before generating the coordinates.
 
-> Note: After each Merge, identify Abstraction and Generalization opportunities. Implement them in a separate branch and merge them after the test passes.
+## Installation
 
-This process was followed iteratively in this repository. See the User Requirements, Conceptual Design and Acceptance Criteria list using the links below.
+This package is not available on CRAN. Use `devtools` to either install from GitHub or build from source and install locally.
 
-## Sequence of User Stories Implemented:
+### Install from GitHub
 
-1. [Generate Rectangle Coordinates](https://github.com/FlippieCoetser/Shapes/issues/1)
-2. [Convert Radians to Degrees and Back](https://github.com/FlippieCoetser/Shapes/issues/4)
-3. [Convert Polar Coordinates to Cartesian Coordinates and Back](https://github.com/FlippieCoetser/Shapes/issues/5)
-4. [Generate Circle Coordinates](https://github.com/FlippieCoetser/Shapes/issues/2)
-5. [Consolidate Shape Coordinates Generators](https://github.com/FlippieCoetser/Shapes/issues/9)
+1. Use the following command to install the package from GitHub:
 
-All branches associated with user stories have been left active.
+```r
+devtools::install_github("https://github.com/FlippieCoetser/Shapes")
+```
 
-Also, notice the last iteration focused on abstraction. Abstraction combines related functions or operations into a unified component, simplifying their access and use by grouping them under a broader theme or purpose.
+### Build from Source
 
-### Features
+1. Clone the repository to your local machine.
+
+```bash
+git clone https://github.com/FlippieCoetser/Shapes.git
+```
+
+2. Navigate to the directory where the repository was cloned.
+
+3. Build the package.
+
+```r
+devtools::build()
+```
+
+4. Install `.tar.gz` file.
+
+```r
+install.packages("path_to_file/tar_gz_file", repos = NULL, type = "source")
+```
+
+### Load the Package
+
+There are two ways to load the package: using the `library` function or the package namespace.
+
+1. Using the `library` function.
+
+```r
+library(Shapes)
+generate <- Generator()
+validate <- Validator()
+```
+
+2. Using the package namespace.
+
+```r
+generate <- Shapes::Generator()
+validate <- Shapes::Validator()
+```
+
+### Shape Generator Usage
 
 Generate Shape Coordinates for the following shapes:
 
 1. Rectangle
 
 ```r
-generate <- Shapes::Shape.Generator()
-
 specifications <- list()
 specifications[['width']]  <- 1
 specifications[['height']] <- 0.5
@@ -46,8 +80,6 @@ rectangle <- specifications |> generate[['Rectangle']]()
 2. Triangle
 
 ```r
-generate <- Shapes::Shape.Generator()
-
 specifications <- list()
 specifications[['base']]   <- 1
 specifications[['height']] <- 1.5
@@ -58,8 +90,6 @@ triangle <- specifications |> generate[['Triangle']]()
 3. Circle
 
 ```r
-generate <- Shapes::Shape.Generator()
-
 specifications <- list()
 specifications[['radius']] <- 1
 
@@ -69,8 +99,6 @@ circle <- specifications |> generate[['Circle']]()
 4. Trapezoid
 
 ```r
-generate <- Shapes::Shape.Generator()
-
 specifications <- list()
 specifications[['bottom']] <- 1
 specifications[['top']]    <- 0.5
@@ -82,19 +110,40 @@ trapezoid <- specifications |> generate[['Trapezoid']]()
 5. Segment
 
 ```r
-generate <- Shapes::Shape.Generator()
-
 specifications <- list()
 specifications[['radius']] <- 1
 
 segment <- specifications |> generate[['Segment']]()
 ```
 
-The align parameter can be one of the following:
+> Note: An optional align parameter can be passed to the generator function.
+>
+> The align parameter can be one of the following:
+>
+> 1.  corner: The Left Bottom Corner of shapes will be at the origin (0,0)
+> 2.  center: The center of shapes will be at the origin (0,0)
+> 3.  horizontal: The shapes will be centred horizontally with the bottom at y = 0
+> 4.  vertical: The shapes will be centred vertically with the left side at x = 0
 
-1. corner: The Left Bottom Corner of shapes will be at the origin (0,0)
-2. center: The center of shapes will be at the origin (0,0)
-3. horizontal: The shapes will be centred horizontally with the bottom at y = 0
-4. vertical: The shapes will be centred vertically with the left side at x = 0
+### Shape Validator Usage
 
-> Note: The default align is corner when not specified
+Validate specifications of shapes and throw exception with meaningful message, for example:
+
+1. Define a specification with missing parameters.
+
+```r
+specifications <- list()
+specifications[['width']] <- 1
+```
+
+2. Validate the specifications.
+
+```r
+specifications |> validate[['Rectangle']]()
+```
+
+3. The following exception will be thrown:
+
+```r
+"Error: Attribute.NULL: 'height' does not exist."
+```
