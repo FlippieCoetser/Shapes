@@ -456,3 +456,28 @@ describe("When specifications |> validate[['has.radius']]()",{
     specifications |> validate[['has.radius']]() |> expect.equal(specifications)
   })
 })
+
+describe("When specifications |> validate[['Trapezoid']]()",{
+  it("then no exception is thrown if specifications is not NULL",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    # WHEN
+    specifications <- list()
+
+    # THEN
+    specifications |> validate[['Trapezoid']]() |> expect.no.error()
+  })
+  it("then an Trapezoid.NULL exception is thrown if specifications is NULL",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    expected.error <- "Trapezoid.NULL: Trapezoid Specifications does not exist."
+
+    # WHEN
+    specifications <- NULL
+
+    # THEN
+    specifications |> validate[['Trapezoid']]() |> expect.error(expected.error)
+  })
+})
