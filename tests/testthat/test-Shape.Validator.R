@@ -134,3 +134,38 @@ describe("When specifications |> Shape.Validator[['Rectangle']]()",{
     specifications |> validate[['Rectangle']]() |> expect.equal(specifications)
   })
 })
+
+describe("When specifications |> validate[['exists']]('Rectangle.NULL')",{
+  it("then no exception is thrown if specifications is not NULL",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    # WHEN
+    specifications <- list()
+
+    # THEN
+    specifications |> validate[['exists']]('exception') |> expect.no.error()
+  })
+  it("then a Rectangle.NULL exception is thrown if specifications is NULL",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    expected.error <- "Rectangle.NULL: Rectangle Specifications does not exist."
+
+    # WHEN
+    specifications <- NULL
+
+    # THEN
+    specifications |> validate[['exists']]('Rectangle.NULL') |> expect.error(expected.error)
+  })
+  it("then specifications is return if specifications is not NULL",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    # WHEN
+    specifications <- list()
+
+    # THEN
+    specifications |> validate[['exists']]('Rectangle.NULL') |> expect.equal(specifications)
+  })
+})
