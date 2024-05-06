@@ -12,4 +12,11 @@ describe("When exceptions <- Shape.Validation.Exceptions()",{
     # THEN
     exceptions |> expect.list()
   })
+  it("then exceptions contains 'Rectangle.NULL' exception",{
+    # WHEN
+    exceptions <- Shape.Validation.Exceptions()
+
+    # THEN
+    exceptions[['Rectangle.NULL']] |> expect.exist()
+  })
 })
