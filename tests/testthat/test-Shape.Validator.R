@@ -296,6 +296,18 @@ describe("When specifications |> Shape.Validator[['Triangle']]()",{
     # THEN
     specifications |> validate[['Triangle']]() |> expect.error(expected.error)
   })
+  it("then an exception is thrown if specifications has no base",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    expected.error <- "Attribute.NULL: 'base' does not exist."
+
+    # WHEN
+    specifications <- list()
+
+    # THEN
+    specifications |> validate[['Triangle']]() |> expect.error(expected.error)
+  })
 })
 
 describe("When specifications |> validate[['has.base']]()",{
