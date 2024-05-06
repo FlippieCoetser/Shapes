@@ -1,6 +1,8 @@
 Shape.Validation.Exceptions <- \() {
   exceptions <- list()
-  exceptions[['Rectangle.NULL']] <- \() {}
+  exceptions[['Rectangle.NULL']] <- \(invoke) {
+    if(invoke) stop('Rectangle.NULL: Rectangle Specifications does not exist.', call. = FALSE)
+  }
   exceptions[['Triangle.NULL']]  <- \() {}
   exceptions[['Circle.NULL']]    <- \() {}
   exceptions[['Trapezoid.NULL']] <- \() {}
