@@ -244,6 +244,43 @@ describe("When coordinates <- specifications |> generate[['Rectangle']]()",{
     # Then
     actual.coordinates |> expect.equal.data(expected.coordinates)
   })
+  it("then an exception is thrown if specifications is NULL",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- 'Rectangle.NULL: Rectangle Specifications does not exist.'
+
+    # When
+    specifications <- NULL
+
+    # Then
+    specifications |> generate[['Rectangle']]() |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no width",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'width' does not exist."
+
+    # When
+    specifications <- list()
+
+    # Then
+    specifications |> generate[['Rectangle']]() |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no height",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'height' does not exist."
+
+    # When
+    specifications <- list()
+    specifications[['width']] <- 20
+
+    # Then
+    specifications |> generate[['Rectangle']]() |> expect.error(expected.exception)
+  })
 })
 
 describe("When coordinates <- specifications |> generate[['Circle']]()",{
@@ -392,6 +429,30 @@ describe("When coordinates <- specifications |> generate[['Circle']]()",{
 
     # Then
     actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+  it("then an exception is thrown if specifications is NULL",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- 'Circle.NULL: Circle Specifications does not exist.'
+
+    # When
+    specifications <- NULL
+
+    # Then
+    specifications |> generate[['Circle']]() |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no radius",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'radius' does not exist."
+
+    # When
+    specifications <- list()
+
+    # Then
+    specifications |> generate[['Circle']]() |> expect.error(expected.exception)
   })
 })
 
@@ -569,6 +630,43 @@ describe("When coordinates <- specifications |> generate[['Triangle']]()",{
 
     # Then
     actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+  it("then an exception is thrown if specifications is NULL",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- 'Triangle.NULL: Triangle Specifications does not exist.'
+
+    # When
+    specifications <- NULL
+
+    # Then
+    specifications |> generate[['Triangle']]() |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no base",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'base' does not exist."
+
+    # When
+    specifications <- list()
+
+    # Then
+    specifications |> generate[['Triangle']]() |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no height",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'height' does not exist."
+
+    # When
+    specifications <- list()
+    specifications[['base']] <- 1
+
+    # Then
+    specifications |> generate[['Triangle']]() |> expect.error(expected.exception)
   })
 })
 
@@ -892,6 +990,57 @@ describe("When coordinates <- specifications |> generate[['Trapezoid']]()",{
     # Then
     actual.coordinates |> expect.equal.data(expected.coordinates)
   })
+  it("then an exception is thrown if specifications is NULL",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- 'Trapezoid.NULL: Trapezoid Specifications does not exist.'
+
+    # When
+    specifications <- NULL
+
+    # Then
+    specifications |> generate[['Trapezoid']]() |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no bottom",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'bottom' does not exist."
+
+    # When
+    specifications <- list()
+
+    # Then
+    specifications |> generate[['Trapezoid']]() |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no top",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'top' does not exist."
+
+    # When
+    specifications <- list()
+    specifications[['bottom']] <- 20
+
+    # Then
+    specifications |> generate[['Trapezoid']]() |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no height",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'height' does not exist."
+
+    # When
+    specifications <- list()
+    specifications[['bottom']] <- 20
+    specifications[['top']]    <- 10
+
+    # Then
+    specifications |> generate[['Trapezoid']]() |> expect.error(expected.exception)
+  })
 })
 
 describe("When coordinates <- specifications |> generate[['Segment']]()",{
@@ -1040,5 +1189,29 @@ describe("When coordinates <- specifications |> generate[['Segment']]()",{
 
     # Then
     actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+  it("then an exception is thrown if specifications is NULL",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- 'Segment.NULL: Segment Specifications does not exist.'
+
+    # When
+    specifications <- NULL
+
+    # Then
+    specifications |> generate[['Segment']]() |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no radius",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'radius' does not exist."
+
+    # When
+    specifications <- list()
+
+    # Then
+    specifications |> generate[['Segment']]() |> expect.error(expected.exception)
   })
 })
