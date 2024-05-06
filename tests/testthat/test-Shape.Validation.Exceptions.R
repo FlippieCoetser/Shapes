@@ -180,3 +180,30 @@ describe("When input |> exceptions[['Segment.NULL']]",{
     input |> exceptions[['Segment.NULL']]() |> expect.error(expected.exception)
   })
 })
+
+describe("When input |> exceptions[['Attribute.NULL']]('attribute')",{
+  it("then an exceptions is thrown if input is FALSE",{
+    # GIVEN
+    exceptions <- Shape.Validation.Exceptions()
+
+    # WHEN
+    input <- FALSE
+    attribute <- 'attribute'
+
+    # THEN
+    input |> exceptions[['Attribute.NULL']](attribute) |> expect.no.error()
+  })
+  it("then an exceptions is thrown if input is TRUE",{
+    # GIVEN
+    exceptions <- Shape.Validation.Exceptions()
+
+    expected.exception <- "Attribute.NULL: 'attribute' does not exist."
+
+    # WHEN
+    input <- TRUE
+    attribute <- 'attribute'
+
+    # THEN
+    input |> exceptions[['Attribute.NULL']](attribute) |> expect.error(expected.exception)
+  })
+})
