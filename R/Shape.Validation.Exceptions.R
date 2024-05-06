@@ -1,1 +1,4 @@
-Shape.Validation.Exceptions <- \() {}
+Shape.Validation.Exceptions <- \() {
+  exceptions <- list()
+  return(exceptions)
+}
