@@ -116,4 +116,14 @@ describe("When specifications |> Shape.Validator[['Rectangle']]()",{
     # THEN
     specifications |> validate[['Rectangle']]() |> expect.error(expected.error)
   })
+  it("then specifications is return if specifications is not NULL",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    # WHEN
+    specifications <- list()
+
+    # THEN
+    specifications |> validate[['Rectangle']]() |> expect.equal(specifications)
+  })
 })
