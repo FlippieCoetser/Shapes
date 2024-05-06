@@ -135,6 +135,19 @@ describe("When specifications |> Shape.Validator[['Rectangle']]()",{
     # THEN
     specifications |> validate[['Rectangle']]() |> expect.error(expected.error)
   })
+  it("then an exception is thrown if specifications has no height",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    expected.error <- "Attribute.NULL: 'height' does not exist."
+
+    # WHEN
+    specifications <- list()
+    specifications[['width']]  <- 10
+
+    # THEN
+    specifications |> validate[['Rectangle']]() |> expect.error(expected.error)
+  })
   it("then specifications is return if specifications is not NULL",{
     # GIVEN
     validate <- Shape.Validator()
