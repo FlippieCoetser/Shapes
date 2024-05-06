@@ -19,7 +19,9 @@ Shape.Validator <- \() {
     specifications |> validators[['has.radius']]() 
     return(specifications)
   }
-  validators[['Trapezoid']]  <- \() {}
+  validators[['Trapezoid']]  <- \(specifications) {
+    specifications |> validators[['exists']]('Trapezoid.NULL')
+  }
   validators[['Segment']]    <- \() {}
   validators[['exists']]     <- \(specifications, exception) {
     specifications |> validators[['is.not.NULL']]('') |> 
