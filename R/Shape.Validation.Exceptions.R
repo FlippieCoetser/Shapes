@@ -6,7 +6,9 @@ Shape.Validation.Exceptions <- \() {
   exceptions[['Triangle.NULL']]  <- \(invoke) {
     if(invoke) stop('Triangle.NULL: Triangle Specifications does not exist.', call. = FALSE)
   }
-  exceptions[['Circle.NULL']]    <- \() {}
+  exceptions[['Circle.NULL']]    <- \(invoke) {
+    if(invoke) stop('Circle.NULL: Circle Specifications does not exist.', call. = FALSE)
+  }
   exceptions[['Trapezoid.NULL']] <- \() {}
   exceptions[['Segment.NULL']]   <- \() {}
   exceptions[['Attribute.NULL']] <- \() {}
