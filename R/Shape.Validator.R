@@ -14,7 +14,10 @@ Shape.Validator <- \() {
     specifications |> validators[['has.height']]()
     return(specifications)
   }
-  validators[['Circle']]     <- \() {}
+  validators[['Circle']]     <- \(specifications) {
+    specifications |> validators[['exists']]('Circle.NULL') 
+    return(specifications)
+  }
   validators[['Trapezoid']]  <- \() {}
   validators[['Segment']]    <- \() {}
   validators[['exists']]     <- \(specifications, exception) {
