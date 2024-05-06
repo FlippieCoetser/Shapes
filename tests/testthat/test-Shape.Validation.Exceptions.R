@@ -56,7 +56,7 @@ describe("When exceptions <- Shape.Validation.Exceptions()",{
   })
 })
 
-describe("When input |> exceptions[['Rectangle.NULL']]",{
+describe("When input |> exceptions[['Rectangle.NULL']]()",{
   it("then an exceptions is thrown if input is FALSE",{
     # GIVEN
     exceptions <- Shape.Validation.Exceptions()
@@ -81,7 +81,7 @@ describe("When input |> exceptions[['Rectangle.NULL']]",{
   })
 })
 
-describe("When input |> exceptions[['Triangle.NULL']]",{
+describe("When input |> exceptions[['Triangle.NULL']]()",{
   it("then an exceptions is thrown if input is FALSE",{
     # GIVEN
     exceptions <- Shape.Validation.Exceptions()
@@ -106,7 +106,7 @@ describe("When input |> exceptions[['Triangle.NULL']]",{
   })
 })
 
-describe("When input |> exceptions[['Circle.NULL']]",{
+describe("When input |> exceptions[['Circle.NULL']]()",{
   it("then an exceptions is thrown if input is FALSE",{
     # GIVEN
     exceptions <- Shape.Validation.Exceptions()
@@ -131,7 +131,7 @@ describe("When input |> exceptions[['Circle.NULL']]",{
   })
 })
 
-describe("When input |> exceptions[['Trapezoid.NULL']]",{
+describe("When input |> exceptions[['Trapezoid.NULL']]()",{
   it("then an exceptions is thrown if input is FALSE",{
     # GIVEN
     exceptions <- Shape.Validation.Exceptions()
@@ -156,7 +156,7 @@ describe("When input |> exceptions[['Trapezoid.NULL']]",{
   })
 })
 
-describe("When input |> exceptions[['Segment.NULL']]",{
+describe("When input |> exceptions[['Segment.NULL']]()",{
   it("then an exceptions is thrown if input is FALSE",{
     # GIVEN
     exceptions <- Shape.Validation.Exceptions()
