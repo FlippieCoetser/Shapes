@@ -321,6 +321,18 @@ describe("When specifications |> Shape.Validator[['Triangle']]()",{
     # THEN
     specifications |> validate[['Triangle']]() |> expect.error(expected.error)
   })
+  it("then specifications is return if specifications is not NULL",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    # WHEN
+    specifications <- list()
+    specifications[['base']]  <- 10
+    specifications[['height']] <- 10
+
+    # THEN
+    specifications |> validate[['Triangle']]() |> expect.equal(specifications)
+  })
 })
 
 describe("When specifications |> validate[['has.base']]()",{
