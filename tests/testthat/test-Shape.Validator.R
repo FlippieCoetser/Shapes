@@ -127,3 +127,5 @@ describe("When specifications |> Shape.Validator[['Rectangle']]()",{
     specifications |> validate[['Rectangle']]() |> expect.equal(specifications)
   })
 })
+
+# inserted new next
