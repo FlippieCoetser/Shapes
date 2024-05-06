@@ -406,3 +406,40 @@ describe("When specifications |> validate[['Circle']]()",{
     specifications |> validate[['Circle']]() |> expect.equal(specifications)
   })
 })
+
+describe("When specifications |> validate[['has.radius']]()",{
+  it("then no exception is thrown if specifications has radius",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    # WHEN
+    specifications <- list()
+    specifications[['radius']]  <- 10
+
+    # THEN
+    specifications |> validate[['has.radius']]() |> expect.no.error()
+  })
+  it("then an exception is thrown if specifications has no radius",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    expected.error <- "Attribute.NULL: 'radius' does not exist."
+
+    # WHEN
+    specifications <- list()
+
+    # THEN
+    specifications |> validate[['has.radius']]() |> expect.error(expected.error)
+  })
+  it("then specifications is return if specifications has radius",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    # WHEN
+    specifications <- list()
+    specifications[['radius']]  <- 10
+
+    # THEN
+    specifications |> validate[['has.radius']]() |> expect.equal(specifications)
+  })
+})
