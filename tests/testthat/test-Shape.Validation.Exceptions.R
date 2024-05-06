@@ -26,4 +26,11 @@ describe("When exceptions <- Shape.Validation.Exceptions()",{
     # THEN
     exceptions[['Triangle.NULL']] |> expect.exist()
   })
+  it("then exceptions contains 'Circle.NULL' exception",{
+    # WHEN
+    exceptions <- Shape.Validation.Exceptions()
+
+    # THEN
+    exceptions[['Circle.NULL']] |> expect.exist()
+  })
 })
