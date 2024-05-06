@@ -105,3 +105,28 @@ describe("When input |> exceptions[['Triangle.NULL']]",{
     input |> exceptions[['Triangle.NULL']]() |> expect.error(expected.exception)
   })
 })
+
+describe("When input |> exceptions[['Circle.NULL']]",{
+  it("then an exceptions is thrown if input is FALSE",{
+    # GIVEN
+    exceptions <- Shape.Validation.Exceptions()
+
+    # WHEN
+    input <- FALSE
+
+    # THEN
+    input |> exceptions[['Circle.NULL']]() |> expect.no.error()
+  })
+  it("then an exceptions is thrown if input is TRUE",{
+    # GIVEN
+    exceptions <- Shape.Validation.Exceptions()
+
+    # WHEN
+    input <- TRUE
+
+    expected.exception <- 'Circle.NULL: Circle Specifications does not exist.'
+
+    # THEN
+    input |> exceptions[['Circle.NULL']]() |> expect.error(expected.exception)
+  })
+})
