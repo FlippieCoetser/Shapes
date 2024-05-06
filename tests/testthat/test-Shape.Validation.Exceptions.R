@@ -130,3 +130,28 @@ describe("When input |> exceptions[['Circle.NULL']]",{
     input |> exceptions[['Circle.NULL']]() |> expect.error(expected.exception)
   })
 })
+
+describe("When input |> exceptions[['Trapezoid.NULL']]",{
+  it("then an exceptions is thrown if input is FALSE",{
+    # GIVEN
+    exceptions <- Shape.Validation.Exceptions()
+
+    # WHEN
+    input <- FALSE
+
+    # THEN
+    input |> exceptions[['Trapezoid.NULL']]() |> expect.no.error()
+  })
+  it("then an exceptions is thrown if input is TRUE",{
+    # GIVEN
+    exceptions <- Shape.Validation.Exceptions()
+
+    expected.exception <- 'Trapezoid.NULL: Trapezoid Specifications does not exist.'
+
+    # WHEN
+    input <- TRUE
+
+    # THEN
+    input |> exceptions[['Trapezoid.NULL']]() |> expect.error(expected.exception)
+  })
+})
