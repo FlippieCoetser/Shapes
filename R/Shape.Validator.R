@@ -10,6 +10,7 @@ Shape.Validator <- \() {
   }
   validators[['Triangle']]   <- \(specifications) {
     specifications |> validators[['exists']]('Triangle.NULL') 
+    specifications |> validators[['has.base']]()
     return(specifications)
   }
   validators[['Circle']]     <- \() {}
