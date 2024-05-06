@@ -155,3 +155,28 @@ describe("When input |> exceptions[['Trapezoid.NULL']]",{
     input |> exceptions[['Trapezoid.NULL']]() |> expect.error(expected.exception)
   })
 })
+
+describe("When input |> exceptions[['Segment.NULL']]",{
+  it("then an exceptions is thrown if input is FALSE",{
+    # GIVEN
+    exceptions <- Shape.Validation.Exceptions()
+
+    # WHEN
+    input <- FALSE
+
+    # THEN
+    input |> exceptions[['Segment.NULL']]() |> expect.no.error()
+  })
+  it("then an exceptions is thrown if input is TRUE",{
+    # GIVEN
+    exceptions <- Shape.Validation.Exceptions()
+
+    expected.exception <- 'Segment.NULL: Segment Specifications does not exist.'
+
+    # WHEN
+    input <- TRUE
+
+    # THEN
+    input |> exceptions[['Segment.NULL']]() |> expect.error(expected.exception)
+  })
+})
