@@ -371,3 +371,38 @@ describe("When specifications |> validate[['has.base']]()",{
     specifications |> validate[['has.base']]() |> expect.equal(specifications)
   })
 })
+
+describe("When specifications |> validate[['Circle']]()",{
+  it("then no exception is thrown if specifications is not NULL",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    # WHEN
+    specifications <- list()
+
+    # THEN
+    specifications |> validate[['Circle']]() |> expect.no.error()
+  })
+  it("then an Circle.NULL exception is thrown if specifications is NULL",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    expected.error <- "Circle.NULL: Circle Specifications does not exist."
+
+    # WHEN
+    specifications <- NULL
+
+    # THEN
+    specifications |> validate[['Circle']]() |> expect.error(expected.error)
+  })
+  it("then specifications is return if specifications is not NULL",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    # WHEN
+    specifications <- list()
+
+    # THEN
+    specifications |> validate[['Circle']]() |> expect.equal(specifications)
+  })
+})
