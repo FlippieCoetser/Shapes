@@ -4,5 +4,6 @@ Shape.Validation.Exceptions <- \() {
   exceptions[['Triangle.NULL']]  <- \() {}
   exceptions[['Circle.NULL']]    <- \() {}
   exceptions[['Trapezoid.NULL']] <- \() {}
+  exceptions[['Segment.NULL']]   <- \() {}
   return(exceptions)
 }
