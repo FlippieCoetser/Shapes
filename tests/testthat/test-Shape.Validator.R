@@ -47,4 +47,38 @@ describe("When validators <- Shape.Validator()",{
     # THEN
     validators[['Segment']] |> expect.exist()
   })
+  it("then validators contains 'has.width' validator",{
+    # WHEN
+    validators <- Shape.Validator()
+
+    # THEN
+    validators[['has.width']] |> expect.exist()
+  })
+})
+
+describe("When specifications |> Shape.Validator[['Rectangle']]()",{
+  it("then no exception is thrown if specifications are valid",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    # WHEN
+    specifications <- list()
+    specifications[['width']]  <- 10
+    specifications[['height']] <- 10
+
+    # THEN
+    specifications |> validate[['Rectangle']]() |> expect.no.error()
+  })
+  it("then an exception is thrown if specifications is NULL",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    expected.error <- "Argument.NULL: 'Rectangle Specifications' cannot not be NULL."
+
+    # WHEN
+    specifications <- NULL
+
+    # THEN
+    specifications |> validate[['Rectangle']]() |> expect.error(expected.error)
+  })
 })
