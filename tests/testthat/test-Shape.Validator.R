@@ -218,3 +218,40 @@ describe("When specifications |> validate[['has.width']]()",{
     specifications |> validate[['has.width']]() |> expect.equal(specifications)
   })
 })
+
+describe("When specifications |> validate[['has.height']]()",{
+  it("then no exception is thrown if specifications has height",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    # WHEN
+    specifications <- list()
+    specifications[['height']]  <- 10
+
+    # THEN
+    specifications |> validate[['has.height']]() |> expect.no.error()
+  })
+  it("then an exception is thrown if specifications has no height",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    expected.error <- "Attribute.NULL: 'height' does not exist."
+
+    # WHEN
+    specifications <- list()
+
+    # THEN
+    specifications |> validate[['has.height']]() |> expect.error(expected.error)
+  })
+  it("then specifications is return if specifications has height",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    # WHEN
+    specifications <- list()
+    specifications[['height']]  <- 10
+
+    # THEN
+    specifications |> validate[['has.height']]() |> expect.equal(specifications)
+  })
+})
