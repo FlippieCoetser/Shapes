@@ -4,6 +4,7 @@ Shape.Validator <- \() {
   validators <- Validate::Validator()
   validators[['Rectangle']]  <- \(specifications) {
     specifications |> validators[['exists']]('Rectangle.NULL') 
+    specifications |> validators[['has.width']]()
     return(specifications)
   }
   validators[['Triangle']]   <- \() {}
@@ -17,7 +18,7 @@ Shape.Validator <- \() {
   }
   validators[['has.width']]  <- \(specifications) {
     specifications[['width']] |> validators[['is.not.NULL']]('') |>
-      tryCatch(error = \(...){ TRUE |> exceptions[['Attribute.NULL']]('with')})
+      tryCatch(error = \(...){ TRUE |> exceptions[['Attribute.NULL']]('width')})
     return(specifications)
   }
   validators[['has.height']] <- \() {}
