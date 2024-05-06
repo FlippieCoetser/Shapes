@@ -11,7 +11,11 @@ Shape.Validator <- \() {
   validators[['Circle']]     <- \() {}
   validators[['Trapezoid']]  <- \() {}
   validators[['Segment']]    <- \() {}
-  validators[['has.width']]  <- \() {}
+  validators[['has.width']]  <- \(specifications) {
+    specifications[['width']] |> validators[['is.not.NULL']]('width') |> 
+      tryCatch(error = \(...){ TRUE |> exceptions[['Attribute.NULL']]('width')})
+    return(specifications)
+  }
   validators[['has.height']] <- \() {}
   validators[['has.base']]   <- \() {}
   validators[['has.radius']] <- \() {}
