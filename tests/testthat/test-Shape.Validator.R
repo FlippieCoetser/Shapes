@@ -169,3 +169,40 @@ describe("When specifications |> validate[['exists']]('Rectangle.NULL')",{
     specifications |> validate[['exists']]('Rectangle.NULL') |> expect.equal(specifications)
   })
 })
+
+describe("When specifications |> validate[['has.width']]()",{
+  it("then no exception is thrown if specifications has width",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    # WHEN
+    specifications <- list()
+    specifications[['width']]  <- 10
+
+    # THEN
+    specifications |> validate[['has.width']]() |> expect.no.error()
+  })
+  it("then an exception is thrown if specifications has no width",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    expected.error <- "Attribute.NULL: 'with' does not exist."
+
+    # WHEN
+    specifications <- list()
+
+    # THEN
+    specifications |> validate[['has.width']]() |> expect.error(expected.error)
+  })
+  it("then specifications is return if specifications has width",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    # WHEN
+    specifications <- list()
+    specifications[['width']]  <- 10
+
+    # THEN
+    specifications |> validate[['has.width']]() |> expect.equal(specifications)
+  })
+})
