@@ -492,6 +492,20 @@ describe("When specifications |> validate[['Trapezoid']]()",{
     # THEN
     specifications |> validate[['Trapezoid']]() |> expect.error(expected.error)
   })
+  it("then an exception is thrown if specifications has no top",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    expected.error <- "Attribute.NULL: 'top' does not exist."
+
+    # WHEN
+    specifications <- list()
+    specifications[['bottom']]  <- 10
+
+    # THEN
+    specifications |> validate[['Trapezoid']]() |> expect.error(expected.error)
+  })
+
 })
 
 describe("When specifications |> validate[['has.bottom']]()",{
