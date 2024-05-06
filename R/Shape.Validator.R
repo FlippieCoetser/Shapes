@@ -25,7 +25,9 @@ Shape.Validator <- \() {
     specifications |> validators[['has.top']]()
     return(specifications)
   }
-  validators[['Segment']]    <- \() {}
+  validators[['Segment']]    <- \(specifications) {
+    specifications |> validators[['exists']]('Segment.NULL')
+  }
   validators[['exists']]     <- \(specifications, exception) {
     specifications |> validators[['is.not.NULL']]('') |> 
       tryCatch(error = \(...){ TRUE |> exceptions[[exception]]()})
