@@ -1,32 +1,22 @@
-#' Shape.Utility
-#' 
-#' @description
-#'  Set of Shape Utilities:
-#' - Get.Width
-#' - Get.Height
-#' - Translate
-#' 
-#' @usage NULL
-#' @export
 Shape.Utility <- \() {
   utilities <- list()
-  utilities[['Get.Width']]     <- \(coordinates) {
+  utilities[['get.width']]     <- \(coordinates) {
     max.x <- coordinates[['x']] |> max()
     min.x <- coordinates[['x']] |> min()
     (max.x - min.x)
   }
-  utilities[['Get.Height']]    <- \(coordinates) {
+  utilities[['get.height']]    <- \(coordinates) {
     max.y <- coordinates[['y']] |> max()
     min.y <- coordinates[['y']] |> min()
     (max.y - min.y)
   }
-  utilities[['Translate']]     <- \(coordinates, offset) {
+  utilities[['translate']]     <- \(coordinates, offset) {
     data.frame(
       x = coordinates[['x']] + offset[['x']],
       y = coordinates[['y']] + offset[['y']] 
     )
   }
-  utilities[['Shrink.Height']] <- \(coordinates, amount) {
+  utilities[['shrink.height']] <- \(coordinates, amount) {
     values  <- coordinates[['y']]
     floor   <- values |> min()
     ceiling <- values |> max()
@@ -39,7 +29,7 @@ Shape.Utility <- \() {
 
     coordinates
   }
-  utilities[['Join']]          <- \(coordinates.one, coordinates.two) {
+  utilities[['join']]          <- \(coordinates.one, coordinates.two) {
     if(coordinates.two |> length() == 0) return(coordinates.one)
 
     intersection <-
@@ -60,3 +50,17 @@ Shape.Utility <- \() {
   }
   return(utilities)
 }
+
+#' Shape.Utility
+#' 
+#' @description
+#'  Set of Shape Utilities:
+#' - get.width
+#' - get.height
+#' - translate
+#' - shrink.height
+#' - join
+#' 
+#' @usage NULL
+#' @export
+Utility <- Shape.Utility

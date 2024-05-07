@@ -12,40 +12,40 @@ describe("When utilities <- Shape.Utility()",{
     # Then
     utilities |> expect.list()
   })
-  it("then utilities contains 'Get.Width' utility",{
+  it("then utilities contains 'get.width' utility",{
     # When
     utilities <- Shape.Utility()
 
     # Then
-    utilities[['Get.Width']] |> expect.exist()
+    utilities[['get.width']] |> expect.exist()
   })
-  it("then utilities contains 'Get.Height' utility",{
+  it("then utilities contains 'get.height' utility",{
     # When
     utilities <- Shape.Utility()
 
     # Then
-    utilities[['Get.Height']] |> expect.exist()
+    utilities[['get.height']] |> expect.exist()
   })
-  it("then utilities contains 'Translate' utility",{
+  it("then utilities contains 'translate' utility",{
     # When
     utilities <- Shape.Utility()
 
     # Then
-    utilities[['Translate']] |> expect.exist()
+    utilities[['translate']] |> expect.exist()
   })
-  it("then utilities contains 'Shrink.Height' utility",{
+  it("then utilities contains 'shrink.height' utility",{
     # When
     utilities <- Shape.Utility()
 
     # Then
-    utilities[['Shrink.Height']] |> expect.exist()
+    utilities[['shrink.height']] |> expect.exist()
   })
-  it("then utilities contains 'Join' utility",{
+  it("then utilities contains 'join' utility",{
     # When
     utilities <- Shape.Utility()
 
     # Then
-    utilities[['Join']] |> expect.exist()
+    utilities[['join']] |> expect.exist()
   })
 })
 
@@ -61,14 +61,14 @@ describe("When coordinates |> shape[['get.with']]()",{
     expected.width <- max.x - min.x
 
     # When
-    actual.width <- coordinates |> shape[['Get.Width']]()
+    actual.width <- coordinates |> shape[['get.width']]()
 
     # Then
     actual.width |> expect.equal(expected.width)
   })
 })
 
-describe("When coordinates |> shape[['Get.Height']]()",{
+describe("When coordinates |> shape[['get.height']]()",{
   it("then height is the difference between the maximum and minimum y coordinates",{
     # Given
     shape <- Shape.Utility()
@@ -80,15 +80,15 @@ describe("When coordinates |> shape[['Get.Height']]()",{
     expected.height <- max.y - min.y
 
     # When
-    actual.height <- coordinates |> shape[['Get.Height']]()
+    actual.height <- coordinates |> shape[['get.height']]()
 
     # Then
     actual.height |> expect.equal(expected.height)
   })
 })
 
-describe("When coordinates |> shape[['Translate']](offset)",{
-  it("then coordinates is Translated by offset",{
+describe("When coordinates |> shape[['translate']](offset)",{
+  it("then coordinates is translated by offset",{
     # Given
     shape <- Shape.Utility()
 
@@ -102,14 +102,14 @@ describe("When coordinates |> shape[['Translate']](offset)",{
     )
 
     # When
-    actual.coordinates <- coordinates |> shape[['Translate']](offset)
+    actual.coordinates <- coordinates |> shape[['translate']](offset)
 
     # Then
     actual.coordinates |> expect.equal(expected.coordinates)
   })
 })
 
-describe("When coordinates |> shape[['Shrink.Height']](amount)",{
+describe("When coordinates |> shape[['shrink.height']](amount)",{
   it("then coordinates is shrunk by amount",{
     # Given
     shape <- Shape.Utility()
@@ -127,7 +127,7 @@ describe("When coordinates |> shape[['Shrink.Height']](amount)",{
     )
 
     # When
-    actual.coordinates <- coordinates |> shape[['Shrink.Height']](amount)
+    actual.coordinates <- coordinates |> shape[['shrink.height']](amount)
 
     # Then
     actual.coordinates |> expect.equal(expected.coordinates)
@@ -149,14 +149,14 @@ describe("When coordinates |> shape[['Shrink.Height']](amount)",{
     )
 
     # When
-    actual.coordinates <- coordinates |> shape[['Shrink.Height']](amount)
+    actual.coordinates <- coordinates |> shape[['shrink.height']](amount)
 
     # Then
     actual.coordinates |> expect.equal(expected.coordinates)
   })
 })
 
-describe("When coordinates.one |> shape[['Join']](coordinates.two)",{
+describe("When coordinates.one |> shape[['join']](coordinates.two)",{
   it("then coordinates.one and coordinates.two are joined",{
     # Given
     shape <- Shape.Utility()
@@ -177,7 +177,7 @@ describe("When coordinates.one |> shape[['Join']](coordinates.two)",{
     )
 
     # When
-    actual.coordinates <- coordinates.one |> shape[['Join']](coordinates.two)
+    actual.coordinates <- coordinates.one |> shape[['join']](coordinates.two)
 
     # Then
     actual.coordinates |> expect.equal.data(expected.coordinates)
@@ -199,7 +199,7 @@ describe("When coordinates.one |> shape[['Join']](coordinates.two)",{
     )
 
     # When
-    actual.coordinates <- coordinates.one |> shape[['Join']](coordinates.two)
+    actual.coordinates <- coordinates.one |> shape[['join']](coordinates.two)
 
     # Then
     actual.coordinates |> expect.equal.data(expected.coordinates)

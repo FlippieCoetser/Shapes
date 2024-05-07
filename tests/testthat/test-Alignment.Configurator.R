@@ -66,12 +66,12 @@ describe("When coordinates |> align[['center']]()",{
 
     coordinates <- data.frame(x = 1:10, y = 1:10)
 
-    width  <- coordinates |> shape[['Get.Width']]()
-    height <- coordinates |> shape[['Get.Height']]()
+    width  <- coordinates |> shape[['get.width']]()
+    height <- coordinates |> shape[['get.height']]()
 
     offset <- data.frame(x = -width / 2, y = -height / 2)  
 
-    expected.coordinates <- coordinates |> shape[['Translate']](offset)
+    expected.coordinates <- coordinates |> shape[['translate']](offset)
 
     # When
     actual.coordinates <- coordinates |> align[['center']]()
@@ -89,11 +89,11 @@ describe("When coordinates |> align[['horizontal']]()",{
 
     coordinates <- data.frame(x = 1:10, y = 1:10)
 
-    width <- coordinates |> shape[['Get.Width']]()
+    width <- coordinates |> shape[['get.width']]()
 
     offset <- data.frame(x = -width / 2, y = 0)  
 
-    expected.coordinates <- coordinates |> shape[['Translate']](offset)
+    expected.coordinates <- coordinates |> shape[['translate']](offset)
 
     # When
     actual.coordinates <- coordinates |> align[['horizontal']]()
@@ -111,11 +111,11 @@ describe("When coordinates |> align[['vertical']]()",{
 
     coordinates <- data.frame(x = 1:10, y = 1:10)
 
-    height <- coordinates |> shape[['Get.Height']]()
+    height <- coordinates |> shape[['get.height']]()
 
     offset <- data.frame(x = 0, y = -height / 2)  
 
-    expected.coordinates <- coordinates |> shape[['Translate']](offset)
+    expected.coordinates <- coordinates |> shape[['translate']](offset)
 
     # When
     actual.coordinates <- coordinates |> align[['vertical']]()

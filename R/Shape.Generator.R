@@ -43,12 +43,12 @@ Shape.Generator <- \() {
 
     coordinates <- data.frame(angle, radius) |> convert[['PolarToCartesian']]()
 
-    width  <- coordinates |> shape[['Get.Width']]()
-    height <- coordinates |> shape[['Get.Height']]()
+    width  <- coordinates |> shape[['get.width']]()
+    height <- coordinates |> shape[['get.height']]()
 
     offset <- data.frame(x = width / 2, y = height / 2)
 
-    coordinates |> shape[['Translate']](offset) |> align[[specifications[['align']]]]()
+    coordinates |> shape[['translate']](offset) |> align[[specifications[['align']]]]()
   }
   generators[['Trapezoid']] <- \(specifications) {
     specifications |> validate[['Trapezoid']]()
@@ -90,12 +90,12 @@ Shape.Generator <- \() {
 
     coordinates <- data.frame(angle, radius) |> convert[['PolarToCartesian']]()
 
-    width  <- coordinates |> shape[['Get.Width']]()
-    height <- coordinates |> shape[['Get.Height']]()
+    width  <- coordinates |> shape[['get.width']]()
+    height <- coordinates |> shape[['get.height']]()
 
     offset <- data.frame(x = width / 2, y = 0)
 
-    coordinates |> shape[['Translate']](offset) |> align[[specifications[['align']]]]()
+    coordinates |> shape[['translate']](offset) |> align[[specifications[['align']]]]()
   }
   return(generators)
 }
