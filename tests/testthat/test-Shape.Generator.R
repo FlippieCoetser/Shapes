@@ -181,69 +181,6 @@ describe("When coordinates <- specifications |> generate[['Rectangle']]()",{
     coordinates[['x']][pair.number] |> expect.equal(expected.x)
     coordinates[['y']][pair.number] |> expect.equal(expected.y)
   })
-  it("then coordinates is centered if specifications[['align']] <- 'center'",{
-    # Given
-    generate <- Shape.Generator()
-    align    <- Alignment.Configurator()
-
-    specifications <- list()
-    specifications[['width']]  <- 20
-    specifications[['height']] <- 10
-
-    corner.coordinates <- specifications |> generate[['Rectangle']]()
-
-    expected.coordinates <- corner.coordinates |> align[['center']]()
-
-    specifications[['align']]  <- 'center'
-
-    # When
-    actual.coordinates <- specifications |> generate[['Rectangle']]()
-
-    # Then
-    actual.coordinates |> expect.equal.data(expected.coordinates)
-  })
-  it("then coordinates is vertically aligned if specifications[['align']] <- 'vertical'",{
-    # Given
-    generate <- Shape.Generator()
-    align    <- Alignment.Configurator()
-
-    specifications <- list()
-    specifications[['width']]  <- 20
-    specifications[['height']] <- 10
-
-    corner.coordinates <- specifications |> generate[['Rectangle']]()
-
-    expected.coordinates <- corner.coordinates |> align[['vertical']]()
-
-    specifications[['align']]  <- 'vertical'
-
-    # When
-    actual.coordinates <- specifications |> generate[['Rectangle']]()
-
-    # Then
-    actual.coordinates |> expect.equal.data(expected.coordinates)
-  })
-  it("then coordinates is horizontally aligned if specifications[['align']] <- 'horizontal'",{
-    # Given
-    generate <- Shape.Generator()
-    align    <- Alignment.Configurator()
-
-    specifications <- list()
-    specifications[['width']]  <- 20
-    specifications[['height']] <- 10
-
-    corner.coordinates <- specifications |> generate[['Rectangle']]()
-
-    expected.coordinates <- corner.coordinates |> align[['horizontal']]()
-
-    specifications[['align']]  <- 'horizontal'
-
-    # When
-    actual.coordinates <- specifications |> generate[['Rectangle']]()
-
-    # Then
-    actual.coordinates |> expect.equal.data(expected.coordinates)
-  })
   it("then an exception is thrown if specifications is NULL",{
     # Given
     generate <- Shape.Generator()
@@ -280,6 +217,276 @@ describe("When coordinates <- specifications |> generate[['Rectangle']]()",{
 
     # Then
     specifications |> generate[['Rectangle']]() |> expect.error(expected.exception)
+  })
+})
+
+describe("When coordinates <- specifications |> generate[['Rectangle']](align = 'center')",{
+  it("then coordinates has x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['width']] <- 20
+    specifications[['height']] <- 10
+
+    # When
+    coordinates <- specifications |> generate[['Rectangle']]()
+
+    # Then
+    coordinates[['x']] |> expect.exist()
+    coordinates[['y']] |> expect.exist()
+  })
+  it("then coordinates has 5 pairs of x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['width']] <- 20
+    specifications[['height']] <- 10
+
+    expected.pairs <- 5
+
+    # When
+    coordinates <- specifications |> generate[['Rectangle']]()
+
+    # Then
+    coordinates |> expect.rows(expected.pairs)
+  })
+  it("then coordinates is centered",{
+    # Given
+    generate <- Shape.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['width']]  <- 20
+    specifications[['height']] <- 10
+
+    corner.coordinates <- specifications |> generate[['Rectangle']]()
+
+    expected.coordinates <- corner.coordinates |> align[['center']]()
+
+    # When
+    actual.coordinates <- specifications |> generate[['Rectangle']](align = 'center')
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+  it("then an exception is thrown if specifications is NULL",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- 'Rectangle.NULL: Rectangle Specifications does not exist.'
+
+    # When
+    specifications <- NULL
+
+    # Then
+    specifications |> generate[['Rectangle']](align = 'center') |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no width",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'width' does not exist."
+
+    # When
+    specifications <- list()
+
+    # Then
+    specifications |> generate[['Rectangle']](align = 'center') |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no height",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'height' does not exist."
+
+    # When
+    specifications <- list()
+    specifications[['width']] <- 20
+
+    # Then
+    specifications |> generate[['Rectangle']](align = 'center') |> expect.error(expected.exception)
+  })
+})
+
+describe("When coordinates <- specifications |> generate[['Rectangle']](align = 'vertical')",{
+  it("then coordinates has x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['width']] <- 20
+    specifications[['height']] <- 10
+
+    # When
+    coordinates <- specifications |> generate[['Rectangle']]('vertical')
+
+    # Then
+    coordinates[['x']] |> expect.exist()
+    coordinates[['y']] |> expect.exist()
+  })
+  it("then coordinates has 5 pairs of x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['width']] <- 20
+    specifications[['height']] <- 10
+
+    expected.pairs <- 5
+
+    # When
+    coordinates <- specifications |> generate[['Rectangle']]('vertical')
+
+    # Then
+    coordinates |> expect.rows(expected.pairs)
+  })
+  it("then coordinates is vertically centered",{
+    # Given
+    generate <- Shape.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['width']]  <- 20
+    specifications[['height']] <- 10
+
+    corner.coordinates <- specifications |> generate[['Rectangle']]()
+
+    expected.coordinates <- corner.coordinates |> align[['vertical']]()
+
+    # When
+    actual.coordinates <- specifications |> generate[['Rectangle']](align = 'vertical')
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+  it("then an exception is thrown if specifications is NULL",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- 'Rectangle.NULL: Rectangle Specifications does not exist.'
+
+    # When
+    specifications <- NULL
+
+    # Then
+    specifications |> generate[['Rectangle']](align = 'vertical') |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no width",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'width' does not exist."
+
+    # When
+    specifications <- list()
+
+    # Then
+    specifications |> generate[['Rectangle']](align = 'vertical') |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no height",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'height' does not exist."
+
+    # When
+    specifications <- list()
+    specifications[['width']] <- 20
+
+    # Then
+    specifications |> generate[['Rectangle']](align = 'vertical') |> expect.error(expected.exception)
+  })
+})
+
+describe("When coordinates <- specifications |> generate[['Rectangle']](align = 'horizontal')",{
+  it("then coordinates has x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['width']] <- 20
+    specifications[['height']] <- 10
+
+    # When
+    coordinates <- specifications |> generate[['Rectangle']]('horizontal')
+
+    # Then
+    coordinates[['x']] |> expect.exist()
+    coordinates[['y']] |> expect.exist()
+  })
+  it("then coordinates has 5 pairs of x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['width']] <- 20
+    specifications[['height']] <- 10
+
+    expected.pairs <- 5
+
+    # When
+    coordinates <- specifications |> generate[['Rectangle']]('horizontal')
+
+    # Then
+    coordinates |> expect.rows(expected.pairs)
+  })
+  it("then coordinates is horizontal centered",{
+    # Given
+    generate <- Shape.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['width']]  <- 20
+    specifications[['height']] <- 10
+
+    corner.coordinates <- specifications |> generate[['Rectangle']]()
+
+    expected.coordinates <- corner.coordinates |> align[['horizontal']]()
+
+    # When
+    actual.coordinates <- specifications |> generate[['Rectangle']](align = 'horizontal')
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+  it("then an exception is thrown if specifications is NULL",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- 'Rectangle.NULL: Rectangle Specifications does not exist.'
+
+    # When
+    specifications <- NULL
+
+    # Then
+    specifications |> generate[['Rectangle']](align = 'horizontal') |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no width",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'width' does not exist."
+
+    # When
+    specifications <- list()
+
+    # Then
+    specifications |> generate[['Rectangle']](align = 'horizontal') |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no height",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'height' does not exist."
+
+    # When
+    specifications <- list()
+    specifications[['width']] <- 20
+
+    # Then
+    specifications |> generate[['Rectangle']](align = 'horizontal') |> expect.error(expected.exception)
   })
 })
 
@@ -370,66 +577,6 @@ describe("When coordinates <- specifications |> generate[['Circle']]()",{
     # Then
     actual.coordinates[['y']] |> expect.equal(expected.coordinates[['y']])
   })
-  it("then coordinates is centered if specifications[['align']] <- 'center'",{
-    # Given
-    generate <- Shape.Generator()
-    align    <- Alignment.Configurator()
-
-    specifications <- list()
-    specifications[['radius']] <- 1
-
-    corner.coordinates <- specifications |> generate[['Circle']]()
-
-    expected.coordinates <- corner.coordinates |> align[['center']]()
-
-    specifications[['align']]  <- 'center'
-
-    # When
-    actual.coordinates <- specifications |> generate[['Circle']]()
-
-    # Then
-    actual.coordinates |> expect.equal.data(expected.coordinates)
-  })
-  it("then coordinates is vertically aligned if specifications[['align']] <- 'vertical'",{
-    # Given
-    generate <- Shape.Generator()
-    align    <- Alignment.Configurator()
-
-    specifications <- list()
-    specifications[['radius']] <- 1
-
-    corner.coordinates <- specifications |> generate[['Circle']]()
-
-    expected.coordinates <- corner.coordinates |> align[['vertical']]()
-
-    specifications[['align']]  <- 'vertical'
-
-    # When
-    actual.coordinates <- specifications |> generate[['Circle']]()
-
-    # Then
-    actual.coordinates |> expect.equal.data(expected.coordinates)
-  })
-  it("then coordinates is horizontally aligned if specifications[['align']] <- 'horizontal'",{
-    # Given
-    generate <- Shape.Generator()
-    align    <- Alignment.Configurator()
-
-    specifications <- list()
-    specifications[['radius']] <- 1
-
-    corner.coordinates <- specifications |> generate[['Circle']]()
-
-    expected.coordinates <- corner.coordinates |> align[['horizontal']]()
-
-    specifications[['align']]  <- 'horizontal'
-
-    # When
-    actual.coordinates <- specifications |> generate[['Circle']]()
-
-    # Then
-    actual.coordinates |> expect.equal.data(expected.coordinates)
-  })
   it("then an exception is thrown if specifications is NULL",{
     # Given
     generate <- Shape.Generator()
@@ -453,6 +600,231 @@ describe("When coordinates <- specifications |> generate[['Circle']]()",{
 
     # Then
     specifications |> generate[['Circle']]() |> expect.error(expected.exception)
+  })
+})
+
+describe("When coordinates <- specifications |> generate[['Circle']](align = 'center')",{
+  it("then coordinates has x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    # When
+    coordinates <- specifications |> generate[['Circle']](align = 'center')
+
+    # When
+    coordinates[['x']] |> expect.exist()
+    coordinates[['y']] |> expect.exist()
+  })
+  it("then coordinates has 37 pairs of x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    expected.pairs <- 37
+
+    # When
+    coordinates <- specifications |> generate[['Circle']](align = 'center')
+
+
+    # When
+    coordinates |> expect.rows(expected.pairs)
+  })
+  it("then coordinates is centered",{
+    # Given
+    generate <- Shape.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    corner.coordinates <- specifications |> generate[['Circle']]()
+
+    expected.coordinates <- corner.coordinates |> align[['center']]()
+
+    # When
+    actual.coordinates <- specifications |> generate[['Circle']](align = 'center')
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+  it("then an exception is thrown if specifications is NULL",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- 'Circle.NULL: Circle Specifications does not exist.'
+
+    # When
+    specifications <- NULL
+
+    # Then
+    specifications |> generate[['Circle']](align = 'center') |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no radius",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'radius' does not exist."
+
+    # When
+    specifications <- list()
+
+    # Then
+    specifications |> generate[['Circle']](align = 'center') |> expect.error(expected.exception)
+  })
+})
+
+describe("When coordinates <- specifications |> generate[['Circle']](align = 'vertical')",{
+  it("then coordinates has x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    # When
+    coordinates <- specifications |> generate[['Circle']](align = 'center')
+
+    # When
+    coordinates[['x']] |> expect.exist()
+    coordinates[['y']] |> expect.exist()
+  })
+  it("then coordinates has 37 pairs of x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    expected.pairs <- 37
+
+    # When
+    coordinates <- specifications |> generate[['Circle']](align = 'center')
+
+
+    # When
+    coordinates |> expect.rows(expected.pairs)
+  })
+  it("then coordinates is vertically centered",{
+    # Given
+    generate <- Shape.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    corner.coordinates <- specifications |> generate[['Circle']]()
+
+    expected.coordinates <- corner.coordinates |> align[['vertical']]()
+
+    # When
+    actual.coordinates <- specifications |> generate[['Circle']](align = 'vertical')
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+  it("then an exception is thrown if specifications is NULL",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- 'Circle.NULL: Circle Specifications does not exist.'
+
+    # When
+    specifications <- NULL
+
+    # Then
+    specifications |> generate[['Circle']](align = 'vertical') |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no radius",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'radius' does not exist."
+
+    # When
+    specifications <- list()
+
+    # Then
+    specifications |> generate[['Circle']](align = 'vertical') |> expect.error(expected.exception)
+  })
+})
+
+describe("When coordinates <- specifications |> generate[['Circle']](align = 'horizontal')",{
+  it("then coordinates has x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    # When
+    coordinates <- specifications |> generate[['Circle']](align = 'horizontal')
+
+    # When
+    coordinates[['x']] |> expect.exist()
+    coordinates[['y']] |> expect.exist()
+  })
+  it("then coordinates has 37 pairs of x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    expected.pairs <- 37
+
+    # When
+    coordinates <- specifications |> generate[['Circle']](align = 'horizontal')
+
+
+    # When
+    coordinates |> expect.rows(expected.pairs)
+  })
+  it("then coordinates is horizontal centered",{
+    # Given
+    generate <- Shape.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    corner.coordinates <- specifications |> generate[['Circle']]()
+
+    expected.coordinates <- corner.coordinates |> align[['horizontal']]()
+
+    # When
+    actual.coordinates <- specifications |> generate[['Circle']](align = 'horizontal')
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+  it("then an exception is thrown if specifications is NULL",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- 'Circle.NULL: Circle Specifications does not exist.'
+
+    # When
+    specifications <- NULL
+
+    # Then
+    specifications |> generate[['Circle']](align = 'horizontal') |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no radius",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'radius' does not exist."
+
+    # When
+    specifications <- list()
+
+    # Then
+    specifications |> generate[['Circle']](align = 'horizontal') |> expect.error(expected.exception)
   })
 })
 
@@ -568,69 +940,6 @@ describe("When coordinates <- specifications |> generate[['Triangle']]()",{
     coordinates[['x']][pair.number] |> expect.equal(expected.x)
     coordinates[['y']][pair.number] |> expect.equal(expected.y)
   })
-  it("then coordinates is centered if specifications[['align']] <- 'center'",{
-    # Given
-    generate <- Shape.Generator()
-    align    <- Alignment.Configurator()
-
-    specifications <- list()
-    specifications[['base']]   <- 1
-    specifications[['height']] <- 1.5
-
-    corner.coordinates <- specifications |> generate[['Triangle']]()
-
-    expected.coordinates <- corner.coordinates |> align[['center']]()
-
-    specifications[['align']]  <- 'center'
-
-    # When
-    actual.coordinates <- specifications |> generate[['Triangle']]()
-
-    # Then
-    actual.coordinates |> expect.equal.data(expected.coordinates)
-  })
-  it("then coordinates is vertically aligned if specifications[['align']] <- 'vertical'",{
-    # Given
-    generate <- Shape.Generator()
-    align    <- Alignment.Configurator()
-
-    specifications <- list()
-    specifications[['base']]   <- 1
-    specifications[['height']] <- 1.5
-
-    corner.coordinates <- specifications |> generate[['Triangle']]()
-
-    expected.coordinates <- corner.coordinates |> align[['vertical']]()
-
-    specifications[['align']]  <- 'vertical'
-
-    # When
-    actual.coordinates <- specifications |> generate[['Triangle']]()
-
-    # Then
-    actual.coordinates |> expect.equal.data(expected.coordinates)
-  })
-  it("then coordinates is horizontally aligned if specifications[['align']] <- 'horizontal'",{
-    # Given
-    generate <- Shape.Generator()
-    align    <- Alignment.Configurator()
-
-    specifications <- list()
-    specifications[['base']]   <- 1
-    specifications[['height']] <- 1.5
-
-    corner.coordinates <- specifications |> generate[['Triangle']]()
-
-    expected.coordinates <- corner.coordinates |> align[['horizontal']]()
-
-    specifications[['align']]  <- 'horizontal'
-
-    # When
-    actual.coordinates <- specifications |> generate[['Triangle']]()
-
-    # Then
-    actual.coordinates |> expect.equal.data(expected.coordinates)
-  })
   it("then an exception is thrown if specifications is NULL",{
     # Given
     generate <- Shape.Generator()
@@ -667,6 +976,276 @@ describe("When coordinates <- specifications |> generate[['Triangle']]()",{
 
     # Then
     specifications |> generate[['Triangle']]() |> expect.error(expected.exception)
+  })
+})
+
+describe("When coordinates <- specifications |> generate[['Triangle']](align = 'center')",{
+  it("then coordinates has x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['base']]   <- 1
+    specifications[['height']] <- 1.5
+
+    # When
+    coordinates <- specifications |> generate[['Triangle']](align = 'center')
+
+    # When
+    coordinates[['x']] |> expect.exist()
+    coordinates[['y']] |> expect.exist()
+  })
+  it("then coordinates has 4 pairs of x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['base']]   <- 1
+    specifications[['height']] <- 1.5
+
+    expected.pairs <- 4
+
+    # When
+    coordinates <- specifications |> generate[['Triangle']](align = 'center')
+
+    # Then
+    coordinates |> expect.rows(expected.pairs)
+  })
+  it("then coordinates is centered",{
+    # Given
+    generate <- Shape.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['base']]   <- 1
+    specifications[['height']] <- 1.5
+
+    corner.coordinates <- specifications |> generate[['Triangle']]()
+
+    expected.coordinates <- corner.coordinates |> align[['center']]()
+
+    # When
+    actual.coordinates <- specifications |> generate[['Triangle']](align = 'center')
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+  it("then an exception is thrown if specifications is NULL",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- 'Triangle.NULL: Triangle Specifications does not exist.'
+
+    # When
+    specifications <- NULL
+
+    # Then
+    specifications |> generate[['Triangle']](align = 'center') |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no base",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'base' does not exist."
+
+    # When
+    specifications <- list()
+
+    # Then
+    specifications |> generate[['Triangle']](align = 'center') |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no height",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'height' does not exist."
+
+    # When
+    specifications <- list()
+    specifications[['base']] <- 1
+
+    # Then
+    specifications |> generate[['Triangle']](align = 'center') |> expect.error(expected.exception)
+  })
+})
+
+describe("When coordinates <- specifications |> generate[['Triangle']](align = 'vertical')",{
+  it("then coordinates has x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['base']]   <- 1
+    specifications[['height']] <- 1.5
+
+    # When
+    coordinates <- specifications |> generate[['Triangle']](align = 'vertical')
+
+    # When
+    coordinates[['x']] |> expect.exist()
+    coordinates[['y']] |> expect.exist()
+  })
+  it("then coordinates has 4 pairs of x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['base']]   <- 1
+    specifications[['height']] <- 1.5
+
+    expected.pairs <- 4
+
+    # When
+    coordinates <- specifications |> generate[['Triangle']](align = 'vertical')
+
+    # Then
+    coordinates |> expect.rows(expected.pairs)
+  })
+  it("then coordinates is vertical centered",{
+    # Given
+    generate <- Shape.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['base']]   <- 1
+    specifications[['height']] <- 1.5
+
+    corner.coordinates <- specifications |> generate[['Triangle']]()
+
+    expected.coordinates <- corner.coordinates |> align[['vertical']]()
+
+    # When
+    actual.coordinates <- specifications |> generate[['Triangle']](align = 'vertical')
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+  it("then an exception is thrown if specifications is NULL",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- 'Triangle.NULL: Triangle Specifications does not exist.'
+
+    # When
+    specifications <- NULL
+
+    # Then
+    specifications |> generate[['Triangle']](align = 'vertical') |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no base",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'base' does not exist."
+
+    # When
+    specifications <- list()
+
+    # Then
+    specifications |> generate[['Triangle']](align = 'vertical') |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no height",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'height' does not exist."
+
+    # When
+    specifications <- list()
+    specifications[['base']] <- 1
+
+    # Then
+    specifications |> generate[['Triangle']](align = 'vertical') |> expect.error(expected.exception)
+  })
+})
+
+describe("When coordinates <- specifications |> generate[['Triangle']](align = 'horizontal')",{
+  it("then coordinates has x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['base']]   <- 1
+    specifications[['height']] <- 1.5
+
+    # When
+    coordinates <- specifications |> generate[['Triangle']](align = 'horizontal')
+
+    # When
+    coordinates[['x']] |> expect.exist()
+    coordinates[['y']] |> expect.exist()
+  })
+  it("then coordinates has 4 pairs of x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['base']]   <- 1
+    specifications[['height']] <- 1.5
+
+    expected.pairs <- 4
+
+    # When
+    coordinates <- specifications |> generate[['Triangle']](align = 'horizontal')
+
+    # Then
+    coordinates |> expect.rows(expected.pairs)
+  })
+  it("then coordinates is horizontal centered",{
+    # Given
+    generate <- Shape.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['base']]   <- 1
+    specifications[['height']] <- 1.5
+
+    corner.coordinates <- specifications |> generate[['Triangle']]()
+
+    expected.coordinates <- corner.coordinates |> align[['horizontal']]()
+
+    # When
+    actual.coordinates <- specifications |> generate[['Triangle']](align = 'horizontal')
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+  it("then an exception is thrown if specifications is NULL",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- 'Triangle.NULL: Triangle Specifications does not exist.'
+
+    # When
+    specifications <- NULL
+
+    # Then
+    specifications |> generate[['Triangle']](align = 'horizontal') |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no base",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'base' does not exist."
+
+    # When
+    specifications <- list()
+
+    # Then
+    specifications |> generate[['Triangle']](align = 'horizontal') |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no height",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'height' does not exist."
+
+    # When
+    specifications <- list()
+    specifications[['base']] <- 1
+
+    # Then
+    specifications |> generate[['Triangle']](align = 'horizontal') |> expect.error(expected.exception)
   })
 })
 
@@ -924,72 +1503,6 @@ describe("When coordinates <- specifications |> generate[['Trapezoid']]()",{
     coordinates[['x']][pair.number] |> expect.equal(expected.x)
     coordinates[['y']][pair.number] |> expect.equal(expected.y)    
   })
-  it("then coordinates is centered if specifications[['align']] <- 'center'",{
-    # Given
-    generate <- Shape.Generator()
-    align    <- Alignment.Configurator()
-
-    specifications <- list()
-    specifications[['bottom']] <- 1
-    specifications[['top']]    <- 0.5
-    specifications[['height']] <- 1
-
-    corner.coordinates <- specifications |> generate[['Trapezoid']]()
-
-    expected.coordinates <- corner.coordinates |> align[['center']]()
-
-    specifications[['align']]  <- 'center'
-
-    # When
-    actual.coordinates <- specifications |> generate[['Trapezoid']]()
-
-    # Then
-    actual.coordinates |> expect.equal.data(expected.coordinates)
-  })
-  it("then coordinates is vertically aligned if specifications[['align']] <- 'vertical'",{
-    # Given
-    generate <- Shape.Generator()
-    align    <- Alignment.Configurator()
-
-    specifications <- list()
-    specifications[['bottom']] <- 1
-    specifications[['top']]    <- 0.5
-    specifications[['height']] <- 1
-
-    corner.coordinates <- specifications |> generate[['Trapezoid']]()
-
-    expected.coordinates <- corner.coordinates |> align[['vertical']]()
-
-    specifications[['align']]  <- 'vertical'
-
-    # When
-    actual.coordinates <- specifications |> generate[['Trapezoid']]()
-
-    # Then
-    actual.coordinates |> expect.equal.data(expected.coordinates)
-  })
-  it("then coordinates is horizontally aligned if specifications[['align']] <- 'horizontal'",{
-    # Given
-    generate <- Shape.Generator()
-    align    <- Alignment.Configurator()
-
-    specifications <- list()
-    specifications[['bottom']] <- 1
-    specifications[['top']]    <- 0.5
-    specifications[['height']] <- 1
-
-    corner.coordinates <- specifications |> generate[['Trapezoid']]()
-
-    expected.coordinates <- corner.coordinates |> align[['horizontal']]()
-
-    specifications[['align']]  <- 'horizontal'
-
-    # When
-    actual.coordinates <- specifications |> generate[['Trapezoid']]()
-
-    # Then
-    actual.coordinates |> expect.equal.data(expected.coordinates)
-  })
   it("then an exception is thrown if specifications is NULL",{
     # Given
     generate <- Shape.Generator()
@@ -1040,6 +1553,220 @@ describe("When coordinates <- specifications |> generate[['Trapezoid']]()",{
 
     # Then
     specifications |> generate[['Trapezoid']]() |> expect.error(expected.exception)
+  })
+})
+
+describe("When coordinates <- specifications |> generate[['Trapezoid']](align = 'center')",{
+  it("then coordinates has x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['bottom']] <- 1
+    specifications[['top']]    <- 0.5
+    specifications[['height']] <- 1
+
+    # When
+    coordinates <- specifications |> generate[['Trapezoid']](align = 'center')
+
+    # When
+    coordinates[['x']] |> expect.exist()
+    coordinates[['y']] |> expect.exist()
+  })
+  it("then coordinates has 5 pairs of x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['bottom']] <- 1
+    specifications[['top']]    <- 0.5
+    specifications[['height']] <- 1
+
+    expected.pairs <- 5
+
+    # When
+    coordinates <- specifications |> generate[['Trapezoid']](align = 'center')
+
+    # Then
+    coordinates |> expect.rows(expected.pairs)
+  })
+  it("then coordinates is centered",{
+    # Given
+    generate <- Shape.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['bottom']] <- 1
+    specifications[['top']]    <- 0.5
+    specifications[['height']] <- 1
+
+    corner.coordinates <- specifications |> generate[['Trapezoid']]()
+
+    expected.coordinates <- corner.coordinates |> align[['center']]()
+
+    # When
+    actual.coordinates <- specifications |> generate[['Trapezoid']](align = 'center')
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+  it("then an exception is thrown if specifications is NULL",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- 'Trapezoid.NULL: Trapezoid Specifications does not exist.'
+
+    # When
+    specifications <- NULL
+
+    # Then
+    specifications |> generate[['Trapezoid']](align = 'center') |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no bottom",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'bottom' does not exist."
+
+    # When
+    specifications <- list()
+
+    # Then
+    specifications |> generate[['Trapezoid']](align = 'center') |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no top",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'top' does not exist."
+
+    # When
+    specifications <- list()
+    specifications[['bottom']] <- 20
+
+    # Then
+    specifications |> generate[['Trapezoid']](align = 'center') |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no height",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'height' does not exist."
+
+    # When
+    specifications <- list()
+    specifications[['bottom']] <- 20
+    specifications[['top']]    <- 10
+
+    # Then
+    specifications |> generate[['Trapezoid']](align = 'center') |> expect.error(expected.exception)
+  })
+})
+
+describe("When coordinates <- specifications |> generate[['Trapezoid']](align = 'vertical')",{
+  it("then coordinates has x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['bottom']] <- 1
+    specifications[['top']]    <- 0.5
+    specifications[['height']] <- 1
+
+    # When
+    coordinates <- specifications |> generate[['Trapezoid']](align = 'vertical')
+
+    # When
+    coordinates[['x']] |> expect.exist()
+    coordinates[['y']] |> expect.exist()
+  })
+  it("then coordinates has 5 pairs of x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['bottom']] <- 1
+    specifications[['top']]    <- 0.5
+    specifications[['height']] <- 1
+
+    expected.pairs <- 5
+
+    # When
+    coordinates <- specifications |> generate[['Trapezoid']](align = 'vertical')
+
+    # Then
+    coordinates |> expect.rows(expected.pairs)
+  })
+  it("then coordinates is centered",{
+    # Given
+    generate <- Shape.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['bottom']] <- 1
+    specifications[['top']]    <- 0.5
+    specifications[['height']] <- 1
+
+    corner.coordinates <- specifications |> generate[['Trapezoid']]()
+
+    expected.coordinates <- corner.coordinates |> align[['vertical']]()
+
+    # When
+    actual.coordinates <- specifications |> generate[['Trapezoid']](align = 'vertical')
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+  it("then an exception is thrown if specifications is NULL",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- 'Trapezoid.NULL: Trapezoid Specifications does not exist.'
+
+    # When
+    specifications <- NULL
+
+    # Then
+    specifications |> generate[['Trapezoid']](align = 'vertical') |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no bottom",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'bottom' does not exist."
+
+    # When
+    specifications <- list()
+
+    # Then
+    specifications |> generate[['Trapezoid']](align = 'vertical') |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no top",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'top' does not exist."
+
+    # When
+    specifications <- list()
+    specifications[['bottom']] <- 20
+
+    # Then
+    specifications |> generate[['Trapezoid']](align = 'vertical') |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no height",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'height' does not exist."
+
+    # When
+    specifications <- list()
+    specifications[['bottom']] <- 20
+    specifications[['top']]    <- 10
+
+    # Then
+    specifications |> generate[['Trapezoid']](align = 'vertical') |> expect.error(expected.exception)
   })
 })
 
@@ -1130,66 +1857,6 @@ describe("When coordinates <- specifications |> generate[['Segment']]()",{
     # Then
     actual.coordinates[['y']] |> expect.equal(expected.coordinates[['y']])
   })
-  it("then coordinates is centered if specifications[['align']] <- 'center'",{
-    # Given
-    generate <- Shape.Generator()
-    align    <- Alignment.Configurator()
-
-    specifications <- list()
-    specifications[['radius']] <- 1
-
-    corner.coordinates <- specifications |> generate[['Segment']]()
-
-    expected.coordinates <- corner.coordinates |> align[['center']]()
-
-    specifications[['align']]  <- 'center'
-
-    # When
-    actual.coordinates <- specifications |> generate[['Segment']]()
-
-    # Then
-    actual.coordinates |> expect.equal.data(expected.coordinates)
-  })
-  it("then coordinates is vertically aligned if specifications[['align']] <- 'vertical'",{
-    # Given
-    generate <- Shape.Generator()
-    align    <- Alignment.Configurator()
-
-    specifications <- list()
-    specifications[['radius']] <- 1
-
-    corner.coordinates <- specifications |> generate[['Segment']]()
-
-    expected.coordinates <- corner.coordinates |> align[['vertical']]()
-
-    specifications[['align']]  <- 'vertical'
-
-    # When
-    actual.coordinates <- specifications |> generate[['Segment']]()
-
-    # Then
-    actual.coordinates |> expect.equal.data(expected.coordinates)
-  })
-  it("then coordinates is horizontally aligned if specifications[['align']] <- 'horizontal'",{
-    # Given
-    generate <- Shape.Generator()
-    align    <- Alignment.Configurator()
-
-    specifications <- list()
-    specifications[['radius']] <- 1
-
-    corner.coordinates <- specifications |> generate[['Segment']]()
-
-    expected.coordinates <- corner.coordinates |> align[['horizontal']]()
-
-    specifications[['align']]  <- 'horizontal'
-
-    # When
-    actual.coordinates <- specifications |> generate[['Segment']]()
-
-    # Then
-    actual.coordinates |> expect.equal.data(expected.coordinates)
-  })
   it("then an exception is thrown if specifications is NULL",{
     # Given
     generate <- Shape.Generator()
@@ -1213,5 +1880,230 @@ describe("When coordinates <- specifications |> generate[['Segment']]()",{
 
     # Then
     specifications |> generate[['Segment']]() |> expect.error(expected.exception)
+  })
+})
+
+describe("When coordinates <- specifications |> generate[['Segment']](align = 'center')",{
+  it("then coordinates has x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    # When
+    coordinates <- specifications |> generate[['Segment']](align = 'center')
+
+    # When
+    coordinates[['x']] |> expect.exist()
+    coordinates[['y']] |> expect.exist()
+  })
+  it("then coordinates has 37 pairs of x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    expected.pairs <- 19
+
+    # When
+    coordinates <- specifications |> generate[['Segment']](align = 'center')
+
+
+    # When
+    coordinates |> expect.rows(expected.pairs)
+  })
+  it("then coordinates is centered",{
+    # Given
+    generate <- Shape.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    corner.coordinates <- specifications |> generate[['Segment']]()
+
+    expected.coordinates <- corner.coordinates |> align[['center']]()
+
+    # When
+    actual.coordinates <- specifications |> generate[['Segment']](align = 'center')
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+  it("then an exception is thrown if specifications is NULL",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- 'Segment.NULL: Segment Specifications does not exist.'
+
+    # When
+    specifications <- NULL
+
+    # Then
+    specifications |> generate[['Segment']](align = 'center') |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no radius",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'radius' does not exist."
+
+    # When
+    specifications <- list()
+
+    # Then
+    specifications |> generate[['Segment']](align = 'center') |> expect.error(expected.exception)
+  })
+})
+
+describe("When coordinates <- specifications |> generate[['Segment']](align = 'vertical')",{
+  it("then coordinates has x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    # When
+    coordinates <- specifications |> generate[['Segment']](align = 'vertical')
+
+    # When
+    coordinates[['x']] |> expect.exist()
+    coordinates[['y']] |> expect.exist()
+  })
+  it("then coordinates has 37 pairs of x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    expected.pairs <- 19
+
+    # When
+    coordinates <- specifications |> generate[['Segment']](align = 'vertical')
+
+
+    # When
+    coordinates |> expect.rows(expected.pairs)
+  })
+  it("then coordinates is vertically centered",{
+    # Given
+    generate <- Shape.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    corner.coordinates <- specifications |> generate[['Segment']]()
+
+    expected.coordinates <- corner.coordinates |> align[['vertical']]()
+
+    # When
+    actual.coordinates <- specifications |> generate[['Segment']](align = 'vertical')
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+  it("then an exception is thrown if specifications is NULL",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- 'Segment.NULL: Segment Specifications does not exist.'
+
+    # When
+    specifications <- NULL
+
+    # Then
+    specifications |> generate[['Segment']](align = 'vertical') |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no radius",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'radius' does not exist."
+
+    # When
+    specifications <- list()
+
+    # Then
+    specifications |> generate[['Segment']](align = 'vertical') |> expect.error(expected.exception)
+  })
+})
+
+describe("When coordinates <- specifications |> generate[['Segment']](align = 'horizontal')",{
+  it("then coordinates has x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    # When
+    coordinates <- specifications |> generate[['Segment']](align = 'horizontal')
+
+    # When
+    coordinates[['x']] |> expect.exist()
+    coordinates[['y']] |> expect.exist()
+  })
+  it("then coordinates has 37 pairs of x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    expected.pairs <- 19
+
+    # When
+    coordinates <- specifications |> generate[['Segment']](align = 'horizontal')
+
+
+    # When
+    coordinates |> expect.rows(expected.pairs)
+  })
+  it("then coordinates is horizontal centered",{
+    # Given
+    generate <- Shape.Generator()
+    align    <- Alignment.Configurator()
+
+    specifications <- list()
+    specifications[['radius']] <- 1
+
+    corner.coordinates <- specifications |> generate[['Segment']]()
+
+    expected.coordinates <- corner.coordinates |> align[['horizontal']]()
+
+    # When
+    actual.coordinates <- specifications |> generate[['Segment']](align = 'horizontal')
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+  it("then an exception is thrown if specifications is NULL",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- 'Segment.NULL: Segment Specifications does not exist.'
+
+    # When
+    specifications <- NULL
+
+    # Then
+    specifications |> generate[['Segment']](align = 'horizontal') |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no radius",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'radius' does not exist."
+
+    # When
+    specifications <- list()
+
+    # Then
+    specifications |> generate[['Segment']](align = 'horizontal') |> expect.error(expected.exception)
   })
 })

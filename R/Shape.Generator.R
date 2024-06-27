@@ -1,38 +1,30 @@
 Shape.Generator <- \() {
   validate <- Shape.Validator()
-  align <- Alignment.Configurator()
-
-  set.defaults <- \(specifications) {
-    specifications[['align']] <- specifications[['align']] |> is.null() |> ifelse('corner', specifications[['align']])
-    return(specifications)
-  }
+  alignment <- Alignment.Configurator()
 
   generators <- list()
-  generators[['Rectangle']] <- \(specifications) {
+  generators[['Rectangle']] <- \(specifications, align = 'corner') {
     specifications |> validate[['Rectangle']]()
-    specifications <- specifications |> set.defaults()
 
     coordinates <- data.frame(
       x = c(0,specifications[['width']],specifications[['width']],0,0),
       y = c(0,0,specifications[['height']],specifications[['height']],0)
     ) 
 
-    coordinates |> align[[specifications[['align']]]]()
+    coordinates |> alignment[[align]]()
   }
-  generators[['Triangle']]  <- \(specifications) {
+  generators[['Triangle']]  <- \(specifications, align = 'corner') {
     specifications |> validate[['Triangle']]()
-    specifications <- specifications |> set.defaults()
 
     coordinates <- data.frame(
       x = c(0,specifications[['base']],specifications[['base']]/2,0),
       y = c(0,0,specifications[['height']],0)
     )
 
-    coordinates |> align[[specifications[['align']]]]()
+    coordinates |> alignment[[align]]()
   }
-  generators[['Circle']]    <- \(specifications) {
+  generators[['Circle']]    <- \(specifications, align = 'corner') {
     specifications |> validate[['Circle']]()
-    specifications <- specifications |> set.defaults()
 
     shape   <- Shape.Utility()
     angle   <- Angle.Converter()
@@ -48,11 +40,10 @@ Shape.Generator <- \() {
 
     offset <- data.frame(x = width / 2, y = height / 2)
 
-    coordinates |> shape[['translate']](offset) |> align[[specifications[['align']]]]()
+    coordinates |> shape[['translate']](offset) |> alignment[[align]]()
   }
-  generators[['Trapezoid']] <- \(specifications) {
+  generators[['Trapezoid']] <- \(specifications, align = 'corner') {
     specifications |> validate[['Trapezoid']]()
-    specifications <- specifications |> set.defaults()
 
     descending <- specifications[['bottom']] >= specifications[['top']] 
     ascending  <- specifications[['bottom']]  < specifications[['top']]
@@ -75,11 +66,10 @@ Shape.Generator <- \() {
       )
     }
 
-    coordinates |> align[[specifications[['align']]]]()
+    coordinates |> alignment[[align]]()
   }
-  generators[['Segment']]   <- \(specifications) {
+  generators[['Segment']]   <- \(specifications, align = 'corner') {
     specifications |> validate[['Segment']]()
-    specifications <- specifications |> set.defaults()
 
     shape   <- Shape.Utility()
     angle   <- Angle.Converter()
@@ -95,7 +85,7 @@ Shape.Generator <- \() {
 
     offset <- data.frame(x = width / 2, y = 0)
 
-    coordinates |> shape[['translate']](offset) |> align[[specifications[['align']]]]()
+    coordinates |> shape[['translate']](offset) |> alignment[[align]]()
   }
   return(generators)
 }
