@@ -1,6 +1,6 @@
 Package: Shapes
 Title: Generate Shape Coordinates With Ease
-Version: 0.0.1.0003
+Version: 0.0.1.1
 Authors@R: 
     person(given = "Flippie",
            family = "Coetser",
