@@ -125,6 +125,18 @@ segment <- specifications |> generate[['Segment']]()
 > 3.  horizontal: The shapes will be centred horizontally with the bottom at y = 0
 > 4.  vertical: The shapes will be centred vertically with the left side at x = 0
 
+Generate Shape Coordinates for the following shapes:
+
+1. Centered Aligned Rectangle
+
+```r
+specifications <- list()
+specifications[['width']]  <- 1
+specifications[['height']] <- 0.5
+
+rectangle <- specifications |> generate[['Rectangle']](align = 'center')
+```
+
 ### Shape Validator Usage
 
 Validate specifications of shapes and throw exception with meaningful message, for example:
