@@ -12,5 +12,10 @@ Offset.Validator <- \() {
       tryCatch(error = \(...){ TRUE |> exceptions[['Attribute.NULL']]('x')})
     return(offset)
   }
+  validators[['has.y']]       <- \(offset) {
+    offset[['y']] |> validators[['is.not.NULL']]('') |>
+      tryCatch(error = \(...){ TRUE |> exceptions[['Attribute.NULL']]('y')})
+    return(offset)
+  }
   return(validators)
 }
