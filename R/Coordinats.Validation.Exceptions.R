@@ -1,1 +1,4 @@
-Coordinates.Validation.Exceptions <- \() {}
+Coordinates.Validation.Exceptions <- \() {
+  exceptions <- list()  
+  return(exceptions)
+}
