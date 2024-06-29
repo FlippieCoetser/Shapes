@@ -363,6 +363,39 @@ describe("When coordinates |> shape[['shrink']](amount)",{
     # Then
     actual.coordinates |> expect.equal(expected.coordinates)
   })
+  it("then an exception is thrown if coordinates is NULL",{
+    # Given
+    shape <- Shape.Utility()
+    amount <- 1
+    
+    # When
+    coordinates <- NULL
+
+    # Then
+    coordinates |> shape[['shrink']](amount) |> expect.error()
+  })
+  it("then an exception is thrown if coordinates has not x attribute",{
+    # Given
+    shape <- Shape.Utility()
+    amount <- 1
+    
+    # When
+    coordinates <- data.frame(y = 1:10)
+
+    # Then
+    coordinates |> shape[['shrink']](amount) |> expect.error()
+  })
+  it("then an exception is thrown if coordinates has not y attribute",{
+    # Given
+    shape <- Shape.Utility()
+    amount <- 1
+    
+    # When
+    coordinates <- data.frame(x = 1:10)
+
+    # Then
+    coordinates |> shape[['shrink']](amount) |> expect.error()
+  })
 })
 
 describe("When coordinates |> shape[['shrink.height']](amount)",{
