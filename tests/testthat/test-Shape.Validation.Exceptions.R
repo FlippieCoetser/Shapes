@@ -12,6 +12,13 @@ describe("When exceptions <- Shape.Validation.Exceptions()",{
     # THEN
     exceptions |> expect.list()
   })
+  it("then exceptions contains 'Line.NULL' exception",{
+    # WHEN
+    exceptions <- Shape.Validation.Exceptions()
+
+    # THEN
+    exceptions[['Line.NULL']] |> expect.exist()
+  })
   it("then exceptions contains 'Rectangle.NULL' exception",{
     # WHEN
     exceptions <- Shape.Validation.Exceptions()
@@ -53,6 +60,31 @@ describe("When exceptions <- Shape.Validation.Exceptions()",{
 
     # THEN
     exceptions[['Attribute.NULL']] |> expect.exist()
+  })
+})
+
+describe("When input |> exceptions[['Line.NULL']]()",{
+  it("then an exceptions is thrown if input is FALSE",{
+    # GIVEN
+    exceptions <- Shape.Validation.Exceptions()
+
+    # WHEN
+    input <- FALSE
+
+    # THEN
+    input |> exceptions[['Line.NULL']]() |> expect.no.error()
+  })
+  it("then an exceptions is thrown if input is TRUE",{
+    # GIVEN
+    exceptions <- Shape.Validation.Exceptions()
+
+    expected.exception <- 'Line.NULL: Line Specifications does not exist.'
+
+    # WHEN
+    input <- TRUE
+
+    # THEN
+    input |> exceptions[['Line.NULL']]() |> expect.error(expected.exception)
   })
 })
 
