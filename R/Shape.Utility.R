@@ -1,6 +1,10 @@
 Shape.Utility <- \() {
+  coordinates.validate <- Coordinates.Validator()
+
   utilities <- list()
   utilities[['get.width']]     <- \(coordinates) {
+    coordinates |> coordinates.validate[['Coordinates']]()
+    
     max.x <- coordinates[['x']] |> max()
     min.x <- coordinates[['x']] |> min()
     (max.x - min.x)
