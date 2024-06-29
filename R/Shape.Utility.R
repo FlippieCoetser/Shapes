@@ -17,6 +17,7 @@ Shape.Utility <- \() {
     )
   }
   utilities[['translate.x']]   <- \() {}
+  utilities[['translate.y']]   <- \() {}
   utilities[['shrink.height']] <- \(coordinates, amount) {
     values  <- coordinates[['y']]
     floor   <- values |> min()
