@@ -11,12 +11,14 @@ Shape.Utility <- \() {
   }
   utilities[['get.height']]    <- \(coordinates) {
     coordinates |> coordinates.validate[['Coordinates']]()
-    
+
     max.y <- coordinates[['y']] |> max()
     min.y <- coordinates[['y']] |> min()
     (max.y - min.y)
   }
   utilities[['translate']]     <- \(coordinates, offset) {
+    coordinates |> coordinates.validate[['Coordinates']]()
+
     data.frame(
       x = coordinates[['x']] + offset[['x']],
       y = coordinates[['y']] + offset[['y']] 
