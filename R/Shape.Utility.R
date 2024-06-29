@@ -80,6 +80,10 @@ Shape.Utility <- \() {
     coordinates
   }
   utilities[['join']]          <- \(coordinates.one, coordinates.two) {
+
+    if (coordinates.one |> is.null()) return(coordinates.two |> coordinates.validate[['Coordinates']]())
+    if (coordinates.two |> is.null()) return(coordinates.one |> coordinates.validate[['Coordinates']]())
+    
     coordinates.one |> coordinates.validate[['Coordinates']]()
     coordinates.two |> coordinates.validate[['Coordinates']]()
 
