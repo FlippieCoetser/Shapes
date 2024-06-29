@@ -16,7 +16,12 @@ Shape.Utility <- \() {
       y = coordinates[['y']] + offset[['y']] 
     )
   }
-  utilities[['translate.x']]   <- \() {}
+  utilities[['translate.x']]   <- \(coordinates, x) {
+    data.frame(
+      x = coordinates[['x']] + x,
+      y = coordinates[['y']]
+    )
+  }
   utilities[['translate.y']]   <- \() {}
   utilities[['shrink.height']] <- \(coordinates, amount) {
     values  <- coordinates[['y']]
