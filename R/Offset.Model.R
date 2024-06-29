@@ -7,3 +7,12 @@ Offset.Model <- \(data) {
     y = data[['y']] 
   )
 }
+
+#' Offset
+#' 
+#' @description
+#'  Model use to create a offset instance
+#' 
+#' @usage NULL
+#' @export
+Offset <- Offset.Model
