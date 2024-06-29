@@ -3,6 +3,8 @@ Offset.Validation.Exceptions <- \() {
   exceptions[['Offset.NULL']]    <- \(invoke) {
     if(invoke) stop('Offset.NULL: Offset does not exist.', call. = FALSE)
    }
-  exceptions[['Attribute.NULL']] <- \() {}
+  exceptions[['Attribute.NULL']] <- \(invoke, attribute) {
+    if(invoke) stop("Attribute.NULL: '", attribute,"' does not exist.", call. = FALSE)
+  }
   return(exceptions)
 }
