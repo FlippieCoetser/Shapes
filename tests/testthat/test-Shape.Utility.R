@@ -606,4 +606,38 @@ describe("When coordinates.one |> shape[['join']](coordinates.two)",{
     # Then
     actual.coordinates |> expect.equal.data(expected.coordinates)
   })
+  it("then an exception is thrown if coordinates is NULL",{
+    # Given
+    shape <- Shape.Utility()
+    coordinates.two <- data.frame()
+    
+    # When
+    coordinates.one <- NULL
+
+    # Then
+    coordinates.one |> shape[['join']](coordinates.two) |> expect.error()
+  })
+  it("then an exception is thrown if coordinates has not x attribute",{
+    # Given
+    shape <- Shape.Utility()
+    coordinates.two <- data.frame()
+    
+    # When
+    coordinates.one <- data.frame(y = 1:10)
+
+    # Then
+    coordinates.one |> shape[['join']](coordinates.two) |> expect.error()
+  })
+  it("then an exception is thrown if coordinates has not y attribute",{
+    # Given
+    shape <- Shape.Utility()
+    coordinates.two <- data.frame()
+
+    
+    # When
+    coordinates.one <- data.frame(x = 1:10)
+
+    # Then
+    coordinates.one |> shape[['join']](coordinates.two) |> expect.error()
+  })
 })
