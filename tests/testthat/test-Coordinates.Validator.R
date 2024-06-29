@@ -19,6 +19,13 @@ describe("When validators <- Coordinates.Validator()",{
     # Then
     validators[['exists']] |> expect.function()
   })
+  it("then validators contains 'has.x' validator",{
+    # When
+    validators <- Coordinates.Validator()
+
+    # Then
+    validators[['has.x']] |> expect.function()
+  })
 })
 
 describe("When coordinates |> validate[['exists']]('Coordinates.NULL')",{
@@ -53,5 +60,40 @@ describe("When coordinates |> validate[['exists']]('Coordinates.NULL')",{
 
     # THEN
     coordinates |> validate[['exists']]('Coordinates.NULL') |> expect.equal(coordinates)
+  })
+})
+
+describe("When coordinates |> validate[['has.x']]()",{
+  it("then no exception is thrown if coordinates has a x attribute",{
+    # GIVEN
+    validate <- Coordinates.Validator()
+
+    # WHEN
+    coordinates <- data.frame(x=1)
+
+    # THEN
+    coordinates |> validate[['has.x']]() |> expect.no.error()
+  })
+  it("then a Attribute.NULL exception is thrown if coordinates has no x attribute",{
+    # GIVEN
+    validate <- Coordinates.Validator()
+
+    expected.error <- "Attribute.NULL: 'x' does not exist"
+
+    # WHEN
+    coordinates <- data.frame()
+
+    # THEN
+    coordinates |> validate[['has.x']]() |> expect.error(expected.error)
+  })
+  it("then coordinates is return if coordinates has x attribute",{
+    # GIVEN
+    validate <- Coordinates.Validator()
+
+    # WHEN
+    coordinates <- data.frame(x=1)
+
+    # THEN
+    coordinates |> validate[['has.x']]() |> expect.equal(coordinates)
   })
 })
