@@ -21,6 +21,65 @@ describe("When validators <- Offset.Validator()",{
   })
 })
 
+describe("When offset |> validate[['Offset']]()",{
+  it("then no exception is thrown if offset is valid",{
+    # GIVEN
+    validate <- Offset.Validator()
+
+    # WHEN
+    coordinates <- data.frame(x=1, y=1)
+
+    # THEN
+    coordinates |> validate[['Offset']]() |> expect.no.error()
+  })
+  it("then a Offset.NULL exception is thrown if offset is NULL",{
+    # GIVEN
+    validate <- Offset.Validator()
+
+    expected.error <- "Offset.NULL: Offset does not exist."
+
+    # WHEN
+    offset <- NULL
+
+    # THEN
+    offset |> validate[['Offset']]() |> expect.error(expected.error)
+  })
+  it("then a Attribute.NULL exception is thrown if offset has no x attribute",{
+    # GIVEN
+    validate <- Offset.Validator()
+
+    expected.error <- "Attribute.NULL: 'x' does not exist"
+
+    # WHEN
+    offset <- data.frame(y=1)
+
+    # THEN
+    offset |> validate[['Offset']]() |> expect.error(expected.error)
+  })
+  it("then a Attribute.NULL exception is thrown if offset has no y attribute",{
+    # GIVEN
+    validate <- Offset.Validator()
+
+    expected.error <- "Attribute.NULL: 'y' does not exist"
+
+    # WHEN
+    offset <- data.frame(x=1)
+
+    # THEN
+    offset |> validate[['Offset']]() |> expect.error(expected.error)
+  })
+  it("then offset is return if offset is valid",{
+    # GIVEN
+    validate <- Offset.Validator()
+
+    # WHEN
+    offset <- data.frame(x=1, y=1)
+
+    # THEN
+    offset |> validate[['Offset']]() |> expect.equal(offset)
+  })
+})
+
 describe("When offset |> validate[['exists']]('Offset.NULL')",{
   it("then no exception is thrown if offset is not NULL",{
     # GIVEN
