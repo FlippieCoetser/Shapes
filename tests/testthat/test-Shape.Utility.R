@@ -228,6 +228,39 @@ describe("When coordinates |> shape[['translate']](offset)",{
     # Then
     coordinates |> shape[['translate']](offset) |> expect.error()
   })
+  it("then an exception is thrown if offset is NULL",{
+    # Given
+    shape <- Shape.Utility()
+    coordinates <- c(x = 1, y = 1)
+    
+    # When
+    offset <- NULL
+
+    # Then
+    coordinates |> shape[['translate']](offset) |> expect.error()
+  })
+  it("then an exception is thrown if offset has not x attribute",{
+    # Given
+    shape <- Shape.Utility()
+    coordinates <- c(x = 1, y = 1)
+    
+    # When
+    offset <- data.frame(y = 1:10)
+
+    # Then
+    coordinates |> shape[['translate']](offset) |> expect.error()
+  })
+  it("then an exception is thrown if offset has not y attribute",{
+    # Given
+    shape <- Shape.Utility()
+    coordinates <- c(x = 1, y = 1)
+    
+    # When
+    offset <- data.frame(x = 1:10)
+
+    # Then
+    coordinates |> shape[['translate']](offset) |> expect.error()
+  })
 })
 
 describe("When coordinates |> shape[['translate.x']](x)",{
