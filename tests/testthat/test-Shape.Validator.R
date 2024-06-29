@@ -12,6 +12,13 @@ describe("When validators <- Shape.Validator()",{
     # THEN
     validators |> expect.list()
   })
+  it("then validators contains 'Line' validator",{
+    # WHEN
+    validators <- Shape.Validator()
+
+    # THEN
+    validators[['Line']] |> expect.exist()
+  })
   it("then validators contains 'Rectangle' validator",{
     # WHEN
     validators <- Shape.Validator()
@@ -102,6 +109,33 @@ describe("When validators <- Shape.Validator()",{
 
     # THEN
     validators[['has.length']] |> expect.exist()
+  })
+})
+
+describe("When specifications |> Shape.Validator[['Line']]()",{
+  it("then an exception is thrown if specifications is NULL",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    expected.error <- "Line.NULL: Line Specifications does not exist."
+
+    # WHEN
+    specifications <- NULL
+
+    # THEN
+    specifications |> validate[['Line']]() |> expect.error(expected.error)
+  })
+  it("then an exception is thrown if specifications has no length",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    expected.error <- "Attribute.NULL: 'length' does not exist."
+
+    # WHEN
+    specifications <- list()
+
+    # THEN
+    specifications |> validate[['Line']]() |> expect.error(expected.error)
   })
 })
 
