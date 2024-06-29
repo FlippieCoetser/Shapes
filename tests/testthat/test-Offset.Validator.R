@@ -90,3 +90,38 @@ describe("When offset |> validate[['has.x']]()",{
     offset |> validate[['has.x']]() |> expect.equal(offset)
   })
 })
+
+describe("When offset |> validate[['has.y']]()",{
+  it("then no exception is thrown if offset has a y attribute",{
+    # GIVEN
+    validate <- Offset.Validator()
+
+    # WHEN
+    offset <- data.frame(y=1)
+
+    # THEN
+    offset |> validate[['has.y']]() |> expect.no.error()
+  })
+  it("then a Attribute.NULL exception is thrown if offset has no y attribute",{
+    # GIVEN
+    validate <- Offset.Validator()
+
+    expected.error <- "Attribute.NULL: 'y' does not exist"
+
+    # WHEN
+    offset <- data.frame()
+
+    # THEN
+    offset |> validate[['has.y']]() |> expect.error(expected.error)
+  })
+  it("then offset is return if offset has y attribute",{
+    # GIVEN
+    validate <- Offset.Validator()
+
+    # WHEN
+    offset <- data.frame(y=1)
+
+    # THEN
+    offset |> validate[['has.y']]() |> expect.equal(offset)
+  })
+})
