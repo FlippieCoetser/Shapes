@@ -3,6 +3,13 @@ Shape.Generator <- \() {
   alignment <- Alignment.Configurator()
 
   generators <- list()
+  generators[['Line.horizontal']] <- \(specifications, align = 'corner') {
+    coordinates <- data.frame(
+      x = c(0,specifications[['length']]),
+      y = c(0,0)
+    ) 
+    coordinates |> alignment[[align]]()
+  }
   generators[['Rectangle']] <- \(specifications, align = 'corner') {
     specifications |> validate[['Rectangle']]()
 
