@@ -5,7 +5,7 @@ Shape.Generator <- \() {
   generators <- list()
   generators[['Line.horizontal']] <- \(specifications, align = 'corner') {
     specifications |> validate[['Line']]()
-    
+
     coordinates <- data.frame(
       x = c(0,specifications[['length']]),
       y = c(0,0)
@@ -13,6 +13,8 @@ Shape.Generator <- \() {
     coordinates |> alignment[[align]]()
   }
   generators[['Line.vertical']] <- \(specifications, align = 'corner') {
+    specifications |> validate[['Line']]()
+
     coordinates <- data.frame(
       x = c(0,0),
       y = c(0,specifications[['length']])
