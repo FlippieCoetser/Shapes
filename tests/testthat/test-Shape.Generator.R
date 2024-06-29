@@ -12,6 +12,13 @@ describe("When generators <- Shape.Generator()",{
     # Then
     generators |> expect.list()
   })
+  it("then generators contains a 'Line.horizontal' generator",{
+    # Given
+    generators <- Shape.Generator()
+
+    # Then
+    generators[['Line.horizontal']] |> expect.exist()
+  })
   it("then generators contains a 'Rectangle' generator",{
     # Given
     generators <- Shape.Generator()
@@ -46,6 +53,76 @@ describe("When generators <- Shape.Generator()",{
 
     # Then
     generators[['Segment']] |> expect.exist()
+  })
+})
+
+describe("When coordinates <- specifications |> generate[['Line.horizontal']]()",{
+  it("then coordinates has x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['length']] <- 10
+
+    # When
+    coordinates <- specifications |> generate[['Line.horizontal']]()
+
+    # Then
+    coordinates[['x']] |> expect.exist()
+    coordinates[['y']] |> expect.exist()
+  })
+  it("then coordinates has 2 pairs of x and y values",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['length']] <- 10
+
+    expected.pairs <- 2
+
+    # When
+    coordinates <- specifications |> generate[['Line.horizontal']]()
+
+    # Then
+    coordinates |> expect.rows(expected.pairs)
+  })
+  it("then pair 1 has x = 0 and y = 0",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['length']] <- 10
+
+    pair.number <- 1
+
+    expected.x <- 0
+    expected.y <- 0
+
+    # When
+    coordinates <- specifications |> generate[['Line.horizontal']]()
+
+    # Then
+    coordinates[['x']][pair.number] |> expect.equal(expected.x)
+    coordinates[['y']][pair.number] |> expect.equal(expected.y)
+  })
+  it("then pair 2 has x = length and y = 0",{
+    # Given
+    generate <- Shape.Generator()
+
+    specifications <- list()
+    specifications[['length']] <- 10
+
+    pair.number <- 2
+
+    expected.x <- specifications[['length']]
+    expected.y <- 0
+
+    # When
+    coordinates <- specifications |> generate[['Line.horizontal']]()
+
+    # Then
+    coordinates[['x']][pair.number] |> expect.equal(expected.x)
+    coordinates[['y']][pair.number] |> expect.equal(expected.y)
   })
 })
 
