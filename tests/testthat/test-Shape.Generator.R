@@ -131,6 +131,30 @@ describe("When coordinates <- specifications |> generate[['Line.horizontal']]()"
     coordinates[['x']][pair.number] |> expect.equal(expected.x)
     coordinates[['y']][pair.number] |> expect.equal(expected.y)
   })
+  it("then an exception is thrown if specifications is NULL",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- 'Line.NULL: Line Specifications does not exist.'
+
+    # When
+    specifications <- NULL
+
+    # Then
+    specifications |> generate[['Line.horizontal']]() |> expect.error(expected.exception)
+  })
+  it("then an exception is thrown if specifications has no length",{
+    # Given
+    generate <- Shape.Generator()
+
+    expected.exception <- "Attribute.NULL: 'length' does not exist."
+
+    # When
+    specifications <- list()
+
+    # Then
+    specifications |> generate[['Line.horizontal']]() |> expect.error(expected.exception)
+  })
 })
 
 describe("When coordinates <- specifications |> generate[['Line.vertical']]()",{
