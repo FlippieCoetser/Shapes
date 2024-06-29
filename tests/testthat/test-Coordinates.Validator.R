@@ -42,6 +42,65 @@ describe("When validators <- Coordinates.Validator()",{
   })
 })
 
+describe("When coordinates |> validate[['Coordinates']]()",{
+  it("then no exception is thrown if coordinates is valid",{
+    # GIVEN
+    validate <- Coordinates.Validator()
+
+    # WHEN
+    coordinates <- data.frame(x=1, y=1)
+
+    # THEN
+    coordinates |> validate[['Coordinates']]() |> expect.no.error()
+  })
+  it("then a Coordinates.NULL exception is thrown if coordinates is NULL",{
+    # GIVEN
+    validate <- Coordinates.Validator()
+
+    expected.error <- "Coordinates.NULL: Coordinates does not exist."
+
+    # WHEN
+    coordinates <- NULL
+
+    # THEN
+    coordinates |> validate[['Coordinates']]() |> expect.error(expected.error)
+  })
+  it("then a Attribute.NULL exception is thrown if coordinates has no x attribute",{
+    # GIVEN
+    validate <- Coordinates.Validator()
+
+    expected.error <- "Attribute.NULL: 'x' does not exist"
+
+    # WHEN
+    coordinates <- data.frame(y=1)
+
+    # THEN
+    coordinates |> validate[['Coordinates']]() |> expect.error(expected.error)
+  })
+  it("then a Attribute.NULL exception is thrown if coordinates has no y attribute",{
+    # GIVEN
+    validate <- Coordinates.Validator()
+
+    expected.error <- "Attribute.NULL: 'y' does not exist"
+
+    # WHEN
+    coordinates <- data.frame(x=1)
+
+    # THEN
+    coordinates |> validate[['Coordinates']]() |> expect.error(expected.error)
+  })
+  it("then coordinates is return if coordinates is valid",{
+    # GIVEN
+    validate <- Coordinates.Validator()
+
+    # WHEN
+    coordinates <- data.frame(x=1, y=1)
+
+    # THEN
+    coordinates |> validate[['Coordinates']]() |> expect.equal(coordinates)
+  })
+})
+
 describe("When coordinates |> validate[['exists']]('Coordinates.NULL')",{
   it("then no exception is thrown if coordinates is not NULL",{
     # GIVEN
