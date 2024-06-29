@@ -2,7 +2,12 @@ Coordinates.Validator <- \() {
   exceptions <- Coordinates.Validation.Exceptions()
 
   validators <- Validate::Validator()
-  validators[['Coordinates']] <- \() {}
+  validators[['Coordinates']] <- \(coordinates) {
+    coordinates |> validators[['exists']]('Coordinates.NULL') 
+    coordinates |> validators[['has.x']]()
+    coordinates |> validators[['has.y']]()
+    return(coordinates)
+  }
   validators[['exists']]      <- \(coordinates, exception) { 
     coordinates |> validators[['is.not.NULL']]('') |> 
       tryCatch(error = \(...){ TRUE |> exceptions[[exception]]()})
