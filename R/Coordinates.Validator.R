@@ -12,5 +12,6 @@ Coordinates.Validator <- \() {
       tryCatch(error = \(...){ TRUE |> exceptions[['Attribute.NULL']]('x')})
     return(coordinates)
   }
+  validators[['has.y']]      <- \() {}
   return(validators)
 }
