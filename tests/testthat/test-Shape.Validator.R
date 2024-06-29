@@ -96,6 +96,13 @@ describe("When validators <- Shape.Validator()",{
     # THEN
     validators[['has.top']] |> expect.exist()
   })
+  it("then validators contains 'has.length' validator",{
+    # WHEN
+    validators <- Shape.Validator()
+
+    # THEN
+    validators[['has.length']] |> expect.exist()
+  })
 })
 
 describe("When specifications |> Shape.Validator[['Rectangle']]()",{
@@ -585,6 +592,43 @@ describe("When specifications |> validate[['has.top']]()",{
 
     # THEN
     specifications |> validate[['has.top']]() |> expect.equal(specifications)
+  })
+})
+
+describe("When specifications |> validate[['has.length']]()",{
+  it("then no exception is thrown if specifications has length",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    # WHEN
+    specifications <- list()
+    specifications[['length']]  <- 10
+
+    # THEN
+    specifications |> validate[['has.length']]() |> expect.no.error()
+  })
+  it("then an exception is thrown if specifications has no length",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    expected.error <- "Attribute.NULL: 'length' does not exist."
+
+    # WHEN
+    specifications <- list()
+
+    # THEN
+    specifications |> validate[['has.length']]() |> expect.error(expected.error)
+  })
+  it("then specifications is return if specifications has length",{
+    # GIVEN
+    validate <- Shape.Validator()
+
+    # WHEN
+    specifications <- list()
+    specifications[['length']]  <- 10
+
+    # THEN
+    specifications |> validate[['has.length']]() |> expect.equal(specifications)
   })
 })
 
