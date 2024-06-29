@@ -145,6 +145,28 @@ describe("When coordinates |> shape[['translate.x']](x)",{
   })
 })
 
+describe("When coordinates |> shape[['translate.y']](y)",{
+  it("then coordinates is translated by y",{
+    # Given
+    shape <- Shape.Utility()
+
+    coordinates <- data.frame(x = 1:10, y = 1:10)
+
+    y <- 1
+
+    expected.coordinates <- data.frame(
+      x = coordinates[['x']],
+      y = coordinates[['y']] + y
+    )
+
+    # When
+    actual.coordinates <- coordinates |> shape[['translate.y']](y)
+
+    # Then
+    actual.coordinates |> expect.equal(expected.coordinates)
+  })
+})
+
 describe("When coordinates |> shape[['shrink.height']](amount)",{
   it("then coordinates is shrunk by amount",{
     # Given
