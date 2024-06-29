@@ -47,6 +47,13 @@ describe("When utilities <- Shape.Utility()",{
     # Then
     utilities[['translate.y']] |> expect.exist()
   })
+  it("then utilities contains 'shrink' utility",{
+    # When
+    utilities <- Shape.Utility()
+
+    # Then
+    utilities[['shrink']] |> expect.exist()
+  })
   it("then utilities contains 'shrink.height' utility",{
     # When
     utilities <- Shape.Utility()
@@ -168,6 +175,31 @@ describe("When coordinates |> shape[['translate.y']](y)",{
 
     # When
     actual.coordinates <- coordinates |> shape[['translate.y']](y)
+
+    # Then
+    actual.coordinates |> expect.equal(expected.coordinates)
+  })
+})
+
+describe("When coordinates |> shape[['shrink']](amount)",{
+  it("then coordinates is shrunk by amount",{
+    # Given
+    shape <- Shape.Utility()
+
+    coordinates <- data.frame(
+      x = c(0,10,10,0,0), 
+      y = c(0,0,10,10,0)
+    )
+
+    amount <- 5
+
+    expected.coordinates <- data.frame(
+      x = c(0,5,5,0,0), 
+      y = c(0,0,5,5,0)
+    )
+
+    # When
+    actual.coordinates <- coordinates |> shape[['shrink']](amount)
 
     # Then
     actual.coordinates |> expect.equal(expected.coordinates)
