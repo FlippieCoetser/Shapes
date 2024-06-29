@@ -10,6 +10,13 @@ Shape.Generator <- \() {
     ) 
     coordinates |> alignment[[align]]()
   }
+  generators[['Line.vertical']] <- \(specifications, align = 'corner') {
+    coordinates <- data.frame(
+      x = c(0,0),
+      y = c(0,specifications[['length']])
+    ) 
+    coordinates |> alignment[[align]]()
+  }
   generators[['Rectangle']] <- \(specifications, align = 'corner') {
     specifications |> validate[['Rectangle']]()
 
