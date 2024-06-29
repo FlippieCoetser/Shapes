@@ -19,4 +19,11 @@ describe("When exceptions <- Offset.Validation.Exceptions()",{
     # Then
     exceptions[['Offset.NULL']] |> expect.function()
   })
+  it("then exception has Attribute.NULL",{
+    # Given
+    exceptions <- Offset.Validation.Exceptions()
+
+    # Then
+    exceptions[['Attribute.NULL']] |> expect.function()
+  })
 })
