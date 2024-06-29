@@ -1,5 +1,6 @@
 Shape.Utility <- \() {
   coordinates.validate <- Coordinates.Validator()
+  offset.validate      <- Offset.Validator()
 
   utilities <- list()
   utilities[['get.width']]     <- \(coordinates) {
@@ -18,6 +19,7 @@ Shape.Utility <- \() {
   }
   utilities[['translate']]     <- \(coordinates, offset) {
     coordinates |> coordinates.validate[['Coordinates']]()
+    offset      |> offset.validate[['Offset']]()
 
     data.frame(
       x = coordinates[['x']] + offset[['x']],
