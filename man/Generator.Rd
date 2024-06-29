@@ -9,6 +9,8 @@ Generator()
 \value{
 A list of validator functions, which includes:
 \describe{
+\item{\code{Line.horizontal}}{Use length to generate x y coordinates to plot a horizontal line.}
+\item{\code{Line.vertical}}{Use length to generate x y coordinates to plot a vertical line.}
 \item{\code{Rectangle}}{Use width and height to generate x y coordinates to plot a rectangle.}
 \item{\code{Triangle}}{Use base and height to generate x y coordinates to plot a triangle.}
 \item{\code{Circle}}{Use radius to generate x y coordinates to plot a circle.}
