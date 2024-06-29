@@ -591,8 +591,8 @@ describe("When coordinates |> shape[['shrink.width']](amount)",{
   })
 })
 
-describe("When coordinates.one |> shape[['join']](coordinates.two)",{
-  it("then coordinates.one and coordinates.two are joined",{
+describe("When coordinates <- coordinates.one |> shape[['join']](coordinates.two)",{
+  it("then coordinates is coordinates.one and coordinates.two joined",{
     # Given
     shape <- Shape.Utility()
 
@@ -617,41 +617,59 @@ describe("When coordinates.one |> shape[['join']](coordinates.two)",{
     # Then
     actual.coordinates |> expect.equal.data(expected.coordinates)
   })
-  it("then an exception is thrown if coordinates.one is NULL",{
+  it("then coordinates is coordinates.one when coordinates.two is NULL",{
     # Given
     shape <- Shape.Utility()
-    coordinates.two <- data.frame()
+
+    coordinates.one <- data.frame(
+      x = c(0,10,10,0 ,0), 
+      y = c(0,0 ,10,10,0)
+    )
+
+    coordinates.two <- NULL
+
+    expected.coordinates <- coordinates.one
+
+    # When
+    actual.coordinates <- coordinates.one |> shape[['join']](coordinates.two)
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+  it("then coordinates is coordinates.two when coordinates.one is NULL",{
+    # Given
+    shape <- Shape.Utility()
+
+    coordinates.two <- data.frame(
+      x = c(0,10,10,0 ,0), 
+      y = c(0,0 ,10,10,0)
+    )
+
+    coordinates.one <- NULL
+
+    expected.coordinates <- coordinates.two
+
+    # When
+    actual.coordinates <- coordinates.one |> shape[['join']](coordinates.two)
+
+    # Then
+    actual.coordinates |> expect.equal.data(expected.coordinates)
+  })
+  it("then no exception is thrown if coordinates.one is NULL and coordinates.two is valid",{
+    # Given
+    shape <- Shape.Utility()
+    coordinates.two <- data.frame(
+      x = c(0,10,10,0 ,0), 
+      y = c(0,0 ,10,10,0)
+    )
     
     # When
     coordinates.one <- NULL
 
     # Then
-    coordinates.one |> shape[['join']](coordinates.two) |> expect.error()
+    coordinates.one |> shape[['join']](coordinates.two) |> expect.no.error()
   })
-  it("then an exception is thrown if coordinates.one has not x attribute",{
-    # Given
-    shape <- Shape.Utility()
-    coordinates.two <- data.frame()
-    
-    # When
-    coordinates.one <- data.frame(y = 1:10)
-
-    # Then
-    coordinates.one |> shape[['join']](coordinates.two) |> expect.error()
-  })
-  it("then an exception is thrown if coordinates.one has not y attribute",{
-    # Given
-    shape <- Shape.Utility()
-    coordinates.two <- data.frame()
-
-    
-    # When
-    coordinates.one <- data.frame(x = 1:10)
-
-    # Then
-    coordinates.one |> shape[['join']](coordinates.two) |> expect.error()
-  })
-  it("then an exception is thrown if coordinates.two is NULL",{
+  it("then no exception is thrown if coordinates.two is NULL and coordinates.one is valid",{
     # Given
     shape <- Shape.Utility()
     coordinates.one <- data.frame(
@@ -663,32 +681,48 @@ describe("When coordinates.one |> shape[['join']](coordinates.two)",{
     coordinates.two <- NULL
 
     # Then
-    coordinates.one |> shape[['join']](coordinates.two) |> expect.error()
+    coordinates.one |> shape[['join']](coordinates.two) |> expect.no.error()
   })
-  it("then an exception is thrown if coordinates.two has not x attribute",{
+  it("then an exception is thrown if coordinates.one is NULL and coordinates.two has no x attribute",{
     # Given
     shape <- Shape.Utility()
-    coordinates.one <- data.frame(
-      x = c(0,10,10,0 ,0), 
-      y = c(0,0 ,10,10,0)
-    )
     
     # When
-    coordinates.two <- data.frame(y = 1:10)
+    coordinates.one <- NULL
+    coordinates.two <- data.frame(y=1)
 
     # Then
     coordinates.one |> shape[['join']](coordinates.two) |> expect.error()
   })
-  it("then an exception is thrown if coordinates.two has not y attribute",{
+  it("then an exception is thrown if coordinates.one is NULL and coordinates.two has no y attribute",{
     # Given
     shape <- Shape.Utility()
-    coordinates.one <- data.frame(
-      x = c(0,10,10,0 ,0), 
-      y = c(0,0 ,10,10,0)
-    )
-
+    
     # When
-    coordinates.two <- data.frame(x = 1:10)
+    coordinates.one <- NULL
+    coordinates.two <- data.frame(x=1)
+
+    # Then
+    coordinates.one |> shape[['join']](coordinates.two) |> expect.error()
+  })
+  it("then an exception is thrown if coordinates.two is NULL and coordinates.one has no x attribute",{
+    # Given
+    shape <- Shape.Utility()
+    
+    # When
+    coordinates.one <- data.frame(y=1)
+    coordinates.two <- NULL
+
+    # Then
+    coordinates.one |> shape[['join']](coordinates.two) |> expect.error()
+  })
+  it("then an exception is thrown if coordinates.two is NULL and coordinates.one has no y attribute",{
+    # Given
+    shape <- Shape.Utility()
+    
+    # When
+    coordinates.one <- data.frame(x=1)
+    coordinates.two <- NULL
 
     # Then
     coordinates.one |> shape[['join']](coordinates.two) |> expect.error()
