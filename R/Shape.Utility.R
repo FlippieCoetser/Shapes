@@ -25,6 +25,8 @@ Shape.Utility <- \() {
     )
   }
   utilities[['translate.x']]   <- \(coordinates, x) {
+    coordinates |> coordinates.validate[['Coordinates']]()
+    
     data.frame(
       x = coordinates[['x']] + x,
       y = coordinates[['y']]
