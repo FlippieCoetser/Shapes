@@ -81,8 +81,8 @@ Shape.Utility <- \() {
   }
   utilities[['join']]          <- \(coordinates.one, coordinates.two) {
 
-    if (coordinates.one |> is.null()) return(coordinates.two |> coordinates.validate[['Coordinates']]())
-    if (coordinates.two |> is.null()) return(coordinates.one |> coordinates.validate[['Coordinates']]())
+    if (coordinates.one |> length() == 0) return(coordinates.two)
+    if (coordinates.two |> length() == 0) return(coordinates.one)
     
     coordinates.one |> coordinates.validate[['Coordinates']]()
     coordinates.two |> coordinates.validate[['Coordinates']]()
