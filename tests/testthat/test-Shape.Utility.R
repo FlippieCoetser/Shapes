@@ -77,7 +77,7 @@ describe("When utilities <- Shape.Utility()",{
   })
 })
 
-describe("When coordinates |> shape[['get.with']]()",{
+describe("When coordinates |> shape[['get.width']]()",{
   it("then width is the difference between the maximum and minimum x coordinates",{
     # Given
     shape <- Shape.Utility()
@@ -93,6 +93,36 @@ describe("When coordinates |> shape[['get.with']]()",{
 
     # Then
     actual.width |> expect.equal(expected.width)
+  })
+  it("then an exception is thrown if coordinates is NULL",{
+    # Given
+    shape <- Shape.Utility()
+    
+    # When
+    coordinates <- NULL
+
+    # Then
+    coordinates |> shape[['get.width']]() |> expect.error()
+  })
+  it("then an exception is thrown if coordinates has not x attribute",{
+    # Given
+    shape <- Shape.Utility()
+    
+    # When
+    coordinates <- data.frame(y = 1:10)
+
+    # Then
+    coordinates |> shape[['get.width']]() |> expect.error()
+  })
+  it("then an exception is thrown if coordinates has not y attribute",{
+    # Given
+    shape <- Shape.Utility()
+    
+    # When
+    coordinates <- data.frame(x = 1:10)
+
+    # Then
+    coordinates |> shape[['get.width']]() |> expect.error()
   })
 })
 
