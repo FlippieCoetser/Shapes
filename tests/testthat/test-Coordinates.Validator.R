@@ -26,6 +26,13 @@ describe("When validators <- Coordinates.Validator()",{
     # Then
     validators[['has.x']] |> expect.function()
   })
+  it("then validators contains 'has.y' validator",{
+    # When
+    validators <- Coordinates.Validator()
+
+    # Then
+    validators[['has.y']] |> expect.function()
+  })
 })
 
 describe("When coordinates |> validate[['exists']]('Coordinates.NULL')",{
