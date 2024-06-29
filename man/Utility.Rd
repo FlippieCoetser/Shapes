@@ -9,6 +9,8 @@ Set of Shape Utilities:
 \item get.width
 \item get.height
 \item translate
+\item translate.x
+\item translate.y
 \item shrink.height
 \item join
 }

@@ -70,6 +70,8 @@ Shape.Utility <- \() {
 #' - get.width
 #' - get.height
 #' - translate
+#' - translate.x
+#' - translate.y
 #' - shrink.height
 #' - join
 #' 
