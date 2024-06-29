@@ -104,3 +104,38 @@ describe("When coordinates |> validate[['has.x']]()",{
     coordinates |> validate[['has.x']]() |> expect.equal(coordinates)
   })
 })
+
+describe("When coordinates |> validate[['has.y']]()",{
+  it("then no exception is thrown if coordinates has a y attribute",{
+    # GIVEN
+    validate <- Coordinates.Validator()
+
+    # WHEN
+    coordinates <- data.frame(y=1)
+
+    # THEN
+    coordinates |> validate[['has.y']]() |> expect.no.error()
+  })
+  it("then a Attribute.NULL exception is thrown if coordinates has no y attribute",{
+    # GIVEN
+    validate <- Coordinates.Validator()
+
+    expected.error <- "Attribute.NULL: 'y' does not exist"
+
+    # WHEN
+    coordinates <- data.frame()
+
+    # THEN
+    coordinates |> validate[['has.y']]() |> expect.error(expected.error)
+  })
+  it("then coordinates is return if coordinates has y attribute",{
+    # GIVEN
+    validate <- Coordinates.Validator()
+
+    # WHEN
+    coordinates <- data.frame(y=1)
+
+    # THEN
+    coordinates |> validate[['has.y']]() |> expect.equal(coordinates)
+  })
+})
