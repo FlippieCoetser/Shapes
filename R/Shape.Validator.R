@@ -21,6 +21,11 @@ Shape.Validator <- \() {
   exceptions <- Shape.Validation.Exceptions()
 
   validators <- Validate::Validator()
+  validators[['Line']]       <- \(specifications) {
+    specifications |> validators[['exists']]('Line.NULL') 
+    specifications |> validators[['has.length']]()
+    return(specifications)
+  }
   validators[['Rectangle']]  <- \(specifications) {
     specifications |> validators[['exists']]('Rectangle.NULL') 
     specifications |> validators[['has.width']]()
