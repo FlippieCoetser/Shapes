@@ -22,7 +22,12 @@ Shape.Utility <- \() {
       y = coordinates[['y']]
     )
   }
-  utilities[['translate.y']]   <- \() {}
+  utilities[['translate.y']]   <- \(coordinates, y) {
+    data.frame(
+      x = coordinates[['x']],
+      y = coordinates[['y']] + y
+    )
+  }
   utilities[['shrink.height']] <- \(coordinates, amount) {
     values  <- coordinates[['y']]
     floor   <- values |> min()
