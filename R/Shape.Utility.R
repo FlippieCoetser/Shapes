@@ -41,6 +41,8 @@ Shape.Utility <- \() {
     )
   }
   utilities[['shrink']]        <- \(coordinates, amount) {
+    coordinates |> coordinates.validate[['Coordinates']]()
+       
     coordinates |> 
       utilities[['shrink.height']](amount) |> 
       utilities[['shrink.width']](amount)
