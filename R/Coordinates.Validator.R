@@ -1,3 +1,16 @@
+#' Coordinates Validator
+#'
+#' This component contains all needed validators to check if coordinates are .valid.factor(
+
+#' @return A list of validator functions to validate different aspects of coordinates. :
+#'
+#' \describe{
+#'   \item{\code{Coordinates}}{Validate if coordinates exists and has x and y attributes.}
+#'   \item{\code{exists}}{Validate if coordinates exists.}
+#'   \item{\code{has.x}}{Validates if coordinates has x attribute.}
+#'   \item{\code{has.y}}{Validates if coordinates has y attribute.}
+#' }
+#' @export
 Coordinates.Validator <- \() {
   exceptions <- Coordinates.Validation.Exceptions()
 

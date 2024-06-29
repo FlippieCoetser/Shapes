@@ -1,3 +1,22 @@
+#' Shape Specification Validator
+#'
+#' This component creates a collection of geometric shape specification validators.
+#' It includes validators for basic shape properties such as dimensions and existence checks.
+#' The function returns a list of validator functions, each tailored to a specific shape type.
+#'
+#' @return A list of validator functions for different shapes. Each validator function takes
+#'   a `specifications` list as an argument, which should contain the attributes of the shape
+#'   to validate. Each validator ensures that the necessary attributes are present and not NULL.
+#'   If a validation fails, an appropriate exception is thrown. A list of validator functions, which includes:
+#'
+#' \describe{
+#'   \item{\code{Rectangle}}{Validate if specifications has width and height attributes.}
+#'   \item{\code{Triangle}}{Validate if specifications has base and height attributes.}
+#'   \item{\code{Circle}}{Validates if specifications has radius attribute.}
+#'   \item{\code{Trapezoid}}{Validates if specifications has bottom, top, and height attributes.}
+#'   \item{\code{Segment}}{Validates if specifications has radius attribute.}
+#' }
+#' @export
 Shape.Validator <- \() {
   exceptions <- Shape.Validation.Exceptions()
 
@@ -68,24 +87,3 @@ Shape.Validator <- \() {
   }
   return(validators)
 }
-
-#' Shape Specification Validator
-#'
-#' This component creates a collection of geometric shape specification validators.
-#' It includes validators for basic shape properties such as dimensions and existence checks.
-#' The function returns a list of validator functions, each tailored to a specific shape type.
-#'
-#' @return A list of validator functions for different shapes. Each validator function takes
-#'   a `specifications` list as an argument, which should contain the attributes of the shape
-#'   to validate. Each validator ensures that the necessary attributes are present and not NULL.
-#'   If a validation fails, an appropriate exception is thrown. A list of validator functions, which includes:
-#'
-#' \describe{
-#'   \item{\code{Rectangle}}{Validate if specifications has width and height attributes.}
-#'   \item{\code{Triangle}}{Validate if specifications has base and height attributes.}
-#'   \item{\code{Circle}}{Validates if specifications has radius attribute.}
-#'   \item{\code{Trapezoid}}{Validates if specifications has bottom, top, and height attributes.}
-#'   \item{\code{Segment}}{Validates if specifications has radius attribute.}
-#' }
-#' @export
-Validate <- Shape.Validator
