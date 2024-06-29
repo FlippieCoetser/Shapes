@@ -4,6 +4,8 @@ Shape.Generator <- \() {
 
   generators <- list()
   generators[['Line.horizontal']] <- \(specifications, align = 'corner') {
+    specifications |> validate[['Line']]()
+    
     coordinates <- data.frame(
       x = c(0,specifications[['length']]),
       y = c(0,0)
