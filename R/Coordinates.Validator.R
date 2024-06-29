@@ -1,1 +1,4 @@
-Coordinates.Validator <- \() {}
+Coordinates.Validator <- \() {
+  validators <- list()
+  return(validators)
+}
