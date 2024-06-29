@@ -12,13 +12,20 @@ describe("When exceptions <- Coordinates.Validation.Exceptions()",{
     # Then
     exceptions |> expect.list()
   })
-    it("then exceptions contains 'Coordinates.NULL' exception",{
+  it("then exceptions contains 'Coordinates.NULL' exception",{
     # WHEN
     exceptions <- Coordinates.Validation.Exceptions()
 
     # THEN
     exceptions[['Coordinates.NULL']] |> expect.exist()
   })
+  it("then exceptions contains 'Attribute.NULL' exception",{
+    # WHEN
+    exceptions <- Coordinates.Validation.Exceptions()
+
+    # THEN
+    exceptions[['Attribute.NULL']] |> expect.exist()
+  }) 
 })
 
 describe("When input |> exceptions[['Coordinates.NULL']]()",{
