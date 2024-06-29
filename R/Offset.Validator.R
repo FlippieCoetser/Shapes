@@ -1,3 +1,16 @@
+#' Offset Validator
+#'
+#' This component contains all needed validators to check if an offset is.
+
+#' @return A list of validator functions to validate different aspects of offset:
+#'
+#' \describe{
+#'   \item{\code{Offset}}{Validate if offset exists and has x and y attributes.}
+#'   \item{\code{exists}}{Validate if offset exists.}
+#'   \item{\code{has.x}}{Validates if offset has x attribute.}
+#'   \item{\code{has.y}}{Validates if offset has y attribute.}
+#' }
+#' @export
 Offset.Validator <- \() {
   exceptions <- Offset.Validation.Exceptions()
 

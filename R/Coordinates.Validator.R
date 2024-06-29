@@ -1,8 +1,8 @@
 #' Coordinates Validator
 #'
-#' This component contains all needed validators to check if coordinates are .valid.factor(
+#' This component contains all needed validators to check if coordinates are valid.
 
-#' @return A list of validator functions to validate different aspects of coordinates. :
+#' @return A list of validator functions to validate different aspects of coordinates:
 #'
 #' \describe{
 #'   \item{\code{Coordinates}}{Validate if coordinates exists and has x and y attributes.}

@@ -7,7 +7,7 @@
 Coordinates.Validator()
 }
 \value{
-A list of validator functions to validate different aspects of coordinates. :
+A list of validator functions to validate different aspects of coordinates:
 
 \describe{
 \item{\code{Coordinates}}{Validate if coordinates exists and has x and y attributes.}
@@ -17,5 +17,5 @@ A list of validator functions to validate different aspects of coordinates. :
 }
 }
 \description{
-This component contains all needed validators to check if coordinates are .valid.factor(
+This component contains all needed validators to check if coordinates are valid.
 }

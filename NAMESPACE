@@ -3,5 +3,6 @@
 export(Coordinates.Validator)
 export(Generator)
 export(Offset)
+export(Offset.Validator)
 export(Shape.Validator)
 export(Utility)
