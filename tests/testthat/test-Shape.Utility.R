@@ -54,6 +54,13 @@ describe("When utilities <- Shape.Utility()",{
     # Then
     utilities[['shrink.height']] |> expect.exist()
   })
+  it("then utilities contains 'shrink.width' utility",{
+    # When
+    utilities <- Shape.Utility()
+
+    # Then
+    utilities[['shrink.width']] |> expect.exist()
+  })
   it("then utilities contains 'join' utility",{
     # When
     utilities <- Shape.Utility()
@@ -208,6 +215,53 @@ describe("When coordinates |> shape[['shrink.height']](amount)",{
 
     # When
     actual.coordinates <- coordinates |> shape[['shrink.height']](amount)
+
+    # Then
+    actual.coordinates |> expect.equal(expected.coordinates)
+  })
+})
+
+describe("When coordinates |> shape[['shrink.width']](amount)",{
+  it("then coordinates is shrunk by amount",{
+    # Given
+    shape <- Shape.Utility()
+
+    coordinates <- data.frame(
+      x = c(0,10,10,0,0), 
+      y = c(0,0,10,10,0)
+    )
+
+    amount <- 5
+
+    expected.coordinates <- data.frame(
+      x = c(0,5,5,0,0), 
+      y = c(0,0,10,10,0)
+    )
+
+    # When
+    actual.coordinates <- coordinates |> shape[['shrink.width']](amount)
+
+    # Then
+    actual.coordinates |> expect.equal(expected.coordinates)
+  })
+  it("then coordinates is not shrunk by more than the width of the shape",{
+    # Given
+    shape <- Shape.Utility()
+
+    coordinates <- data.frame(
+      x = c(0,10,10,0,0), 
+      y = c(0,0,10,10,0)
+    )
+
+    amount <- 15
+
+    expected.coordinates <- data.frame(
+      x = c(0,0,0,0,0), 
+      y = c(0,0,10,10,0)
+    )
+
+    # When
+    actual.coordinates <- coordinates |> shape[['shrink.width']](amount)
 
     # Then
     actual.coordinates |> expect.equal(expected.coordinates)
