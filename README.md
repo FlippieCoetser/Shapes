@@ -8,7 +8,18 @@ This package is used to generates x, y coordinate pairs for basic shapes:
 4. Trapezoid
 5. Segment
 
-Structural validation of input specifications is done before generating the coordinates.
+> Note: Structural validation of input specifications is done before generating the coordinates.
+
+This package also contains a set of utility functions that make working with shapes easier.
+Utilities include:
+
+1. `get.width`: Get the width of a shape.
+2. `get.height`: Get the height of a shape.
+3. `translate`: Translate a shape by using an offset.
+4. `translate.x`: Translate a shape along the x-axis.
+5. `translate.y`: Translate a shape along the y-axis.
+6. `shrink.height`: Shrink a shape height by an amount.
+7. `join`: Join two shapes together.
 
 ## Installation
 
