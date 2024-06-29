@@ -64,7 +64,7 @@ Shape.Utility <- \() {
   }
   utilities[['shrink.width']]  <- \(coordinates, amount) {
     coordinates |> coordinates.validate[['Coordinates']]()
-    
+
     values  <- coordinates[['x']]
     floor   <- values |> min()
     ceiling <- values |> max()
@@ -78,6 +78,8 @@ Shape.Utility <- \() {
     coordinates
   }
   utilities[['join']]          <- \(coordinates.one, coordinates.two) {
+    coordinates.one |> coordinates.validate[['Coordinates']]()
+    
     if(coordinates.two |> length() == 0) return(coordinates.one)
 
     intersection <-
