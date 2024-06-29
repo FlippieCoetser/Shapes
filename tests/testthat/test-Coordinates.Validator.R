@@ -12,4 +12,11 @@ describe("When validators <- Coordinates.Validator()",{
     # Then
     validators |> expect.list()
   })
+  it("then validators contains 'exists' validator",{
+    # When
+    validators <- Coordinates.Validator()
+
+    # Then
+    validators[['exists']] |> expect.function()
+  })
 })
