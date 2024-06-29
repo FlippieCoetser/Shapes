@@ -1,5 +1,8 @@
 Shape.Validation.Exceptions <- \() {
   exceptions <- list()
+  exceptions[['Line.NULL']]       <- \(invoke) {
+    if(invoke) stop('Line.NULL: Line Specifications does not exist.', call. = FALSE)
+  }
   exceptions[['Rectangle.NULL']] <- \(invoke) {
     if(invoke) stop('Rectangle.NULL: Rectangle Specifications does not exist.', call. = FALSE)
   }
