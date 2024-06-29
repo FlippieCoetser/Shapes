@@ -41,6 +41,19 @@ Shape.Utility <- \() {
 
     coordinates
   }
+  utilities[['shrink.width']]  <- \(coordinates, amount) {
+    values  <- coordinates[['x']]
+    floor   <- values |> min()
+    ceiling <- values |> max()
+
+    amount <- amount |> min(ceiling - floor)
+           
+    values[values > floor]  <- values[values > floor] - amount
+
+    coordinates[['x']] <- values
+
+    coordinates
+  }
   utilities[['join']]          <- \(coordinates.one, coordinates.two) {
     if(coordinates.two |> length() == 0) return(coordinates.one)
 
