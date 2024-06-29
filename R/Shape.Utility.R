@@ -79,8 +79,7 @@ Shape.Utility <- \() {
   }
   utilities[['join']]          <- \(coordinates.one, coordinates.two) {
     coordinates.one |> coordinates.validate[['Coordinates']]()
-    
-    if(coordinates.two |> length() == 0) return(coordinates.one)
+    coordinates.two |> coordinates.validate[['Coordinates']]()
 
     intersection <-
       coordinates.one |>
