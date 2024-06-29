@@ -143,6 +143,36 @@ describe("When coordinates |> shape[['get.height']]()",{
     # Then
     actual.height |> expect.equal(expected.height)
   })
+  it("then an exception is thrown if coordinates is NULL",{
+    # Given
+    shape <- Shape.Utility()
+    
+    # When
+    coordinates <- NULL
+
+    # Then
+    coordinates |> shape[['get.height']]() |> expect.error()
+  })
+  it("then an exception is thrown if coordinates has not x attribute",{
+    # Given
+    shape <- Shape.Utility()
+    
+    # When
+    coordinates <- data.frame(y = 1:10)
+
+    # Then
+    coordinates |> shape[['get.height']]() |> expect.error()
+  })
+  it("then an exception is thrown if coordinates has not y attribute",{
+    # Given
+    shape <- Shape.Utility()
+    
+    # When
+    coordinates <- data.frame(x = 1:10)
+
+    # Then
+    coordinates |> shape[['get.height']]() |> expect.error()
+  })
 })
 
 describe("When coordinates |> shape[['translate']](offset)",{
