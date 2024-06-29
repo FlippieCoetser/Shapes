@@ -12,4 +12,5 @@ describe("When validators <- Coordinates.Validator()",{
     # Then
     validators |> expect.list()
   })
+  
 })
