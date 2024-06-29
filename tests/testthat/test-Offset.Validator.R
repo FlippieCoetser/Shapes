@@ -55,3 +55,38 @@ describe("When offset |> validate[['exists']]('Offset.NULL')",{
     offset |> validate[['exists']]('Offset.NULL') |> expect.equal(offset)
   })
 })
+
+describe("When offset |> validate[['has.x']]()",{
+  it("then no exception is thrown if offset has a x attribute",{
+    # GIVEN
+    validate <- Offset.Validator()
+
+    # WHEN
+    offset <- data.frame(x=1)
+
+    # THEN
+    offset |> validate[['has.x']]() |> expect.no.error()
+  })
+  it("then a Attribute.NULL exception is thrown if offset has no x attribute",{
+    # GIVEN
+    validate <- Offset.Validator()
+
+    expected.error <- "Attribute.NULL: 'x' does not exist"
+
+    # WHEN
+    offset <- data.frame()
+
+    # THEN
+    offset |> validate[['has.x']]() |> expect.error(expected.error)
+  })
+  it("then offset is return if offset has x attribute",{
+    # GIVEN
+    validate <- Offset.Validator()
+
+    # WHEN
+    offset <- data.frame(x=1)
+
+    # THEN
+    offset |> validate[['has.x']]() |> expect.equal(offset)
+  })
+})
