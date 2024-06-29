@@ -63,6 +63,8 @@ Shape.Utility <- \() {
     coordinates
   }
   utilities[['shrink.width']]  <- \(coordinates, amount) {
+    coordinates |> coordinates.validate[['Coordinates']]()
+    
     values  <- coordinates[['x']]
     floor   <- values |> min()
     ceiling <- values |> max()
