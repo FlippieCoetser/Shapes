@@ -28,6 +28,11 @@ Shape.Utility <- \() {
       y = coordinates[['y']] + y
     )
   }
+  utilities[['shrink']]        <- \(coordinates, amount) {
+    coordinates |> 
+      utilities[['shrink.height']](amount) |> 
+      utilities[['shrink.width']](amount)
+  }
   utilities[['shrink.height']] <- \(coordinates, amount) {
     values  <- coordinates[['y']]
     floor   <- values |> min()
