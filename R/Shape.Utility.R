@@ -42,12 +42,14 @@ Shape.Utility <- \() {
   }
   utilities[['shrink']]        <- \(coordinates, amount) {
     coordinates |> coordinates.validate[['Coordinates']]()
-       
+
     coordinates |> 
       utilities[['shrink.height']](amount) |> 
       utilities[['shrink.width']](amount)
   }
   utilities[['shrink.height']] <- \(coordinates, amount) {
+    coordinates |> coordinates.validate[['Coordinates']]()
+
     values  <- coordinates[['y']]
     floor   <- values |> min()
     ceiling <- values |> max()
