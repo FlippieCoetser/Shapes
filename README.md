@@ -2,11 +2,12 @@
 
 This package is used to generates x, y coordinate pairs for basic shapes:
 
-1. Rectangle
-2. Triangle
-3. Circle
-4. Trapezoid
-5. Segment
+1. `Line.vertical`, `Line.horizontal`
+2. `Rectangle`
+3. `Triangle`
+4. `Circle`
+5. `Trapezoid`
+6. `Segment`
 
 > Note: Structural validation of input specifications is done before generating the coordinates.
 
@@ -78,6 +79,15 @@ validate <- Shapes::Validator()
 
 Generate Shape Coordinates for the following shapes:
 
+1. Line (vertical and horizontal)
+
+```r
+specifications <- list()
+specifications[['length']] <- 1
+
+line <- specifications |> generate[['Line.Horizontal']]()
+```
+
 1. Rectangle
 
 ```r
@@ -131,10 +141,10 @@ segment <- specifications |> generate[['Segment']]()
 >
 > The align parameter can be one of the following:
 >
-> 1.  corner: The Left Bottom Corner of shapes will be at the origin (0,0)
-> 2.  center: The center of shapes will be at the origin (0,0)
-> 3.  horizontal: The shapes will be centred horizontally with the bottom at y = 0
-> 4.  vertical: The shapes will be centred vertically with the left side at x = 0
+> 1.  `corner`: The Left Bottom Corner of shapes will be at the origin (0,0) and also the default value
+> 2.  `center`: The center of shapes will be at the origin (0,0)
+> 3.  `horizontal`: The shapes will be centred horizontally with the bottom at y = 0
+> 4.  `vertical`: The shapes will be centred vertically with the left side at x = 0
 
 Generate Shape Coordinates for the following shapes:
 
