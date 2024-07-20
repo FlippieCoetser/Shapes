@@ -85,7 +85,7 @@ Generate Shape Coordinates for the following shapes:
 specifications <- list()
 specifications[['length']] <- 1
 
-line <- specifications |> generate[['Line.Horizontal']]()
+line <- specifications |> generate[['Line.horizontal']]()
 ```
 
 1. Rectangle
